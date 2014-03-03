@@ -7,14 +7,17 @@ public class GunDisplay : MonoBehaviour {
 	public Texture2D HMG;
 	public Texture2D Shotgun;
 	public Texture2D Pistol;
-	public Texture2D currentSelection;
+	public string currentSelection;
+	public Texture2D bullet;
+	private int ammoCount;
 	private bool selectionOpen = false;
 
 	// Use this for initialization
 	void Start () 
 	{
 		guiTexture.texture = Pistol; 
-		currentSelection = Pistol;
+		currentSelection = "Pistol";
+		ammoCount = 6;
 	}
 	
 	// Update is called once per frame
@@ -43,19 +46,22 @@ public class GunDisplay : MonoBehaviour {
 	void OnGUI()
 	{
 		if (selectionOpen == true) {
-			if (currentSelection != HMG && GUI.Button (new Rect (10, Screen.height-210, 150, 100), HMG)) {
+			if (currentSelection != "HMG" && GUI.Button (new Rect (10, Screen.height-210, 150, 100), HMG)) {
 				guiTexture.texture = HMG;
-				currentSelection = HMG;
+				currentSelection = "HMG";
+				ammoCount = 40;
 				selectionOpen = false;
 			}
-			else if(currentSelection != Shotgun && GUI.Button (new Rect (10, Screen.height-320, 150, 100), Shotgun)) {
+			else if(currentSelection != "Shotgun" && GUI.Button (new Rect (10, Screen.height-320, 150, 100), Shotgun)) {
 				guiTexture.texture = Shotgun;
-				currentSelection = Shotgun;
+				currentSelection = "Shotgun";
+				ammoCount = 5;
 				selectionOpen = false;
 			}
-			else if(currentSelection != Pistol && GUI.Button (new Rect (10, Screen.height-430, 150, 100), Pistol)) {
+			else if(currentSelection != "Pistol" && GUI.Button (new Rect (10, Screen.height-430, 150, 100), Pistol)) {
 				guiTexture.texture = Pistol;
-				currentSelection = Pistol;
+				currentSelection = "Pistol";
+				ammoCount = 6;
 				selectionOpen = false;
 			}
 		} 
@@ -63,5 +69,14 @@ public class GunDisplay : MonoBehaviour {
 		{
 			// display nothing
 		}
+
+		for(int i = 0; i < ammoCount; i++){
+			// this does not scale well with screen resolution
+			GUI.DrawTexture(new Rect(200 + (12 * i), Screen.height-50, 20, 18), bullet);
+		}
+	}
+
+	string getCurrentSelection(){
+		return currentSelection;
 	}
 }
