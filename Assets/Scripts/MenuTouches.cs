@@ -60,6 +60,8 @@ public class MenuTouches : MonoBehaviour {
 				Application.LoadLevel("settings");
 			else if(guiTexture.name == "text_Back")
 				Application.LoadLevel("main");
+			else if(guiTexture.name == "text_ClearHighscore")
+				PlayerPrefs.DeleteKey ("highScore");
 		}
 	}
 }

@@ -46,19 +46,19 @@ public class GunDisplay : MonoBehaviour {
 	void OnGUI()
 	{
 		if (selectionOpen == true) {
-			if (currentSelection != "HMG" && GUI.Button (new Rect (10, Screen.height-210, 150, 100), HMG)) {
+			if (/*currentSelection != "HMG" &&*/ GUI.Button (new Rect (10, Screen.height-210, 150, 100), HMG)) {
 				guiTexture.texture = HMG;
 				currentSelection = "HMG";
 				ammoCount = 40;
 				selectionOpen = false;
 			}
-			else if(currentSelection != "Shotgun" && GUI.Button (new Rect (10, Screen.height-320, 150, 100), Shotgun)) {
+			else if(/*currentSelection != "Shotgun" &&*/ GUI.Button (new Rect (10, Screen.height-320, 150, 100), Shotgun)) {
 				guiTexture.texture = Shotgun;
 				currentSelection = "Shotgun";
 				ammoCount = 5;
 				selectionOpen = false;
 			}
-			else if(currentSelection != "Pistol" && GUI.Button (new Rect (10, Screen.height-430, 150, 100), Pistol)) {
+			else if(/*currentSelection != "Pistol" &&*/ GUI.Button (new Rect (10, Screen.height-430, 150, 100), Pistol)) {
 				guiTexture.texture = Pistol;
 				currentSelection = "Pistol";
 				ammoCount = 6;
@@ -71,8 +71,7 @@ public class GunDisplay : MonoBehaviour {
 		}
 
 		for(int i = 0; i < ammoCount; i++){
-			// this does not scale well with screen resolution
-			GUI.DrawTexture(new Rect(200 + (12 * i), Screen.height-50, 20, 18), bullet);
+			GUI.DrawTexture(new Rect(Screen.width *(float)0.15 + (12 * i), Screen.height *(float)0.92, 20, 18), bullet);
 		}
 	}
 
