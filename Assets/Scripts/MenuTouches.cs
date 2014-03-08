@@ -13,8 +13,8 @@ public class MenuTouches : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () 
-	{
+	//void Update () 
+	//{
 		/* Notes: Both methods seem to work.
 		 * Theory on how to add pen touch recognition: Use method 2, then check if isPenPressed == true.
 		 * If it is true, getPenTouchX() and getPenTouchY(). 
@@ -45,7 +45,7 @@ public class MenuTouches : MonoBehaviour {
 		}*/
 
 		// Method 2
-		if (guiTexture.HitTest(Input.GetTouch(0).position) && Input.GetTouch(0).phase != TouchPhase.Ended)
+		/*if (guiTexture.HitTest(Input.GetTouch(0).position) && Input.GetTouch(0).phase != TouchPhase.Ended)
 		{
 			guiTexture.texture = button2; // texture changes to button2 when touched
 			//transform.Translate(Vector3.right * 1 * Time.smoothDeltaTime);
@@ -63,5 +63,16 @@ public class MenuTouches : MonoBehaviour {
 			else if(guiTexture.name == "text_ClearHighscore")
 				PlayerPrefs.DeleteKey ("highScore");
 		}
+	}*/
+
+	void OnMouseDown(){
+		if (guiTexture.name == "text_START")
+				Application.LoadLevel ("game");
+		else if (guiTexture.name == "text_Settings")
+				Application.LoadLevel ("settings");
+		else if (guiTexture.name == "text_Back")
+				Application.LoadLevel ("main");
+		else if (guiTexture.name == "text_ClearHighscore")
+				PlayerPrefs.DeleteKey ("highScore");
 	}
 }

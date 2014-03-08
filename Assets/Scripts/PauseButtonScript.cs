@@ -5,6 +5,8 @@ public class PauseButtonScript : MonoBehaviour {
 
 	public Texture2D button1; // white (unpaused)
 	public Texture2D button2; // red (paused)
+	public Texture2D resume;
+	public Texture2D exit;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +14,7 @@ public class PauseButtonScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	/*void Update () 
 	{
 		// press and hold
 		if (guiTexture.HitTest(Input.GetTouch(0).position) && Input.GetTouch(0).phase != TouchPhase.Ended)
@@ -29,12 +31,27 @@ public class PauseButtonScript : MonoBehaviour {
 				Time.timeScale = 0; // pause the game
 				// Todo: pop up menu
 			}
-			else if(guiTexture.name == "Pause Button"/*todo: close menu button*/ && Time.timeScale == 0)// game is paused
+			else if(guiTexture.name == "Pause Button" && Time.timeScale == 0)// game is paused
 			{
 				guiTexture.texture = button1;
 				Time.timeScale = 1; // unpause the game
 
 			}
+		}
+	}*/
+
+	void OnMouseUp(){
+		if(guiTexture.name == "Pause Button" && Time.timeScale == 1) // game is running
+		{
+			guiTexture.texture = button2;
+			Time.timeScale = 0; // pause the game
+			// Todo: pop up menu
+		}
+		else if(guiTexture.name == "Pause Button" && Time.timeScale == 0)// game is paused
+		{
+			guiTexture.texture = button1;
+			Time.timeScale = 1; // unpause the game
+			
 		}
 	}
 
@@ -44,12 +61,12 @@ public class PauseButtonScript : MonoBehaviour {
 		if (Time.timeScale == 0)
 		{
 			// Resume button
-			if (GUI.Button (new Rect (10, Screen.height/2-30, 100, 50), "Resume")) {
+			if (GUI.Button (new Rect (50, Screen.height*(float)0.42, Screen.width*(float)0.2, Screen.height*(float)0.1), resume)) {
 				Time.timeScale = 1;
 			}
 			// Settings
 			// Exit
-			if (GUI.Button (new Rect (10, Screen.height/2+30, 100, 50), "Exit")) {
+			if (GUI.Button (new Rect (50, Screen.height*(float)0.55, Screen.width*(float)0.2, Screen.height*(float)0.1), exit)) {
 				Time.timeScale = 1;
 				Application.LoadLevel("main");
 			}
