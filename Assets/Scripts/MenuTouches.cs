@@ -67,11 +67,11 @@ public class MenuTouches : MonoBehaviour {
 
 	void OnMouseDown(){
 		if (guiTexture.name == "text_START")
-				Application.LoadLevel ("game");
+				Application.LoadLevel ("MainHall");
 		else if (guiTexture.name == "text_Settings")
 				Application.LoadLevel ("settings");
 		else if (guiTexture.name == "text_Back")
-				Application.LoadLevel ("main");
+				Application.LoadLevel ("mainMenu");
 		else if (guiTexture.name == "text_ClearHighscore")
 				PlayerPrefs.DeleteKey ("highScore");
 	}

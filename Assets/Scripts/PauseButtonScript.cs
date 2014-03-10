@@ -63,12 +63,13 @@ public class PauseButtonScript : MonoBehaviour {
 			// Resume button
 			if (GUI.Button (new Rect (50, Screen.height*(float)0.42, Screen.width*(float)0.2, Screen.height*(float)0.1), resume)) {
 				Time.timeScale = 1;
+				guiTexture.texture = button1;
 			}
 			// Settings
 			// Exit
 			if (GUI.Button (new Rect (50, Screen.height*(float)0.55, Screen.width*(float)0.2, Screen.height*(float)0.1), exit)) {
 				Time.timeScale = 1;
-				Application.LoadLevel("main");
+				Application.LoadLevel("mainMenu");
 			}
 		}
 
