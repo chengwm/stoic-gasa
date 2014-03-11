@@ -19,9 +19,6 @@ public class Enemy : MonoBehaviour {
 	{
 		renderer.material.SetColor("_Color", Color.red);
 		DestroyObject(gameObject, delay);
-		//trackedTargets [0] = true;
-		//if(trackedTargets StopAllCoroutines true) 
-		//	Application.LoadLevel("endofdemo");
 	}
 
 }

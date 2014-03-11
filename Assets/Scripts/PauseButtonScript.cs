@@ -10,6 +10,7 @@ public class PauseButtonScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		// initialize button to white
 		guiTexture.texture = button1; 
 	}
 	
@@ -41,15 +42,15 @@ public class PauseButtonScript : MonoBehaviour {
 	}*/
 
 	void OnMouseUp(){
-		if(guiTexture.name == "Pause Button" && Time.timeScale == 1) // game is running
-		{
-			guiTexture.texture = button2;
+		if(guiTexture.name == "Pause Button" && Time.timeScale == 1) 
+		{ // game is running
+			guiTexture.texture = button2; // white button
 			Time.timeScale = 0; // pause the game
 			// Todo: pop up menu
 		}
-		else if(guiTexture.name == "Pause Button" && Time.timeScale == 0)// game is paused
-		{
-			guiTexture.texture = button1;
+		else if(guiTexture.name == "Pause Button" && Time.timeScale == 0)
+		{ // game is paused
+			guiTexture.texture = button1; // red button
 			Time.timeScale = 1; // unpause the game
 			
 		}
