@@ -35,6 +35,10 @@ public class EventManager : MonoBehaviour {
 			
 			//rotate us over time according to speed until we are in the required rotation
 			transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * RotationSpeed);
+
 		}
+		if ((!(GameObject.Find ("Target31"))) && (!(GameObject.Find ("Target32"))) && (!(GameObject.Find ("Target33")))) {
+						Application.LoadLevel ("endofdemo");
+				}
 	}
 }
