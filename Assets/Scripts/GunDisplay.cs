@@ -44,15 +44,17 @@ public class GunDisplay : MonoBehaviour {
 	}*/
 
 	void OnMouseUp(){
-		if ((guiTexture.name == "GunDisplay" || guiTexture.name == "HMG" || guiTexture.name == "Shotgun") && selectionOpen == false)
+		if ((guiTexture.name == "GunDisplay" || guiTexture.name == "HMG" || guiTexture.name == "Shotgun") && selectionOpen == false && Time.timeScale > 0)
+		{ // if you press the Gun Display, the selection is closed, and the game is unpaused
 			selectionOpen = true;
-		else if(selectionOpen == true)
+		}
+		else if(selectionOpen == true && Time.timeScale > 0)
 			selectionOpen = false;
 	}
 
-
+	// OnGUI is called every frame
 	void OnGUI()
-	{
+	{ 
 		if (selectionOpen == true) {
 			if (/*currentSelection != "HMG" &&*/ GUI.Button (new Rect (10, Screen.height*(float)0.62, Screen.width*(float)0.2, Screen.height*(float)0.2), HMG)) { // bottom
 				guiTexture.texture = HMG;
@@ -79,11 +81,8 @@ public class GunDisplay : MonoBehaviour {
 		}
 
 		for(int i = 0; i < ammoCount; i++){
+			// Draws the ammo (marbles) at the bottom of the screen
 			GUI.DrawTexture(new Rect(Screen.width *(float)0.18 + (Screen.width*(float)0.019 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
 		}
-	}
-
-	string getCurrentSelection(){
-		return currentSelection;
 	}
 }
