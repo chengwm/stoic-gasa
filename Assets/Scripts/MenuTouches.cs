@@ -6,11 +6,36 @@ public class MenuTouches : MonoBehaviour {
 	public Texture2D button1;
 	public Texture2D button2;
 	
-	// Use this for initialization
-	void Start () 
-	{
-		guiTexture.texture = button1;	
+	void OnMouseUp(){
+		if (this.name == "text_START"){
+			Application.LoadLevel ("MainHall");
+			guiTexture.texture = button1;
+		}
+		else if (this.name == "text_Settings"){
+			Application.LoadLevel ("settings");
+			guiTexture.texture = button1;
+		}
+		else if (this.name == "text_Back"){
+			Application.LoadLevel ("mainMenu");
+			guiTexture.texture = button1;
+		}
+		else if (this.name == "text_ClearHighscore"){
+			PlayerPrefs.DeleteKey ("highScore");
+			guiTexture.texture = button1;
+		}
 	}
+	
+	void OnMouseDown(){
+		if (guiTexture.name == "text_START")
+			guiTexture.texture = button2;
+		else if (guiTexture.name == "text_Settings")
+			guiTexture.texture = button2;
+		else if (guiTexture.name == "text_Back")
+			guiTexture.texture = button2;
+		else if (guiTexture.name == "text_ClearHighscore")
+			guiTexture.texture = button2;
+	}
+}
 
 	// Update is called once per frame
 	//void Update () 
@@ -65,14 +90,3 @@ public class MenuTouches : MonoBehaviour {
 		}
 	}*/
 
-	void OnMouseDown(){
-		if (guiTexture.name == "text_START")
-				Application.LoadLevel ("MainHall");
-		else if (guiTexture.name == "text_Settings")
-				Application.LoadLevel ("settings");
-		else if (guiTexture.name == "text_Back")
-				Application.LoadLevel ("mainMenu");
-		else if (guiTexture.name == "text_ClearHighscore")
-				PlayerPrefs.DeleteKey ("highScore");
-	}
-}

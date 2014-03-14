@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts\HighScore.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts\MenuTouches.cs">
     <Files>
-      <File FileName="assets\Scripts\HighScore.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MenuTouches.cs" Line="78" Column="2" />
-      <File FileName="Assets\Scripts\GunDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PauseButtonScript.cs" Line="1" Column="1" />
+      <File FileName="assets\Scripts\MenuTouches.cs" Line="1" Column="1" />
+      <File FileName="assets\Scripts\MenuTouches.cs" Line="21" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
