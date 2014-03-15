@@ -56,8 +56,9 @@
      <Compile Include="assets\Scripts\PauseButtonScript.cs" />
      <Compile Include="assets\Scripts\ScoreScript.cs" />
      <Compile Include="assets\Scripts\Shooting.cs" />
+     <Compile Include="assets\Scripts\SystemControls.cs" />
      <Compile Include="assets\Scripts\TimerScript.cs" />
-     <Compile Include="assets\Scripts\VolumeSliders.cs" />
+     <Compile Include="assets\Scripts\VolumeButtons.cs" />
      <None Include="assets\standard assets\projectors\Guidelines.txt" />
      <None Include="assets\standard assets\glass refraction (pro only)\Sources\Shaders\Glass-Stained-BumpDistort.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BlendOneOne.shader" />
