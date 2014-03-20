@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="assets\Scripts\BulletDestroy.cs" />
      <Compile Include="assets\Scripts\Enemy.cs" />
+     <Compile Include="assets\Scripts\EnemyBulletDestroy.cs" />
+     <Compile Include="assets\Scripts\EnemyShoot.cs" />
      <Compile Include="assets\Scripts\EventManager.cs" />
      <Compile Include="assets\Scripts\GunDisplay.cs" />
      <Compile Include="assets\Scripts\HighScore.cs" />
