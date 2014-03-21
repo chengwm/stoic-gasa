@@ -1,12 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts\EnemyShoot.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts\EventManager.cs">
     <Files>
-      <File FileName="assets\Scripts\EnemyShoot.cs" Line="31" Column="4" />
-      <File FileName="assets\Scripts\EnemyBulletDestroy.cs" Line="13" Column="66" />
-      <File FileName="assets\Scripts\HighScore.cs" Line="8" Column="2" />
-      <File FileName="assets\Scripts\ScoreScript.cs" Line="18" Column="49" />
-      <File FileName="assets\Scripts\LifeCounter.cs" Line="66" Column="15" />
+      <File FileName="assets\Scripts\LifeCounter.cs" Line="1" Column="1" />
+      <File FileName="assets\Plugins\TouchDetector.cs" Line="226" Column="24" />
+      <File FileName="assets\Scripts\EventManager.cs" Line="33" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
