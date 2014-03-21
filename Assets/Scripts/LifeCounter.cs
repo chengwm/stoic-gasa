@@ -7,13 +7,15 @@ public class LifeCounter : MonoBehaviour {
 	public GUITexture life2;
 	public GUITexture life3;
 	private int playerHealth = 0;
-
+	
 	// Use this for initialization
 	void Start () {
 		playerHealth = 3;
 		PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
 	}
-	
+
+
+
 	void Update () 
 	{
 		if (PlayerPrefs.HasKey ("playerHealth")) {

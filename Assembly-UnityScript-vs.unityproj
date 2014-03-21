@@ -68,8 +68,10 @@
      <None Include="assets\standard assets (mobile)\shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="assets\standard assets\projectors\sources\Shaders\Projector Multiply.shader" />
      <None Include="assets\standard assets (mobile)\shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
+     <None Include="assets\Plugins\AndroidManifest.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ShowAlphaChannel.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\GlowConeTap.shader" />
+     <None Include="assets\Plugins\res\values\dimens.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\SunShaftsComposite.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrectionCurves.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ScreenSpaceAmbientObscurance.shader" />
@@ -78,6 +80,7 @@
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\VignetteShader.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\DepthOfFieldScatter.shader" />
      <None Include="assets\standard assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
+     <None Include="assets\Plugins\res\values\styles.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\MotionBlur.shader" />
      <None Include="assets\standard assets (mobile)\shaders\Miscellaneous Shaders\Mobile Detail.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\MobileBloom.shader" />
@@ -112,6 +115,7 @@
      <None Include="assets\standard assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Contrast Stretch\Luminance.shader" />
      <None Include="assets\standard assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="assets\Plugins\res\values-sw600dp\dimens.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrectionSelective.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\CameraMotionBlurDX11.shader" />
@@ -122,6 +126,7 @@
      <None Include="assets\standard assets\water (pro only)\sources\Shaders\FX-Water.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\DLAA.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\NoiseAndGrainDX11.shader" />
+     <None Include="assets\Plugins\res\menu\main.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\SeparableBlur.shader" />
      <None Include="assets\standard assets (mobile)\shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
@@ -136,9 +141,12 @@
      <None Include="assets\standard assets (mobile)\shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\NoiseAndGrain.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\VignettingShader.shader" />
+     <None Include="assets\Plugins\res\values-v11\styles.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Tonemapper.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BrightPassFilter.shader" />
+     <None Include="assets\Plugins\res\values-sw720dp-land\dimens.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="assets\Plugins\res\values-v14\styles.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrection3DLut.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\EdgeDetectNormals.shader" />
@@ -149,7 +157,9 @@
      <None Include="assets\standard assets\water (pro only)\water4\Sources\Shaders\FX-Water4.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\SimpleClear.shader" />
      <None Include="assets\standard assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
+     <None Include="assets\Plugins\res\values\strings.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAA3Console.shader" />
+     <None Include="assets\Plugins\res\layout\activity_main.xml" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BlendForBloom.shader" />
