@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_2;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;ENABLE_DUCK_TYPING</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,54 +39,148 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Games/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Games/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Editor\Image Effects\AntialiasingAsPostEffectEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\BloomAndLensFlaresEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\BloomEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\CameraMotionBlurEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\ColorCorrectionCurvesEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\ColorCorrectionLutEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\DepthOfField34Editor.js" />
-     <Compile Include="Assets\Editor\Image Effects\DepthOfFieldScatterEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\EdgeDetectEffectNormalsEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\NoiseAndGrainEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\SunShaftsEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\TonemappingEditor.js" />
-     <Compile Include="Assets\Editor\Image Effects\VignettingEditor.js" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
-     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
+     <Compile Include="assets\editor\Image Effects\AntialiasingAsPostEffectEditor.js" />
+     <Compile Include="assets\editor\Image Effects\BloomAndLensFlaresEditor.js" />
+     <Compile Include="assets\editor\Image Effects\BloomEditor.js" />
+     <Compile Include="assets\editor\Image Effects\CameraMotionBlurEditor.js" />
+     <Compile Include="assets\editor\Image Effects\ColorCorrectionCurvesEditor.js" />
+     <Compile Include="assets\editor\Image Effects\ColorCorrectionLutEditor.js" />
+     <Compile Include="assets\editor\Image Effects\DepthOfField34Editor.js" />
+     <Compile Include="assets\editor\Image Effects\DepthOfFieldScatterEditor.js" />
+     <Compile Include="assets\editor\Image Effects\EdgeDetectEffectNormalsEditor.js" />
+     <Compile Include="assets\editor\Image Effects\NoiseAndGrainEditor.js" />
+     <Compile Include="assets\editor\Image Effects\SunShaftsEditor.js" />
+     <Compile Include="assets\editor\Image Effects\TonemappingEditor.js" />
+     <Compile Include="assets\editor\Image Effects\VignettingEditor.js" />
+     <None Include="assets\standard assets\projectors\Guidelines.txt" />
+     <None Include="assets\standard assets\glass refraction (pro only)\Sources\Shaders\Glass-Stained-BumpDistort.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Particle Shaders\Mobile Multiply Culled.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\NoiseEffectShaderRGB.shader" />
+     <None Include="assets\standard assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Miscellaneous Shaders\Mobile Background.shader" />
+     <None Include="assets\standard assets\projectors\sources\Shaders\Projector Multiply.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
+     <None Include="assets\Plugins\AndroidManifest.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ShowAlphaChannel.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\GlowConeTap.shader" />
+     <None Include="assets\Plugins\res\values\dimens.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\SunShaftsComposite.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrectionCurves.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ScreenSpaceAmbientObscurance.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\NFAA.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\VignetteShader.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+     <None Include="assets\standard assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
+     <None Include="assets\Plugins\res\values\styles.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\MotionBlur.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Miscellaneous Shaders\Mobile Detail.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\MobileBloom.shader" />
+     <None Include="assets\standard assets\particles\sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\GlowCompose.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Contrast Stretch\MinMaxReduction.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\SSAA.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\RadialBlur.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ContrastComposite.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAAPreset3.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\FisheyeShader.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Contrast Stretch\Apply.shader" />
+     <None Include="assets\standard assets\water (pro only)\water4\Sources\Shaders\FX-SimpleWater4.shader" />
+     <None Include="assets\standard assets\skyboxes\_skybox info.txt" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\frag_ao.cginc" />
+     <None Include="assets\standard assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\DepthOfField34.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\MobileBlur.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\SSAOShader.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ConvertDepth.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrectionCurvesSimple.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\NoiseEffectShaderYUV.shader" />
+     <None Include="assets\standard assets\projectors\sources\Shaders\Projector Light.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\GlowEffectDownsample.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\CreaseApply.shader" />
+     <None Include="assets\standard assets\water (basic)\sources\Shaders\FX-Water Simple.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ChromaticAberrationShader.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\GlobalFog.shader" />
+     <None Include="assets\standard assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Contrast Stretch\Luminance.shader" />
+     <None Include="assets\standard assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="assets\Plugins\res\values-sw600dp\dimens.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrectionSelective.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\CameraMotionBlurDX11.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\BlurEffectConeTaps.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\CameraMotionBlur.shader" />
+     <None Include="assets\standard assets\water (pro only)\sources\Shaders\FX-Water.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\DLAA.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\NoiseAndGrainDX11.shader" />
+     <None Include="assets\Plugins\res\menu\main.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\MotionBlurClear.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrectionEffect.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\GrayscaleEffect.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\SepiaToneEffect.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\TwirlEffect.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\VortexEffect.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Contrast Stretch\Adaptation.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
+     <None Include="assets\standard assets (mobile)\shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\NoiseAndGrain.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\VignettingShader.shader" />
+     <None Include="assets\Plugins\res\values-v11\styles.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\Tonemapper.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BrightPassFilter.shader" />
+     <None Include="assets\Plugins\res\values-sw720dp-land\dimens.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="assets\Plugins\res\values-v14\styles.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\ColorCorrection3DLut.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\EdgeDetectNormals.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\PrepareSunShaftsBlur.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\Blend.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\BlendModesOverlay.shader" />
+     <None Include="assets\standard assets\water (pro only)\water4\Sources\Shaders\WaterInclude.cginc" />
+     <None Include="assets\standard assets\water (pro only)\water4\Sources\Shaders\FX-Water4.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\SimpleClear.shader" />
+     <None Include="assets\standard assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
+     <None Include="assets\Plugins\res\values\strings.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAA3Console.shader" />
+     <None Include="assets\Plugins\res\layout\activity_main.xml" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_Antialiasing\FXAAPreset2.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BlurAndFlares.shader" />
+     <None Include="assets\standard assets\image effects (pro only)\_sources\shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEditor.Graphs">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+ <HintPath>D:\Games\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\iPhonePlayer\EditorExtensions\UnityEditor.iOS.Extensions.dll</HintPath>
+ <HintPath>D:\Games\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\iPhonePlayer\EditorExtensions\UnityEditor.iOS.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.WP8.Extensions">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\WP8Support\EditorExtensions\UnityEditor.WP8.Extensions.dll</HintPath>
+ <HintPath>D:\Games\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\WP8Support\EditorExtensions\UnityEditor.WP8.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Metro.Extensions">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\MetroSupport\EditorExtensions\UnityEditor.Metro.Extensions.dll</HintPath>
+ <HintPath>D:\Games\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\MetroSupport\EditorExtensions\UnityEditor.Metro.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.BB10.Extensions">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\BB10Player\EditorExtensions\UnityEditor.BB10.Extensions.dll</HintPath>
+ <HintPath>D:\Games\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\BB10Player\EditorExtensions\UnityEditor.BB10.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Android.Extensions">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\EditorExtensions\UnityEditor.Android.Extensions.dll</HintPath>
+ <HintPath>D:\Games\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\EditorExtensions\UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

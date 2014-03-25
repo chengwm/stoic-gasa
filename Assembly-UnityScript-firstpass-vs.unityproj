@@ -67,6 +67,16 @@
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
+     <None Include="assets\Plugins\AndroidManifest.xml" />
+     <None Include="assets\Plugins\res\values\dimens.xml" />
+     <None Include="assets\Plugins\res\values\styles.xml" />
+     <None Include="assets\Plugins\res\values-sw600dp\dimens.xml" />
+     <None Include="assets\Plugins\res\menu\main.xml" />
+     <None Include="assets\Plugins\res\values-v11\styles.xml" />
+     <None Include="assets\Plugins\res\values-sw720dp-land\dimens.xml" />
+     <None Include="assets\Plugins\res\values-v14\styles.xml" />
+     <None Include="assets\Plugins\res\values\strings.xml" />
+     <None Include="assets\Plugins\res\layout\activity_main.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
