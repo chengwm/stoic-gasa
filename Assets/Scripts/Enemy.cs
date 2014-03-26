@@ -4,25 +4,28 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	
 	public float delay;
-	private float attackTimer;	//countdown till attack from TakeCoverState
-	private float coverTimer;	//countdown till take cover from AttackState
-	enum States {
+	//made public for EnemyShoot.cs to access
+	public enum States {
 		NullStateID = 0, // Use this ID to represent a non-existing State in your system	
 		Attack,
 		ChangeCover,
 		TakeCover
 	}
-	private States current;
+	public States current;
+	public float positionOriginal;
+	private float attackTimer;	//countdown till attack from TakeCoverState
+	private float coverTimer;	//countdown till take cover from AttackState
 	private bool first = false;	//test if first time entering a statement
-	//public EnemyShoot es = new EnemyShoot();
 
 	// Use this for initialization
 	void Start () {
 		renderer.material.SetColor("_Color", Color.green);
-		attackTimer = 2.0f;
+		attackTimer = 100000.0f;
 		UnityEngine.Random.seed = System.DateTime.Now.Second;
-		coverTimer = UnityEngine.Random.value % 10.0f;
+		coverTimer = UnityEngine.Random.value % 20.0f;
 		States current = States.Attack;
+
+		positionOriginal = transform.position.y;
 	}
 
 	// Update is called once per frame
@@ -44,14 +47,17 @@ public class Enemy : MonoBehaviour {
 		{
 
 			Vector3 temp = transform.position;
-			//if(temp.y >= 0.08f)
-				temp.y -= 1.0f;
-			//else 
+			if(temp.y >= positionOriginal - 1.0f)
+			{
+				temp.y -= 0.1f;
+			}
+			else 
+			{
 				first = false; 
+			}
 			transform.position = temp;
 
-			//enable EnemyShoot.cs
-			//es.enabled = false;
+			//disable firing in EnemyShoot.cs 
 		}
 
 		//transition from TakeCoverState to AttackState
@@ -68,14 +74,17 @@ public class Enemy : MonoBehaviour {
 		if(current == States.Attack && first == true)
 		{
 			Vector3 temp = transform.position;
-			//if(temp.y <= 1.08f)
-				temp.y += 1.0f;
-			//else 
-				first = false;
+			if(temp.y <= positionOriginal)
+			{
+				temp.y += 0.2f;
+			}
+			else 
+			{
+				first = false; 
+			}			
 			transform.position = temp;
 
-			//disable EnemyShoot.cs
-			//es.enabled = false;
+			//enable firing in EnemyShoot.cs
 		}
 
 		//transition to ChangeCoverState
@@ -83,6 +92,14 @@ public class Enemy : MonoBehaviour {
 		//GameObject[] covers = GameObject.FindObjectsWithTag("cover");
 		//check if cover.position.x and cover.position.z already has a gummy bear there
 		//move there
+
+		if(transform.position.y <= -0.8f)
+		{
+			print("attackTimer = " + attackTimer);
+			print("coverTimer = " + coverTimer);
+			print("current = " + current);
+		}
+
 	}
 
 	public void StartAnim()
