@@ -24,11 +24,7 @@ public class EnemyBulletDestroy : MonoBehaviour {
 			}
 			playerHealth -= 1;
 			PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
-			
-			// Todo:
-			// Update the code for the player life GUI as well (check playerprefs life value)
-			// Need to reset playerprefs life to 3 when the player clicks start
-			
+
 			// Destroy the bullet
 			Destroy (gameObject);
 		}
