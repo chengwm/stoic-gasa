@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\MenuTouches.cs" />
      <Compile Include="Assets\Scripts\PauseButtonScript.cs" />
      <Compile Include="Assets\Scripts\ScoreScript.cs" />
+     <Compile Include="Assets\Scripts\Shield.cs" />
      <Compile Include="Assets\Scripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\SystemControls.cs" />
      <Compile Include="Assets\Scripts\TimerScript.cs" />
