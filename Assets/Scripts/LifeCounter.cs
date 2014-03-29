@@ -10,6 +10,7 @@ public class LifeCounter : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		// initialize to 3
 		playerHealth = 3;
 		PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
 	}
@@ -22,45 +23,34 @@ public class LifeCounter : MonoBehaviour {
 			playerHealth = PlayerPrefs.GetInt ("playerHealth");
 		}
 		// If player has 3 lives
-		if(playerHealth == 2)
+		if(playerHealth >= 3)
 		{
-			if (life3.enabled == true)
-			{
-				if (life3.enabled == true)
-				{
-					life3.enabled = false;
-				}
-				else // possible functionality to gain back life
-				{ 
-					life3.enabled = true;
-				}
-			}
+			life3.enabled = true;
+			life2.enabled = true;
+			life1.enabled = true;
 		}
-		// Else if player has 2 lives
-		if(playerHealth == 1)
+		// If player has 2 lives
+		else if(playerHealth == 2)
 		{
-			if (life2.enabled == true && life3.enabled == false)
-			{
-				if (life2.enabled == true){
-					life2.enabled = false;
-				}
-				else // possible functionality to gain back life
-				{ 
-					life2.enabled = true;
-				}
-			}
+			life3.enabled = false;
+			life2.enabled = true;
+			life1.enabled = true;
 		}
-		// Else if player has 1 life
-		if(playerHealth == 0)
+		// Else if player has 1 lives
+		else if(playerHealth == 1)
 		{
-			if (life1.enabled == true && life2.enabled == false)
-			{
-				if (life1.enabled == true)
-				{
-					life1.enabled = false;
-					// GAME OVER
-				}
-			}
+			life3.enabled = false;
+			life2.enabled = false;
+			life1.enabled = true;
+		}
+		// Else if player has 0 life
+		else if(playerHealth < 1)
+		{
+			life3.enabled = false;
+			life2.enabled = false;
+			life1.enabled = false;
+			// GAME OVER
+
 		}
 	}
 }
