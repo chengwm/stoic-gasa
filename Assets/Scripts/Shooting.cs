@@ -44,6 +44,12 @@ public class Shooting : MonoBehaviour {
 							Enemy script = target.GetComponent<Enemy>();
 							script.StartAnim();
 						}
+
+						if(hit.transform.gameObject.tag == "EnemyLollipop") {
+							GameObject target = hit.collider.gameObject;
+							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+							script.StartAnim();
+						}
 					}
 				}
 			}
@@ -67,7 +73,13 @@ public class Shooting : MonoBehaviour {
 							Enemy script = target.GetComponent<Enemy>();
 							script.StartAnim();
 						}
-						
+
+						if(hit.transform.gameObject.tag == "EnemyLollipop") {
+							GameObject target = hit.collider.gameObject;
+							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+							script.StartAnim();
+						}
+
 						gunDisplayScript.ammoCountHMG--; // decrease ammo count
 						nextFireHMG = Time.time + fireRateHMG; // shooting delay
 					}
@@ -97,6 +109,13 @@ public class Shooting : MonoBehaviour {
 							Enemy script = target.GetComponent<Enemy>();
 							script.StartAnim();
 						}
+
+						if(hit.transform.gameObject.tag == "EnemyLollipop") {
+							GameObject target = hit.collider.gameObject;
+							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+							script.StartAnim();
+						}
+
 					}
 				}
 			}
