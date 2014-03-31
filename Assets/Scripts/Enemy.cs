@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour {
 		attackTimer = 100000.0f;
 		UnityEngine.Random.seed = System.DateTime.Now.Second;
 		coverTimer = UnityEngine.Random.value % 20.0f;
-		States current = States.Attack;
+		current = States.Attack;
 
 		positionOriginal = transform.position.y;
 	}
