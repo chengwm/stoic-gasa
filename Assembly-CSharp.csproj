@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BulletDestroy.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyBulletDestroy.cs" />
+     <Compile Include="Assets\Scripts\EnemyEgg.cs" />
      <Compile Include="Assets\Scripts\EnemyLollipop.cs" />
      <Compile Include="Assets\Scripts\EnemyShoot.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
