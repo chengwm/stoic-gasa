@@ -60,6 +60,10 @@ public class SystemControls : MonoBehaviour {
 				{
 					Application.LoadLevel("mainMenu");
 				}
+				else if(Application.loadedLevelName == "GameOver")
+				{
+					Application.LoadLevel("mainMenu");
+				}
 			}
 			
 			 /*if(Input.GetKey (KeyCode.Menu)) // for the device menu button (leftmost button on the Note)

@@ -6,7 +6,6 @@ public class Shooting : MonoBehaviour {
 	// Gun variables
 	// -------------
 	public GameObject bullethole;
-	public GameObject ShotgunBullethole;
 	private int ammoCount;
 	public GunDisplay gunDisplayScript;
 	[SerializeField]
@@ -51,14 +50,13 @@ public class Shooting : MonoBehaviour {
 		if(Time.timeScale > 0){ // can only shoot if not paused
 
 			// Shield usage
-			if(Input.GetMouseButton(0))
-			{
-				if(shieldIsUp == false && Physics.Raycast (myRay, out hit)){
-					if(hit.transform.gameObject.tag == "Shield"){
+			if(Input.GetMouseButton(0) && guiTexture.HitTest(Input.mousePosition)){
+				if(shieldIsUp == false/* && Physics.Raycast (myRay, out hit)*/){
+					//if(hit.transform.gameObject.tag == "Shield"){
+					if(guiTexture.name == "UseShield"){
 						shieldIsUp = true;
 						PlayerPrefs.SetInt ( "shieldUp", 1);
 						shield.transform.Translate(shieldMoveVector, Camera.main.transform);
-
 
 						if(gunDisplayScript.currentSelection.Equals ("Pistol")){
 							reloading = true; // let the script know that we are reloading
@@ -87,7 +85,7 @@ public class Shooting : MonoBehaviour {
 			// if gun is pistol
 			if(gunDisplayScript.currentSelection.Equals ("Pistol") && reloading == false)
 			{
-				if(Input.GetMouseButtonDown(0) )
+				if(Input.GetMouseButtonDown(0))
 				{
 					if(Physics.Raycast(myRay,out hit) && reloading == false) {
 						if(gunDisplayScript.ammoCountPistol > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
@@ -111,7 +109,6 @@ public class Shooting : MonoBehaviour {
 								script.StartAnim();
 							}
 						}
-
 					}
 				}
 			}
