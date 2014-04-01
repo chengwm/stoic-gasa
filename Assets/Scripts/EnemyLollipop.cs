@@ -31,6 +31,8 @@ public class EnemyLollipop : MonoBehaviour
 	private int pass;
 	private float height;
 
+	private int playerHealth = 0;
+
 	void Start() {
 		renderer.material.SetColor("_Color", Color.blue);
 		lifeLollipop = 2;
@@ -88,7 +90,17 @@ public class EnemyLollipop : MonoBehaviour
 			         && Mathf.Abs(lPos.z - pPos.z) < 2.0f)
 			{
 				current = States.Retreat;
-				print ("implement player minus one in health");
+				//print ("implement player minus one in health");
+				// Get and update the health of the player
+				if (PlayerPrefs.HasKey ("playerHealth")) {
+					playerHealth = PlayerPrefs.GetInt ("playerHealth");
+				}
+				if(PlayerPrefs.GetInt ("shieldUp") == 0){
+					playerHealth -= 1;
+				}
+				Debug.Log ("Health1 = " + playerHealth);
+				PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
+
 			}
 		}
 
