@@ -51,6 +51,9 @@ public class TimerScript: MonoBehaviour {
 		{
 			guiText.text = seconds.ToString("F0");
 		}
+		else{
+			Application.LoadLevel ("GameOver");
+		}
 
 
 		/* // Do something when time runs out
