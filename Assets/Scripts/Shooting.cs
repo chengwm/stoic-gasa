@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Shooting : MonoBehaviour {
 
+	// Gun variables
+	// -------------
 	public GameObject bullethole;
 	public GameObject ShotgunBullethole;
 	private int ammoCount;
@@ -16,6 +18,14 @@ public class Shooting : MonoBehaviour {
 	protected float nextFireShotgun = 0.5F;
 	private bool reloading = false;
 	private bool shotgunShooting = false;
+	// -------------
+
+	// Shield variables
+	// -------------
+	public GameObject shield;
+	private bool shieldIsUp = false;
+	private Vector3 shieldMoveVector = new Vector3(0,0.5F,0); // shield move distance is here
+	// -------------
 
 	// Update is called once per frame
 	void Update () {
@@ -24,6 +34,26 @@ public class Shooting : MonoBehaviour {
 		RaycastHit hit;
 		
 		if(Time.timeScale > 0){ // can only shoot if not paused
+
+			// Shield usage
+			if(Input.GetMouseButton(0))
+			{
+				if(shieldIsUp == false && Physics.Raycast (myRay, out hit)){
+					if(hit.transform.gameObject.tag == "Shield"){
+						shieldIsUp = true;
+						PlayerPrefs.SetInt ( "shieldUp", 1);
+						shield.transform.Translate(shieldMoveVector, Camera.main.transform);
+					}
+				}
+			}
+			else if(Input.GetMouseButtonUp(0)){
+				if(shieldIsUp == true){
+					shieldIsUp = false;
+					PlayerPrefs.SetInt ( "shieldUp", 0);
+					shield.transform.Translate(-shieldMoveVector, Camera.main.transform);
+				}
+			}
+
 			// if gun is pistol
 			if(gunDisplayScript.currentSelection.Equals ("Pistol") && reloading == false)
 			{
@@ -51,9 +81,10 @@ public class Shooting : MonoBehaviour {
 						}
 						else if(hit.transform.gameObject.tag == "EnemyEgg") {
 							GameObject target = hit.collider.gameObject;
-							EnemyEgg script = target.GetComponent<EnemyEgg>();
-							script.StartAnim();
+							//EnemyEgg script = target.GetComponent<EnemyEgg>();
+							//script.StartAnim();
 						}
+
 
 					}
 				}
@@ -85,8 +116,8 @@ public class Shooting : MonoBehaviour {
 						}
 						else if(hit.transform.gameObject.tag == "EnemyEgg") {
 							GameObject target = hit.collider.gameObject;
-							EnemyEgg script = target.GetComponent<EnemyEgg>();
-							script.StartAnim();
+							//EnemyEgg script = target.GetComponent<EnemyEgg>();
+							//script.StartAnim();
 						}
 
 						gunDisplayScript.ammoCountHMG--; // decrease ammo count
@@ -125,8 +156,8 @@ public class Shooting : MonoBehaviour {
 						}
 						else if(hit.transform.gameObject.tag == "EnemyEgg") {
 							GameObject target = hit.collider.gameObject;
-							EnemyEgg script = target.GetComponent<EnemyEgg>();
-							script.StartAnim();
+							//EnemyEgg script = target.GetComponent<EnemyEgg>();
+							//script.StartAnim();
 						}
 					}
 				}
