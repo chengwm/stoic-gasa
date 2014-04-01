@@ -49,7 +49,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = false;
 			life1.enabled = false;
-			// GAME OVER
+			Application.LoadLevel("GameOver");
 
 		}
 	}
