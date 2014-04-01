@@ -5,8 +5,6 @@ Project("{4D7A3A0F-A71A-6F14-9C9F-325B4E9C7E36}") = "Stoic Gasa", "Assembly-CSha
 EndProject
 Project("{4D7A3A0F-A71A-6F14-9C9F-325B4E9C7E36}") = "Stoic Gasa", "Assembly-CSharp.csproj", "{97397C7F-7DAC-858C-D7A1-18BFB6F14CE1}"
 EndProject
-Project("{4D7A3A0F-A71A-6F14-9C9F-325B4E9C7E36}") = "Stoic Gasa", "Assembly-CSharp-Editor.csproj", "{9BF2E9DB-7680-7392-2655-D641C72B1CFF}"
-EndProject
 Project("{4D7A3A0F-A71A-6F14-9C9F-325B4E9C7E36}") = "Stoic Gasa", "Assembly-UnityScript-firstpass.unityproj", "{94782FE1-A5AB-C019-1034-55D00F534DED}"
 EndProject
 Project("{4D7A3A0F-A71A-6F14-9C9F-325B4E9C7E36}") = "Stoic Gasa", "Assembly-UnityScript.unityproj", "{E274B955-0DC3-B8FA-5ACC-7B6A01984AA7}"
@@ -27,10 +25,6 @@ Global
 		{97397C7F-7DAC-858C-D7A1-18BFB6F14CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97397C7F-7DAC-858C-D7A1-18BFB6F14CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97397C7F-7DAC-858C-D7A1-18BFB6F14CE1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BF2E9DB-7680-7392-2655-D641C72B1CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BF2E9DB-7680-7392-2655-D641C72B1CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BF2E9DB-7680-7392-2655-D641C72B1CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BF2E9DB-7680-7392-2655-D641C72B1CFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94782FE1-A5AB-C019-1034-55D00F534DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94782FE1-A5AB-C019-1034-55D00F534DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94782FE1-A5AB-C019-1034-55D00F534DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,7 +41,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																					GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																															GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

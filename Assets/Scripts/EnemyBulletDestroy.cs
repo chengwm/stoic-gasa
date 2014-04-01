@@ -22,21 +22,37 @@ public class EnemyBulletDestroy : MonoBehaviour {
 			if (PlayerPrefs.HasKey ("playerHealth")) {
 				playerHealth = PlayerPrefs.GetInt ("playerHealth");
 			}
-			playerHealth -= 1;
+			if(PlayerPrefs.GetInt ("shieldUp") == 0){
+				playerHealth -= 1;
+			}
+			Debug.Log ("Health1 = " + playerHealth);
 			PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
-			
-			// Todo:
-			// Update the code for the player life GUI as well (check playerprefs life value)
-			// Need to reset playerprefs life to 3 when the player clicks start
-			
+
 			// Destroy the bullet
 			Destroy (gameObject);
+		}
+		// Prevent collisions between bullets
+		else if(collider.name == "EnemyBullet(Clone)"){
+			if(collider.name == "Character"){
+				// Get and update the health of the player
+				if (PlayerPrefs.HasKey ("playerHealth")) {
+					playerHealth = PlayerPrefs.GetInt ("playerHealth");
+				}
+				if(PlayerPrefs.GetInt ("shieldUp") == 0){
+					playerHealth -= 1;
+				}
+				Debug.Log ("Health2 = " + playerHealth);
+				PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
+				
+				// Destroy the bullet
+				Destroy (gameObject);
+			}
+			// Do not put else statement here, will break the detection
 		}
 		else{
 			// Destroy the bullet object if it hits anything else
 			Destroy (gameObject);
-		}
-			
+		}	
 	}
 }
 
