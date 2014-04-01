@@ -78,8 +78,11 @@ public class EnemyLollipop : MonoBehaviour
 			if(lPos != pPos)
 			{
 				rigidbody.velocity = (pPos - lPos) * 5.0f;
-				print ("attack!!!");
+				//print ("attack!!!");
 			}
+			//print ("l x diff = " + Mathf.Abs(lPos.x - pPos.x));
+			//print ("l y diff = " + Mathf.Abs(lPos.y - pPos.y));
+			//print ("l z diff = " + Mathf.Abs(lPos.z - pPos.z));
 			//transition from Attack state to Retreat state
 			if (Mathf.Abs(lPos.x - pPos.x) < 2.0f && Mathf.Abs(lPos.y - pPos.y) < 2.0f
 			         && Mathf.Abs(lPos.z - pPos.z) < 2.0f)
@@ -127,7 +130,7 @@ public class EnemyLollipop : MonoBehaviour
 			if(Mathf.Abs(lPos.x - p.x) < 1.0f && Mathf.Abs(lPos.y - p.y) < 1.0f)
 			{
 				current = States.FlyRight;
-				print("current = " + current);
+				//print("current = " + current);
 				pass = 1;
 			}
 
@@ -153,7 +156,7 @@ public class EnemyLollipop : MonoBehaviour
 			if(Mathf.Abs(lPos.x - p.x) < 1.0f && Mathf.Abs(lPos.y - p.y) < 1.0f)
 			{
 				current = States.FlyLeft;
-				print("current = " + current);
+				//print("current = " + current);
 				pass = 1;
 			}
 
@@ -174,7 +177,7 @@ public class EnemyLollipop : MonoBehaviour
 
 	}
 
-	//also resposible for injuring and killing the lollipop enemy
+	//also responsible for injuring and killing the lollipop enemy
 	public void StartAnim()
 	{
 		lifeLollipop--;
