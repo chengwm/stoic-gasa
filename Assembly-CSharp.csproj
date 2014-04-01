@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BulletDestroy.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyBulletDestroy.cs" />
+     <Compile Include="Assets\Scripts\EnemyEgg.cs" />
      <Compile Include="Assets\Scripts\EnemyLollipop.cs" />
      <Compile Include="Assets\Scripts\EnemyShoot.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\SystemControls.cs" />
      <Compile Include="Assets\Scripts\TimerScript.cs" />
+     <Compile Include="Assets\Scripts\TotalAmmoText.cs" />
      <Compile Include="Assets\Scripts\VolumeButtons.cs" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />

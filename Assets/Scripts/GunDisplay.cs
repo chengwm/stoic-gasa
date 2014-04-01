@@ -12,6 +12,8 @@ public class GunDisplay : MonoBehaviour {
 	public int ammoCountPistol;
 	public int ammoCountHMG;
 	public int ammoCountShotgun;
+	public int ammoCountTotalHMG;
+	public int ammoCountTotalShotgun;
 	private bool selectionOpen = false;
 
 	// Use this for initialization
@@ -22,6 +24,8 @@ public class GunDisplay : MonoBehaviour {
 		ammoCountPistol = 6;
 		ammoCountHMG = 40;
 		ammoCountShotgun = 5;
+		ammoCountTotalHMG = 80;
+		ammoCountTotalShotgun = 10;
 	}
 
 	void OnMouseUp(){
