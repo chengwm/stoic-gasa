@@ -44,12 +44,17 @@ public class Shooting : MonoBehaviour {
 							Enemy script = target.GetComponent<Enemy>();
 							script.StartAnim();
 						}
-
-						if(hit.transform.gameObject.tag == "EnemyLollipop") {
+						else if(hit.transform.gameObject.tag == "EnemyLollipop") {
 							GameObject target = hit.collider.gameObject;
 							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 							script.StartAnim();
 						}
+						else if(hit.transform.gameObject.tag == "EnemyEgg") {
+							GameObject target = hit.collider.gameObject;
+							EnemyEgg script = target.GetComponent<EnemyEgg>();
+							script.StartAnim();
+						}
+
 					}
 				}
 			}
@@ -73,10 +78,14 @@ public class Shooting : MonoBehaviour {
 							Enemy script = target.GetComponent<Enemy>();
 							script.StartAnim();
 						}
-
-						if(hit.transform.gameObject.tag == "EnemyLollipop") {
+						else if(hit.transform.gameObject.tag == "EnemyLollipop") {
 							GameObject target = hit.collider.gameObject;
 							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+							script.StartAnim();
+						}
+						else if(hit.transform.gameObject.tag == "EnemyEgg") {
+							GameObject target = hit.collider.gameObject;
+							EnemyEgg script = target.GetComponent<EnemyEgg>();
 							script.StartAnim();
 						}
 
@@ -109,13 +118,16 @@ public class Shooting : MonoBehaviour {
 							Enemy script = target.GetComponent<Enemy>();
 							script.StartAnim();
 						}
-
-						if(hit.transform.gameObject.tag == "EnemyLollipop") {
+						else if(hit.transform.gameObject.tag == "EnemyLollipop") {
 							GameObject target = hit.collider.gameObject;
 							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 							script.StartAnim();
 						}
-
+						else if(hit.transform.gameObject.tag == "EnemyEgg") {
+							GameObject target = hit.collider.gameObject;
+							EnemyEgg script = target.GetComponent<EnemyEgg>();
+							script.StartAnim();
+						}
 					}
 				}
 			}
