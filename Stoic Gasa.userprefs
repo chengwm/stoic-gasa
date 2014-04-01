@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts\EventManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Shield.cs">
     <Files>
-      <File FileName="assets\Scripts\LifeCounter.cs" Line="1" Column="1" />
-      <File FileName="assets\Plugins\TouchDetector.cs" Line="226" Column="24" />
-      <File FileName="assets\Scripts\EventManager.cs" Line="33" Column="4" />
+      <File FileName="Assets\Scripts\Shield.cs" Line="17" Column="30" />
+      <File FileName="Assets\Scripts\GunDisplay.cs" Line="75" Column="84" />
+      <File FileName="Assets\Scripts\Shooting.cs" Line="7" Column="18" />
+      <File FileName="Assets\Scripts\EventManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuTouches.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
