@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyShoot : MonoBehaviour
 {
 	public GameObject m_PrefabBullet; // Drag the prefab "EnemyBullet" here.
-	public GameObject player; // Cannot drag the prefab "Character" here. Do this: For each target (not prefab), drag the "Character" game object here.
+	public GameObject player; // Drag the prefab "Character" here.
 
 	[SerializeField]
 	// Speed of the bullet. 

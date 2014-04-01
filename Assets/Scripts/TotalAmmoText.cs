@@ -8,7 +8,10 @@ public class TotalAmmoText : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (gunDisplayScript.currentSelection == "HMG") {
+		if (gunDisplayScript.currentSelection == "Pistol") {
+			guiText.text = "∞";
+		}
+		else if (gunDisplayScript.currentSelection == "HMG") {
 			guiText.text = gunDisplayScript.ammoCountTotalHMG.ToString ();
 		}
 		else if(gunDisplayScript.currentSelection == "Shotgun"){
