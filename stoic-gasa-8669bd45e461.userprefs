@@ -1,14 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Shooting.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EventManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Shooting.cs" Line="72" Column="28" />
+      <File FileName="Assets\Scripts\Shooting.cs" Line="89" Column="5" />
       <File FileName="Assets\Scripts\Shield.cs" Line="41" Column="1" />
       <File FileName="Assets\Scripts\Enemy.cs" Line="100" Column="20" />
       <File FileName="Assets\Scripts\GunDisplay.cs" Line="60" Column="1" />
-      <File FileName="Assets\Scripts\TimerScript.cs" Line="49" Column="3" />
-      <File FileName="Assets\Scripts\EventManager.cs" Line="45" Column="5" />
-      <File FileName="Assets\Scripts\InGameScoreScript.cs" Line="19" Column="58" />
+      <File FileName="Assets\Scripts\TimerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EventManager.cs" Line="50" Column="42" />
+      <File FileName="Assets\Scripts\InGameScoreScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyShoot.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
