@@ -4,7 +4,7 @@ using System.Collections;
 public class Shield : MonoBehaviour {
 	public GameObject shield;
 	private bool shieldIsUp = false;
-	private Vector3 shieldMoveVector = new Vector3(0,0.25F,0); // shield move distance is here
+	private Vector3 shieldMoveVector = new Vector3(0,0.45F,0); // shield move distance is here
 	public GunDisplay gunDisplayScript;
 	public bool reloading = false;
 	public GUITexture useShieldButton;

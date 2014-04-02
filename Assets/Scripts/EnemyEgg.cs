@@ -51,7 +51,7 @@ public class EnemyEgg : MonoBehaviour
 			//print ("e y diff = " + Mathf.Abs(ePos.y - pPos.y));
 			//print ("e z diff = " + Mathf.Abs(ePos.z - pPos.z));
 			//change according to model
-			if (Mathf.Abs(ePos.x - pPos.x) < 3.0f && Mathf.Abs(ePos.y - pPos.y) < 2.0f
+			if (Mathf.Abs(ePos.x - pPos.x) < 5.0f && Mathf.Abs(ePos.y - pPos.y) < 5.0f
 			    && Mathf.Abs(ePos.z - pPos.z) < 7.0f)
 			{
 				current = States.Attack;
