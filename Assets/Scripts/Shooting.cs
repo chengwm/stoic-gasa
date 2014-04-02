@@ -49,7 +49,7 @@ public class Shooting : MonoBehaviour {
 
 		if(Time.timeScale > 0){ // can only shoot if not paused
 			// if gun is pistol
-			if(gunDisplayScript.currentSelection.Equals ("Pistol") && shieldScript.reloading == false)
+			if(gunDisplayScript.currentSelection == "Pistol")
 			{
 				if(Input.GetMouseButtonDown(0))
 				{
