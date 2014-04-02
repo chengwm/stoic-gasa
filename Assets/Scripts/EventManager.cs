@@ -27,10 +27,11 @@ public class EventManager : MonoBehaviour {
 		theCharacter.transform.position = theCamera.transform.position;
 
 		if ((!(GameObject.Find ("Target21"))) && (!(GameObject.Find ("Target22")))) {
-			// Calculate the distance between the follower and the leader.
+			// Calculate the distance between the camera and the target
 			float range1 = Vector3.Distance(theCamera.transform.position, target2.position );
 			Debug.Log ("Range = " + range1);
-			
+
+			// Haven't reach
 			if ( range1 > 5.0 ){
 				//find the vector pointing from our position to the target
 				_direction = (target2.position - transform.position).normalized;

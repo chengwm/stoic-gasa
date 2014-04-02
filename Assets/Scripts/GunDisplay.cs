@@ -29,8 +29,9 @@ public class GunDisplay : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
+		// if you press the Gun Display, the selection is closed, and the game is unpaused
 		if ((guiTexture.name == "GunDisplay" || guiTexture.name == "HMG" || guiTexture.name == "Shotgun") && selectionOpen == false && Time.timeScale > 0)
-		{ // if you press the Gun Display, the selection is closed, and the game is unpaused
+		{ 
 			selectionOpen = true;
 		}
 		else if(selectionOpen == true && Time.timeScale > 0)
@@ -61,6 +62,8 @@ public class GunDisplay : MonoBehaviour {
 		{
 			// display nothing
 		}
+
+		// Ammo display
 		if(currentSelection == "Pistol"){
 			for(int i = 0; i < ammoCountPistol; i++){
 				// Draws the ammo (marbles) at the bottom of the screen
