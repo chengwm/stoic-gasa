@@ -62,6 +62,8 @@ public class GunDisplay : MonoBehaviour {
 		{
 			// display nothing
 		}
+
+		// Ammo display
 		if(currentSelection == "Pistol"){
 			for(int i = 0; i < ammoCountPistol; i++){
 				// Draws the ammo (marbles) at the bottom of the screen
