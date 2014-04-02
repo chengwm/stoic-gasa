@@ -9,7 +9,7 @@ public class TimerScript: MonoBehaviour {
 	public float miliseconds = 0;
 	
 	void Update(){
-		/*// ----------------------
+		/* ----------------------
 		// Seconds : Milliseconds style
 		if(miliseconds <= 0){
 			if(seconds >= 0){
@@ -22,8 +22,7 @@ public class TimerScript: MonoBehaviour {
 		miliseconds -= Time.deltaTime * 100;
 		
 		guiText.text = string.Format("{0} : {1}", seconds, (int)miliseconds);
-		//-------------------------- 
-		*/
+		-------------------------- */
 
 		/* ------------------------
 		// Minutes : Seconds : Milliseconds Style
@@ -46,7 +45,6 @@ public class TimerScript: MonoBehaviour {
 		------------------------- */
 
 		// Seconds only style
-		
 		seconds -= Time.deltaTime; // I need timer which from a particular time goes to zero
 		
 		if (seconds > 0)

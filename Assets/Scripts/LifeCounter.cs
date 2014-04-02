@@ -6,8 +6,7 @@ public class LifeCounter : MonoBehaviour {
 	public GUITexture life1;
 	public GUITexture life2;
 	public GUITexture life3;
-	public int playerHealth = 0;
-	public InGameScoreScript script;
+	private int playerHealth = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -15,6 +14,8 @@ public class LifeCounter : MonoBehaviour {
 		playerHealth = 3;
 		PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
 	}
+
+
 
 	void Update () 
 	{
@@ -48,13 +49,8 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = false;
 			life1.enabled = false;
-			// Load game over screen
 			Application.LoadLevel("GameOver");
 
-			// Update the highscore if it is higher
-			if(script.highScore < script.currentScore){
-				PlayerPrefs.SetInt ("highScore", (int)script.currentScore);
-			}
 		}
 	}
 }
