@@ -3,7 +3,7 @@ using System.Collections;
 
 // Handles saving of highscore, settings, etc.
 
-public class HighScore : MonoBehaviour {
+public class MenuHighScore : MonoBehaviour {
 
 	private int highScore = 0;
 	public TextMesh textMesh;
