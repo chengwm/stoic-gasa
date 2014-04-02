@@ -106,6 +106,7 @@ public class Enemy : MonoBehaviour {
 	{
 		renderer.material.SetColor("_Color", Color.red);
 		DestroyObject(gameObject, delay);
+		DestroyObject(transform.parent.gameObject, delay);
 	}
 
 }
