@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\Shooting.cs">
+    <Files>
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\Shooting.cs" Line="44" Column="35" />
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\EnemyEgg.cs" Line="96" Column="13" />
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\MenuTouches.cs" Line="17" Column="26" />
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\SystemControls.cs" Line="61" Column="14" />
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\EventManager.cs" Line="23" Column="2" />
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\LifeCounter.cs" Line="18" Column="2" />
+      <File FileName="..\..\stoic-gasa-8fa320878b10\stoic-gasa-8fa320878b10\Assets\Scripts\Shield.cs" Line="7" Column="55" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
