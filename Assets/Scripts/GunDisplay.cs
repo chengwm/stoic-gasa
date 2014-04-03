@@ -19,7 +19,7 @@ public class GunDisplay : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		guiTexture.texture = Pistol; 
+		//guiTexture.texture = Pistol; 
 		currentSelection = "Pistol";
 		ammoCountPistol = 6;
 		ammoCountHMG = 40;
@@ -28,39 +28,65 @@ public class GunDisplay : MonoBehaviour {
 		ammoCountTotalShotgun = 10;
 	}
 
-	void OnMouseUp(){
-		// if you press the Gun Display, the selection is closed, and the game is unpaused
-		if ((guiTexture.name == "GunDisplay" || guiTexture.name == "HMG" || guiTexture.name == "Shotgun") && selectionOpen == false && Time.timeScale > 0)
-		{ 
-			selectionOpen = true;
-		}
-		else if(selectionOpen == true && Time.timeScale > 0)
-			selectionOpen = false;
-	}
-
 	// OnGUI is called every frame
 	void OnGUI()
 	{ 
 		if (selectionOpen == true) {
-			if (/*currentSelection != "HMG" &&*/ GUI.Button (new Rect (Screen.width*(float)0.78, Screen.height*(float)0.62, Screen.width*(float)0.2, Screen.height*(float)0.2), HMG)) { // bottom
+			// Bottom button
+			if(currentSelection == "Pistol"){
+				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Pistol) && Time.timeScale > 0){
+					selectionOpen = false;
+				}
+			}
+			else if(currentSelection == "HMG"){
+				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), HMG) && Time.timeScale > 0){
+					selectionOpen = false;
+				}
+			}
+			else if(currentSelection == "Shotgun"){
+				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Shotgun) && Time.timeScale > 0){
+					selectionOpen = false;
+				}
+			
+			}
+			// ---------
+			
+			// Pop up choices
+			if (/*currentSelection != "HMG" &&*/ GUI.Button (new Rect (Screen.width*(float)0.79, Screen.height*(float)0.62, Screen.width*(float)0.2, Screen.height*(float)0.2), HMG)) { // bottom
 				guiTexture.texture = HMG;
 				currentSelection = "HMG";
 				selectionOpen = false;
 			}
-			else if(/*currentSelection != "Shotgun" &&*/ GUI.Button (new Rect (Screen.width*(float)0.78, Screen.height*(float)0.4, Screen.width*(float)0.2, Screen.height*(float)0.2), Shotgun)) { // middle
+			else if(/*currentSelection != "Shotgun" &&*/ GUI.Button (new Rect (Screen.width*(float)0.79, Screen.height*(float)0.4, Screen.width*(float)0.2, Screen.height*(float)0.2), Shotgun)) { // middle
 				guiTexture.texture = Shotgun;
 				currentSelection = "Shotgun";
 				selectionOpen = false;
 			}
-			else if(/*currentSelection != "Pistol" &&*/ GUI.Button (new Rect (Screen.width*(float)0.78, Screen.height*(float)0.18, Screen.width*(float)0.2, Screen.height*(float)0.2), Pistol)) { // top
+			else if(/*currentSelection != "Pistol" &&*/ GUI.Button (new Rect (Screen.width*(float)0.79, Screen.height*(float)0.18, Screen.width*(float)0.2, Screen.height*(float)0.2), Pistol)) { // top
 				guiTexture.texture = Pistol;
 				currentSelection = "Pistol";
 				selectionOpen = false;
 			}
+			// ----------
 		} 
 		else if (selectionOpen == false)
 		{
-			// display nothing
+			// Display current selection
+			if(currentSelection == "Pistol"){
+				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Pistol) && Time.timeScale > 0){
+					selectionOpen = true;
+				}
+			}
+			else if(currentSelection == "HMG"){
+				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), HMG) && Time.timeScale > 0){
+					selectionOpen = true;
+				}
+			}
+			else if(currentSelection == "Shotgun"){
+				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Shotgun) && Time.timeScale > 0){
+					selectionOpen = true;
+				}
+			}
 		}
 
 		// Ammo display
@@ -107,3 +133,14 @@ public class GunDisplay : MonoBehaviour {
 			}
 		}
 	}*/
+/*
+	void OnMouseDown(){
+		// if you press the Gun Display, the selection is closed, and the game is unpaused
+		if ((guiTexture.name == "GunDisplay" || guiTexture.name == "HMG" || guiTexture.name == "Shotgun") && selectionOpen == false && Time.timeScale > 0)
+		{ 
+			selectionOpen = true;
+		}
+		else if(selectionOpen == true && Time.timeScale > 0)
+			selectionOpen = false;
+	}
+*/

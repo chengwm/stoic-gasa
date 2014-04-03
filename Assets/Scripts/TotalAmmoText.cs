@@ -15,7 +15,7 @@ public class TotalAmmoText : MonoBehaviour {
 			guiText.text = gunDisplayScript.ammoCountTotalHMG.ToString ();
 		}
 		else if(gunDisplayScript.currentSelection == "Shotgun"){
-			guiText.text = gunDisplayScript.ammoCountTotalShotgun.ToString ();
+			guiText.text = ggunDisplayScript.ammoCountTotalShotgun.ToString ();
 		}
 	}
 }

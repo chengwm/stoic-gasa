@@ -62,7 +62,7 @@ public class Shooting : MonoBehaviour {
 			// if gun is pistol
 			if(gunDisplayScript.currentSelection == "Pistol")
 			{
-				if(Input.GetMouseButtonDown(0))
+				if(Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
 				{
 					if(Physics.Raycast(myRay,out hit) && shieldScript.reloading == false) {
 						if(gunDisplayScript.ammoCountPistol > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
@@ -106,7 +106,7 @@ public class Shooting : MonoBehaviour {
 			// if gun is HMG
 			if(gunDisplayScript.currentSelection == "HMG")
 			{
-				if(Input.GetMouseButton(0) && Time.time - nextFireHMG > fireRateHMG )
+				if(Input.GetMouseButton(0) && Time.time - nextFireHMG > fireRateHMG && GUIUtility.hotControl == 0)
 				{
 
 					if(Physics.Raycast(myRay,out hit) && shieldScript.reloading == false) {
@@ -145,7 +145,7 @@ public class Shooting : MonoBehaviour {
 			// If gun is shotgun
 			if(gunDisplayScript.currentSelection == "Shotgun")
 			{
-				if(Input.GetMouseButtonDown(0) && shotgunShooting == false && shieldScript.reloading == false)
+				if(Input.GetMouseButtonDown(0) && shotgunShooting == false && shieldScript.reloading == false && GUIUtility.hotControl == 0)
 				{
 									
 					shotgunShooting = true; // let the script know that we are shooting with the shotgun
