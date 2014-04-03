@@ -3,7 +3,6 @@ using System.Collections;
 
 public class InGameScoreScript : MonoBehaviour {
 
-	float score = 0;
 	public int currentScore = 0;
 	public int highScore;
 	//public LifeCounter lifecounterScript;
