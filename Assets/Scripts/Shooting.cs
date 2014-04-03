@@ -24,7 +24,18 @@ public class Shooting : MonoBehaviour {
 	// -------------
 
 	// Score variables
+	// -------------
 	public InGameScoreScript scoreScript;
+	public GUIText plus10;
+	public GUIText plus20;
+	public GUIText plus30;
+	// -------------
+	
+	void Start(){
+		plus10.enabled = false;
+		plus20.enabled = false;
+		plus30.enabled = false;
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -62,24 +73,28 @@ public class Shooting : MonoBehaviour {
 							if(hit.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyHead") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -102,18 +117,21 @@ public class Shooting : MonoBehaviour {
 							if(hit.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -143,18 +161,21 @@ public class Shooting : MonoBehaviour {
 							if(hit.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -170,18 +191,21 @@ public class Shooting : MonoBehaviour {
 							if(hit2.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit2.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit2.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit2.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit2.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit2.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -197,18 +221,21 @@ public class Shooting : MonoBehaviour {
 							if(hit3.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit3.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit3.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit3.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit3.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit3.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -224,18 +251,21 @@ public class Shooting : MonoBehaviour {
 							if(hit4.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit4.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit4.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit4.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit4.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit4.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -251,18 +281,21 @@ public class Shooting : MonoBehaviour {
 							if(hit5.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit5.collider.gameObject;
 								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
 								Enemy script = target.GetComponent<Enemy>();
 								script.StartAnim();
 							}
 							else if(hit5.transform.gameObject.tag == "EnemyLollipop") {
 								GameObject target = hit5.collider.gameObject;
 								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
 								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
 								script.StartAnim();
 							}
 							else if(hit5.transform.gameObject.tag == "EnemyEgg") {
 								GameObject target = hit5.collider.gameObject;
 								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
 								EnemyEgg script = target.GetComponent<EnemyEgg>();
 								script.StartAnim();
 							}
@@ -277,6 +310,27 @@ public class Shooting : MonoBehaviour {
 	IEnumerator ShotgunShooting(){
 		yield return new WaitForSeconds(0.5F);
 		shotgunShooting = false;
+		yield break;
+	}
+	
+	IEnumerator Plus10(){
+		plus10.enabled = true;
+		yield return new WaitForSeconds(0.75F);
+		plus10.enabled = false;
+		yield break;
+	}
+	
+	IEnumerator Plus20(){
+		plus20.enabled = true;
+		yield return new WaitForSeconds(0.75F);
+		plus20.enabled = false;
+		yield break;
+	}
+	
+	IEnumerator Plus30(){
+		plus30.enabled = true;
+		yield return new WaitForSeconds(0.75F);
+		plus30.enabled = false;
 		yield break;
 	}
 }

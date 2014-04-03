@@ -79,7 +79,7 @@ public class GunDisplay : MonoBehaviour {
 		else if(currentSelection == "HMG"){
 			for(int i = 0; i < ammoCountHMG; i++){
 				// Draws the ammo (marbles) at the bottom of the screen
-				GUI.DrawTexture(new Rect(Screen.width *(float)0.73 - (Screen.width*(float)0.013 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
+				GUI.DrawTexture(new Rect(Screen.width *(float)0.73 - (Screen.width*(float)0.003 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
 			}
 		}
 	}
