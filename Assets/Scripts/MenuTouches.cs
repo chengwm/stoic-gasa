@@ -5,11 +5,17 @@ public class MenuTouches : MonoBehaviour {
 	
 	public Texture2D button1;
 	public Texture2D button2;
+	public GUIText loading;
+	
+	void Start(){
+		loading.enabled = false;
+	}
 	
 	void OnMouseUp(){
 		if (this.name == "text_START"){
 			Application.LoadLevel ("MainHall");
 			guiTexture.texture = button1;
+			StartCoroutine(Loading());
 		}
 		else if (this.name == "text_Settings"){
 			Application.LoadLevel ("settings");
@@ -34,6 +40,11 @@ public class MenuTouches : MonoBehaviour {
 			guiTexture.texture = button2;
 		else if (guiTexture.name == "text_ClearHighscore")
 			guiTexture.texture = button2;
+	}
+	
+	IEnumerator Loading(){
+		loading.enabled = true;
+		yield break;
 	}
 }
 
