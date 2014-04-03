@@ -1,13 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InGameScoreScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuTouches.cs">
     <Files>
-      <File FileName="Assets\Scripts\MenuTouches.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Shooting.cs" Line="148" Column="128" />
-      <File FileName="Assets\Scripts\GunDisplay.cs" Line="50" Column="4" />
-      <File FileName="Assets\Scripts\LifeCounter.cs" Line="15" Column="20" />
-      <File FileName="Assets\Scripts\TotalAmmoText.cs" Line="18" Column="52" />
-      <File FileName="Assets\Scripts\InGameScoreScript.cs" Line="6" Column="1" />
+      <File FileName="Assets\Scripts\TotalAmmoText.cs" Line="18" Column="19" />
+      <File FileName="Assets\Scripts\MenuTouches.cs" Line="13" Column="3" />
+      <File FileName="Assets\Scripts\Shooting.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GunDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LifeCounter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TotalAmmoText.cs" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\InGameScoreScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VolumeButtons.cs" Line="79" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

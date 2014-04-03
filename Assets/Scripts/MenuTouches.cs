@@ -6,6 +6,7 @@ public class MenuTouches : MonoBehaviour {
 	public Texture2D button1;
 	public Texture2D button2;
 	public GUIText loading;
+	public AudioClip menuButton;
 	
 	void Start(){
 		loading.enabled = false;
@@ -20,6 +21,7 @@ public class MenuTouches : MonoBehaviour {
 		else if (this.name == "text_Settings"){
 			Application.LoadLevel ("settings");
 			guiTexture.texture = button1;
+			audio.PlayOneShot(menuButton);
 		}
 		else if (this.name == "text_Back"){
 			Application.LoadLevel ("mainMenu");
