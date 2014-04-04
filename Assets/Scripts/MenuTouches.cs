@@ -7,29 +7,33 @@ public class MenuTouches : MonoBehaviour {
 	public Texture2D button2;
 	public GUIText loading;
 	public AudioClip menuButton;
+	private float effectsVolume = 0.0F;
 	
 	void Start(){
 		loading.enabled = false;
+		
+		if (PlayerPrefs.HasKey ("effectsVolume")) {
+			effectsVolume = PlayerPrefs.GetInt ("effectsVolume");
+		}
+		AudioListener.volume = effectsVolume / 10;
 	}
 	
 	void OnMouseUp(){
 		if (this.name == "text_START"){
-			Application.LoadLevel ("MainHall");
-			guiTexture.texture = button1;
+			Destroy(GameObject.Find ("Music")); // Stop menu music
+			StartCoroutine(LoadMainHall());
 			StartCoroutine(Loading());
 		}
 		else if (this.name == "text_Settings"){
-			Application.LoadLevel ("settings");
-			guiTexture.texture = button1;
-			audio.PlayOneShot(menuButton);
+			StartCoroutine(LoadSettings ());
 		}
 		else if (this.name == "text_Back"){
-			Application.LoadLevel ("mainMenu");
-			guiTexture.texture = button1;
+			StartCoroutine(LoadMainMenu ());
 		}
 		else if (this.name == "text_ClearHighscore"){
 			PlayerPrefs.DeleteKey ("highScore");
 			guiTexture.texture = button1;
+			audio.PlayOneShot(menuButton);
 		}
 	}
 	
@@ -40,12 +44,36 @@ public class MenuTouches : MonoBehaviour {
 			guiTexture.texture = button2;
 		else if (guiTexture.name == "text_Back")
 			guiTexture.texture = button2;
-		else if (guiTexture.name == "text_ClearHighscore")
+		else if (guiTexture.name == "text_ClearHighscore"){
 			guiTexture.texture = button2;
+		}
 	}
 	
 	IEnumerator Loading(){
 		loading.enabled = true;
+		yield break;
+	}
+	IEnumerator LoadSettings(){
+		audio.PlayOneShot(menuButton);
+		guiTexture.texture = button1;
+		yield return new WaitForSeconds(0.2F);
+		Application.LoadLevel ("settings");
+		yield break;
+	}
+	
+	IEnumerator LoadMainMenu(){
+		audio.PlayOneShot(menuButton);
+		guiTexture.texture = button1;
+		yield return new WaitForSeconds(0.2F);
+		Application.LoadLevel ("mainMenu");
+		yield break;
+	}
+	
+	IEnumerator LoadMainHall(){
+		audio.PlayOneShot(menuButton);
+		guiTexture.texture = button1;
+		yield return new WaitForSeconds(0.2F);
+		Application.LoadLevel ("MainHall");
 		yield break;
 	}
 }

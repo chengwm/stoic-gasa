@@ -18,6 +18,10 @@ public class EnemyEgg : MonoBehaviour
 	private Vector3 ePos, pPos;
 
 	private int playerHealth = 0;
+	
+	public AudioClip takeDamage; // audio
+	public AudioClip shieldBlock;
+	public AudioClip attack;
 
 	// Use this for initialization
 	void Start ()
@@ -54,6 +58,7 @@ public class EnemyEgg : MonoBehaviour
 			if (Mathf.Abs(ePos.x - pPos.x) < 5.0f && Mathf.Abs(ePos.y - pPos.y) < 5.0f
 			    && Mathf.Abs(ePos.z - pPos.z) < 7.0f)
 			{
+				
 				current = States.Attack;
 				attackTimer = 0.0f;
 			}
@@ -69,13 +74,17 @@ public class EnemyEgg : MonoBehaviour
 			//print ("implement player minus one in health in Egg Attack State");
 			current = States.Wait;
 			attackTimer = 5.0f;
-
+			
+			audio.PlayOneShot(attack); // attack sound
 			// Get and update the health of the player
 			if (PlayerPrefs.HasKey ("playerHealth")) {
 				playerHealth = PlayerPrefs.GetInt ("playerHealth");
 			}
 			if(PlayerPrefs.GetInt ("shieldUp") == 0){
 				playerHealth -= 1;
+			}
+			else{
+				audio.PlayOneShot(shieldBlock); // shield block sound
 			}
 			Debug.Log ("Health1 = " + playerHealth);
 			PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
@@ -94,6 +103,7 @@ public class EnemyEgg : MonoBehaviour
 	public void StartAnim()
 	{
 		lifeEgg--;
+		audio.PlayOneShot(takeDamage);
 		renderer.material.SetColor("_Color", Color.red);
 		if(lifeEgg == 0)
 		{

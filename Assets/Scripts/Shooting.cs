@@ -31,6 +31,13 @@ public class Shooting : MonoBehaviour {
 	public GUIText plus30;
 	// -------------
 	
+	// Sound variables
+	// -------------
+	public AudioClip pistolShoot;
+	public AudioClip HMGShoot;
+	public AudioClip shotgunShoot;
+	// -------------
+	
 	void Start(){
 		plus10.enabled = false;
 		plus20.enabled = false;
@@ -69,6 +76,7 @@ public class Shooting : MonoBehaviour {
 							Instantiate(bullethole, hit.point, Quaternion.identity);		
 							Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
 							gunDisplayScript.ammoCountPistol--; // decrease ammo count
+							audio.PlayOneShot(pistolShoot);
 			
 							if(hit.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit.collider.gameObject;
@@ -113,6 +121,7 @@ public class Shooting : MonoBehaviour {
 						if(gunDisplayScript.ammoCountHMG > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
 							Instantiate(bullethole, hit.point, Quaternion.identity);		
 							Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
+							audio.PlayOneShot(HMGShoot);
 			
 							if(hit.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit.collider.gameObject;
@@ -157,6 +166,7 @@ public class Shooting : MonoBehaviour {
 							gunDisplayScript.ammoCountShotgun--; // decrease ammo count 
 							Instantiate(bullethole, hit.point, Quaternion.identity);		
 							Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
+							audio.PlayOneShot(shotgunShoot);
 			
 							if(hit.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit.collider.gameObject;
@@ -187,6 +197,7 @@ public class Shooting : MonoBehaviour {
 						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
 							Instantiate(bullethole, hit2.point, Quaternion.identity);		
 							Debug.DrawRay(myRay2.origin, myRay2.direction*hit2.distance, Color.red);
+							audio.PlayOneShot(shotgunShoot);
 							
 							if(hit2.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit2.collider.gameObject;
@@ -217,6 +228,7 @@ public class Shooting : MonoBehaviour {
 						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
 							Instantiate(bullethole, hit3.point, Quaternion.identity);		
 							Debug.DrawRay(myRay3.origin, myRay3.direction*hit3.distance, Color.red);
+							audio.PlayOneShot(shotgunShoot);
 							
 							if(hit3.transform.gameObject.tag == "Enemy") {
 								GameObject target = hit3.collider.gameObject;

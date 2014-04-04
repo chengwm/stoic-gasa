@@ -32,6 +32,10 @@ public class EnemyLollipop : MonoBehaviour
 	private float height;
 
 	private int playerHealth = 0;
+	
+	public AudioClip attack; // audio
+	public AudioClip getDamaged; // Audio
+	public AudioClip shieldBlock;
 
 	void Start() {
 		renderer.material.SetColor("_Color", Color.blue);
@@ -81,6 +85,7 @@ public class EnemyLollipop : MonoBehaviour
 			{
 				rigidbody.velocity = (pPos - lPos) * 5.0f;
 				//print ("attack!!!");
+
 			}
 			//print ("l x diff = " + Mathf.Abs(lPos.x - pPos.x));
 			//print ("l y diff = " + Mathf.Abs(lPos.y - pPos.y));
@@ -89,6 +94,7 @@ public class EnemyLollipop : MonoBehaviour
 			if (Mathf.Abs(lPos.x - pPos.x) < 2.0f && Mathf.Abs(lPos.y - pPos.y) < 2.0f
 			         && Mathf.Abs(lPos.z - pPos.z) < 2.0f)
 			{
+				audio.PlayOneShot(attack); // attack sound
 				current = States.Retreat;
 				//print ("implement player minus one in health");
 				// Get and update the health of the player
@@ -97,6 +103,9 @@ public class EnemyLollipop : MonoBehaviour
 				}
 				if(PlayerPrefs.GetInt ("shieldUp") == 0){
 					playerHealth -= 1;
+				}
+				else{
+					audio.PlayOneShot(shieldBlock); // shield block sound
 				}
 				Debug.Log ("Health1 = " + playerHealth);
 				PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
@@ -193,6 +202,7 @@ public class EnemyLollipop : MonoBehaviour
 	public void StartAnim()
 	{
 		lifeLollipop--;
+		audio.PlayOneShot(getDamaged);
 		renderer.material.SetColor("_Color", Color.red);
 		if(lifeLollipop == 0)
 		{

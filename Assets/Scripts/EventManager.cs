@@ -16,9 +16,13 @@ public class EventManager : MonoBehaviour {
 	private GameObject theCamera;
 	public GameObject theCharacter;
 	
+	// Audio
+	public AudioClip footsteps;
+	
 	void Start(){
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
+		audio.clip = footsteps;
 	}
 
 	// Update is called once per frame
@@ -47,11 +51,15 @@ public class EventManager : MonoBehaviour {
 				Vector3 dir = target2.transform.position - theCamera.transform.position;
 				dir = dir.normalized;
 				//theCharacter.transform.Translate(dir * movementSpeed * Time.deltaTime, Space.World);
+				if(!audio.isPlaying){
+					audio.Play ();
+				}
 				theCamera.transform.Translate(dir * movementSpeed * Time.deltaTime, Space.World);
 				theCharacter.transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * RotationSpeed);
 			}
 			// when reach the position, turn
 			else if(range1 <= 5.0){
+				audio.Stop ();
 				//find the vector pointing from our position to the target
 				_direction = (target3.position - transform.position).normalized;
 				
