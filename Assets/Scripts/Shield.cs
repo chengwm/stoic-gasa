@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Handles shield and reloading behaviour
+
 public class Shield : MonoBehaviour {
 	public GameObject shield;
 	private bool shieldIsUp = false;
@@ -9,6 +11,12 @@ public class Shield : MonoBehaviour {
 	public bool reloading = false;
 	public GUITexture useShieldButton;
 
+	// Sound variables
+	// -------------
+	public AudioClip pistolReload;
+	public AudioClip hmgReload;
+	public AudioClip shotgunReload;
+	// -------------
 
 	void Start(){
 		PlayerPrefs.SetInt ( "shieldUp", 0);
@@ -55,6 +63,7 @@ public class Shield : MonoBehaviour {
 	IEnumerator PistolReload(){
 		while(gunDisplayScript.ammoCountPistol < 6){
 			gunDisplayScript.ammoCountPistol++;
+			audio.PlayOneShot(pistolReload);
 			yield return new WaitForSeconds(0.1F);
 		}
 		reloading = false;
@@ -66,6 +75,7 @@ public class Shield : MonoBehaviour {
 			if(gunDisplayScript.ammoCountTotalShotgun > 0){
 				gunDisplayScript.ammoCountTotalShotgun--;
 				gunDisplayScript.ammoCountShotgun++;
+				audio.PlayOneShot(shotgunReload);
 				yield return new WaitForSeconds(0.5F);
 			}
 			else{
@@ -82,6 +92,7 @@ public class Shield : MonoBehaviour {
 			if(gunDisplayScript.ammoCountTotalHMG > 0){
 				gunDisplayScript.ammoCountTotalHMG--;
 				gunDisplayScript.ammoCountHMG++;
+				audio.PlayOneShot(hmgReload);
 				yield return new WaitForSeconds(0.05F);
 			}
 			else{

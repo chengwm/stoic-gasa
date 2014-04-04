@@ -13,6 +13,9 @@ public class EnemyShoot : MonoBehaviour
 	// Rate of fire for the enemy
 	protected float fireRate = 0.5F;
 	protected float nextFire = 0.5F;
+	
+	// Audio
+	public AudioClip bearShoot;
 	/*
 	void Start(){
 		Debug.Log ("Player position = " + player.transform.position.x + " " + player.transform.position.y + " "+ player.transform.position.z);
@@ -31,6 +34,7 @@ public class EnemyShoot : MonoBehaviour
 				nextFire = Time.time + fireRate;
 				// Create a clone of the 'Bullet' prefab
 				GameObject clone = Instantiate(m_PrefabBullet, transform.position, transform.rotation) as GameObject;
+				audio.PlayOneShot(bearShoot);
 				//Debug.Log ("Bullet position = " + clone.transform.position.x + " " + clone.transform.position.y + " "+ clone.transform.position.z);
 				//Debug.Log ("Target position = " + (player.transform.position - transform.position).x + " " + (player.transform.position - transform.position).y + " "+ (player.transform.position - transform.position).z);
 				

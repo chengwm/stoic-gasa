@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\FPSIndicator.cs" />
      <Compile Include="Assets\Scripts\GunDisplay.cs" />
      <Compile Include="Assets\Scripts\InGameScoreScript.cs" />
+     <Compile Include="Assets\Scripts\KeepMusicOverScenes.cs" />
      <Compile Include="Assets\Scripts\LifeCounter.cs" />
      <Compile Include="Assets\Scripts\MenuHighScore.cs" />
      <Compile Include="Assets\Scripts\MenuTouches.cs" />

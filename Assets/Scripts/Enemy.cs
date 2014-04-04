@@ -17,6 +17,10 @@ public class Enemy : MonoBehaviour {
 	private float coverTimer;	//countdown till take cover from AttackState
 	private bool first = false;	//test if first time entering a statement
 
+	// Audio
+	public AudioClip getDamaged;
+	public AudioClip getDamaged2;
+
 	// Use this for initialization
 	void Start () {
 		renderer.material.SetColor("_Color", Color.green);
@@ -104,9 +108,16 @@ public class Enemy : MonoBehaviour {
 
 	public void StartAnim()
 	{
+		float audioToPlay = Random.Range(0.0F, 1.0F);
+		if(audioToPlay < 0.5){
+			audio.PlayOneShot(getDamaged);
+		}
+		else{
+			audio.PlayOneShot(getDamaged2);
+		}
 		renderer.material.SetColor("_Color", Color.red);
 		DestroyObject(gameObject, delay);
-		DestroyObject(transform.parent.gameObject, delay);
+		DestroyObject(transform.parent.gameObject, delay); // if the head is shot, destroy the parent (body) as well
 	}
 
 }
