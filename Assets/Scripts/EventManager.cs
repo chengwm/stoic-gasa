@@ -23,6 +23,7 @@ public class EventManager : MonoBehaviour {
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
 		audio.clip = footsteps;
+		theCharacter.transform.rotation = theCamera.transform.rotation;
 	}
 
 	// Update is called once per frame

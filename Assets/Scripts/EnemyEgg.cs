@@ -36,6 +36,7 @@ public class EnemyEgg : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		player = GameObject.FindWithTag ("MainCharacter");
 		//print ("current = " + current);
 		attackTimer -= Time.deltaTime;
 		colourTimer -= Time.deltaTime;

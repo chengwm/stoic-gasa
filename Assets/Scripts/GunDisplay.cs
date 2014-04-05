@@ -34,17 +34,17 @@ public class GunDisplay : MonoBehaviour {
 		if (selectionOpen == true) {
 			// Bottom button
 			if(currentSelection == "Pistol"){
-				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Pistol) && Time.timeScale > 0){
+				if(GUI.Button (new Rect (Screen.width*(float)0.81, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Pistol) && Time.timeScale > 0){
 					selectionOpen = false;
 				}
 			}
 			else if(currentSelection == "HMG"){
-				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), HMG) && Time.timeScale > 0){
+				if(GUI.Button (new Rect (Screen.width*(float)0.81, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), HMG) && Time.timeScale > 0){
 					selectionOpen = false;
 				}
 			}
 			else if(currentSelection == "Shotgun"){
-				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Shotgun) && Time.timeScale > 0){
+				if(GUI.Button (new Rect (Screen.width*(float)0.81, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Shotgun) && Time.timeScale > 0){
 					selectionOpen = false;
 				}
 			
@@ -73,17 +73,17 @@ public class GunDisplay : MonoBehaviour {
 		{
 			// Display current selection
 			if(currentSelection == "Pistol"){
-				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Pistol) && Time.timeScale > 0){
+				if(GUI.Button (new Rect (Screen.width*(float)0.81, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Pistol) && Time.timeScale > 0){
 					selectionOpen = true;
 				}
 			}
 			else if(currentSelection == "HMG"){
-				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), HMG) && Time.timeScale > 0){
+				if(GUI.Button (new Rect (Screen.width*(float)0.81, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), HMG) && Time.timeScale > 0){
 					selectionOpen = true;
 				}
 			}
 			else if(currentSelection == "Shotgun"){
-				if(GUI.Button (new Rect (Screen.width*(float)0.8, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Shotgun) && Time.timeScale > 0){
+				if(GUI.Button (new Rect (Screen.width*(float)0.81, Screen.height*(float)0.83, Screen.width*(float)0.18, Screen.height*(float)0.17), Shotgun) && Time.timeScale > 0){
 					selectionOpen = true;
 				}
 			}
@@ -105,7 +105,12 @@ public class GunDisplay : MonoBehaviour {
 		else if(currentSelection == "HMG"){
 			for(int i = 0; i < ammoCountHMG; i++){
 				// Draws the ammo (marbles) at the bottom of the screen
-				GUI.DrawTexture(new Rect(Screen.width *(float)0.73 - (Screen.width*(float)0.003 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
+				if(i % 2 == 0){
+					GUI.DrawTexture(new Rect(Screen.width *(float)0.73 - (Screen.width*(float)0.003 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
+				}
+				else{
+					GUI.DrawTexture(new Rect(Screen.width *(float)0.72 - (Screen.width*(float)0.003 * i), Screen.height *(float)0.83, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
+				}
 			}
 		}
 	}
