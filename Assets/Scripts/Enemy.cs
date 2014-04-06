@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour {
 	private float attackTimer;	//countdown till attack from TakeCoverState
 	private float coverTimer;	//countdown till take cover from AttackState
 	private bool first = false;	//test if first time entering a statement
+	public int coverType;
 
 	// Audio
 	public AudioClip getDamaged;
@@ -25,17 +26,33 @@ public class Enemy : MonoBehaviour {
 	void Start () {
 		renderer.material.SetColor("_Color", Color.green);
 		attackTimer = 100000.0f;
-		UnityEngine.Random.seed = System.DateTime.Now.Second;
-		coverTimer = UnityEngine.Random.value % 20.0f;
-		current = States.Attack;
+		//UnityEngine.Random.seed = System.DateTime.Now.Second;
+		//coverTimer = UnityEngine.Random.value % 20.0f;
+		coverTimer = 100000.0f;
+		current = States.NullStateID;
 
-		positionOriginal = transform.position.y;
+		//positionOriginal = transform.position.y;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		attackTimer -= Time.deltaTime;
 		coverTimer -= Time.deltaTime;
+
+		Movement move = this.GetComponent<Movement>();
+		if(move.reached == true && move.pass == 1)
+		{
+			current = States.Attack;
+			move.pass++;
+
+			UnityEngine.Random.seed = System.DateTime.Now.Second;
+			coverTimer = UnityEngine.Random.value % 20.0f;
+
+			if(coverType == 0)
+				positionOriginal = transform.position.y;
+			else
+				positionOriginal = transform.position.x;
+		}
 
 		//transition from AttackState to TakeCoverState
 		if(coverTimer <= 0)
@@ -51,16 +68,29 @@ public class Enemy : MonoBehaviour {
 		{
 
 			Vector3 temp = transform.position;
-			if(temp.y >= positionOriginal - 1.0f)
+			if(coverType == 0) // move down to take cover
 			{
-				temp.y -= 0.1f;
+				if(temp.y >= positionOriginal - 1.0f)
+					temp.y -= 0.1f;
+				else 
+					first = false; 
 			}
-			else 
+			else if(coverType == 1) //move right to take cover
 			{
-				first = false; 
+				if(temp.x <= positionOriginal + 1.0f)
+					temp.x += 0.1f;
+				else
+					first = false;
 			}
-			transform.position = temp;
+			else if(coverType == 2) //move left to take cover
+			{
+				if(temp.x >= positionOriginal - 1.0f)
+					temp.x -= 0.1f;
+				else
+					first = false;
+			}
 
+			transform.position = temp;
 			//disable firing in EnemyShoot.cs 
 		}
 
@@ -74,18 +104,31 @@ public class Enemy : MonoBehaviour {
 			first = true;
 		}
 
-		//action in TakeCoverState
+		//action in AttackState
 		if(current == States.Attack && first == true)
 		{
 			Vector3 temp = transform.position;
-			if(temp.y <= positionOriginal)
+			if(coverType == 0)
 			{
-				temp.y += 0.2f;
-			}
-			else 
-			{
-				first = false; 
+				if(temp.y <= positionOriginal)
+					temp.y += 0.2f;
+				else 
+					first = false; 
 			}			
+			else if(coverType == 1)
+			{
+				if(temp.x >= positionOriginal)
+					temp.x -= 0.2f;
+				else 
+					first = false; 
+			}
+			else if(coverType == 2)
+			{
+				if(temp.x <= positionOriginal)
+					temp.x += 0.2f;
+				else
+					first = false; 
+			}
 			transform.position = temp;
 
 			//enable firing in EnemyShoot.cs
@@ -97,13 +140,14 @@ public class Enemy : MonoBehaviour {
 		//check if cover.position.x and cover.position.z already has a gummy bear there
 		//move there
 
+		/*
 		if(transform.position.y <= -0.8f)
 		{
 			print("attackTimer = " + attackTimer);
 			print("coverTimer = " + coverTimer);
 			print("current = " + current);
 		}
-
+		*/
 	}
 
 	public void StartAnim()
