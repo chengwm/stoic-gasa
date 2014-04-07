@@ -3,8 +3,8 @@ using System.Collections;
 
 public class VolumeButtons : MonoBehaviour {
 
-	private float effectsVolume = 0.0F;
-	private float musicVolume = 0.0F;
+	private float effectsVolume = 5.0F;
+	private float musicVolume = 5.0F;
 	
 	public Texture2D button1;
 	public Texture2D button2;
