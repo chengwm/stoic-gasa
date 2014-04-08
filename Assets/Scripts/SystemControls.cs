@@ -37,12 +37,12 @@ public class SystemControls : MonoBehaviour {
 					// pause game
 					Time.timeScale = 0;
 				}
-				// Game is paused
+				// Game is paused and currently in game
 				else if(Time.timeScale == 0)
 				{	
-					// load the main menu
+					// Unpause the game
 					Time.timeScale = 1;
-					Application.LoadLevel("mainMenu");
+					//Application.LoadLevel("mainMenu");
 				}
 				else if(Application.loadedLevelName == "mainMenu")
 				{
@@ -61,6 +61,10 @@ public class SystemControls : MonoBehaviour {
 					Application.LoadLevel("mainMenu");
 				}
 				else if(Application.loadedLevelName == "GameOver")
+				{
+					Application.LoadLevel("mainMenu");
+				}
+				else if(Application.loadedLevelName == "HelpScreen1" || Application.loadedLevelName == "HelpScreen2" || Application.loadedLevelName == "HelpScreen3" || Application.loadedLevelName == "HelpScreen4")
 				{
 					Application.LoadLevel("mainMenu");
 				}

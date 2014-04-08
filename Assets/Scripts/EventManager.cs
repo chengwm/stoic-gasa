@@ -19,6 +19,9 @@ public class EventManager : MonoBehaviour {
 	// Audio
 	public AudioClip footsteps;
 	
+	public Shooting shootScript;
+	public Shield shieldScript;
+	
 	void Start(){
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
@@ -38,6 +41,10 @@ public class EventManager : MonoBehaviour {
 
 			// Haven't reach
 			if ( range1 > 5.0 ){
+				// prevent shooting and using the shield while moving
+				shootScript.enabled = false;
+				shieldScript.enabled = false;
+				
 				//find the vector pointing from our position to the target
 				_direction = (target2.position - transform.position).normalized;
 				
@@ -60,6 +67,10 @@ public class EventManager : MonoBehaviour {
 			}
 			// when reach the position, turn
 			else if(range1 <= 5.0){
+				// prevent shooting and using the shield while moving
+				shootScript.enabled = true;
+				shieldScript.enabled = true;
+
 				audio.Stop ();
 				//find the vector pointing from our position to the target
 				_direction = (target3.position - transform.position).normalized;

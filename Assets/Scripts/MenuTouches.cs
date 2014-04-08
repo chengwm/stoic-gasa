@@ -7,7 +7,7 @@ public class MenuTouches : MonoBehaviour {
 	public Texture2D button2;
 	public GUIText loading;
 	public AudioClip menuButton;
-	private float effectsVolume = 0.0F;
+	private float effectsVolume = 5.0F;
 	
 	void Start(){
 		loading.enabled = false;
