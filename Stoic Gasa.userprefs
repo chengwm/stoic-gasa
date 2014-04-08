@@ -1,18 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Shooting.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\playIngressGlyph.cs">
     <Files>
-      <File FileName="Assets\Scripts\TimerScript.cs" Line="40" Column="3" />
-      <File FileName="Assets\Scripts\Shield.cs" Line="17" Column="30" />
-      <File FileName="Assets\Scripts\GunDisplay.cs" Line="75" Column="84" />
-      <File FileName="Assets\Scripts\Shooting.cs" Line="34" Column="18" />
-      <File FileName="Assets\Scripts\EventManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MenuTouches.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LifeCounter.cs" Line="51" Column="9" />
+      <File FileName="Assets\Scripts\playIngressGlyph.cs" Line="199" Column="34" />
+      <File FileName="Assets\Scripts\VerticeBehavior.cs" Line="26" Column="45" />
+      <File FileName="Assets\Scripts\TimerForIngress.cs" Line="1" Column="1" />
+      <File FileName="Assets\screen.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Ray\Dropbox\School\NUS 1314 Sem2\CS3247 Game Development\Stoic Gasa\Assets\Scripts\playIngressGlyph.cs" line="198" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
