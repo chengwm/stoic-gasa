@@ -14,7 +14,7 @@ public class PauseButtonScript : MonoBehaviour {
 	void Start () {
 		// initialize button to white
 		guiTexture.texture = button1; 
-		if(Application.loadedLevelName == "MainHall"){
+		if(Application.loadedLevelName == "MainHall" || Application.loadedLevelName == "DiningHall"){
 			audio.clip = music;
 			audio.Play ();
 		}
