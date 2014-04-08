@@ -35,7 +35,7 @@ public class playIngressGlyph : MonoBehaviour {
 
 		//Defines how many Glyphs to show. 
 		//Value: 1 to 4
-		difficultyLevel = 1;
+		difficultyLevel = 2;
 
 		//tracker for Line Renderer
 		noOfVerticesTouched = 0;
@@ -119,6 +119,7 @@ public class playIngressGlyph : MonoBehaviour {
 
 	public void touchedVertice(int verticeName){
 		ans[atGlyphNumber].AddLast(verticeName); 
+		Debug.Log("List nodes: "+ans[atGlyphNumber].Count);
 		++noOfVerticesTouched;
 		lineRenderer.SetVertexCount(noOfVerticesTouched);
 		GameObject v = GameObject.Find(verticeName.ToString());
@@ -167,6 +168,7 @@ public class playIngressGlyph : MonoBehaviour {
 			}
 			
 		yield return new WaitForSeconds(2);
+		//	waitAwhile(2);
 		}
 		
 		lineRenderer.SetVertexCount(0);
@@ -180,14 +182,18 @@ public class playIngressGlyph : MonoBehaviour {
 		}
 		LinkedList<edge> ansInEdge = new LinkedList<edge>();
 		for(int i=0; i<difficultyLevel; i++){
+			if(ans[i].Count<2) continue;		//can't make edges with <2 vertices
+
 			//fill up ansInEdge
-			for(int j=0; j<ans[i].Count-1 && ans[i].Count>0; j++){
+			while(ans[i].Count>1){
 				int v1, v2;
 				v1 = ans[i].First.Value;
 				ans[i].RemoveFirst();
 				v2 = ans[i].First.Value;
 				ansInEdge.AddLast(new edge(v1,v2));
-			}			
+			}	
+
+			Debug.Log("# of Edges: "+ansInEdge.Count);
 
 			edge[] arr1 = new edge[qnInEdges[i].Count];
 			bool[] arr2 = new bool[arr1.Length];
@@ -199,12 +205,12 @@ public class playIngressGlyph : MonoBehaviour {
 
 			//compare ansInEdge w qnInEdge
 			while(ansInEdge.Count>0){
-				hasIrrelevant = false;
+				hasIrrelevant = true;
 				for(int j=0; j<arr1.Length; j++){
 					if(arr1[j].isEqual(ansInEdge.First.Value)){
 						arr2[j]=true;
 						ansInEdge.RemoveFirst();
-						hasIrrelevant = true;
+						hasIrrelevant = false;
 						break;
 					}
 				}
@@ -229,6 +235,9 @@ public class playIngressGlyph : MonoBehaviour {
 		return results;
 	}
 
+	IEnumerable waitAwhile(int seconds){
+		yield return new WaitForSeconds(seconds);
+	}
 
 }
 
