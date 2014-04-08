@@ -32,11 +32,15 @@ public class EnemyLollipop : MonoBehaviour
 	private float height;
 
 	private int playerHealth = 0;
+	
+	public AudioClip attack; // audio
+	public AudioClip getDamaged; // Audio
+	public AudioClip shieldBlock;
 
 	void Start() {
 		renderer.material.SetColor("_Color", Color.blue);
 		lifeLollipop = 2;
-		current = States.FlyLeft;
+		current = States.NullStateID;
 		attackTimer = 10.0f; //for testing. switch back to 10.0f later
 		colourTimer = 0.5f;
 		speed = 1.0f; 
@@ -44,8 +48,18 @@ public class EnemyLollipop : MonoBehaviour
 	}
 
 	void Update() {
+		transform.rotation = new Quaternion(0.0f, 0.0f, 0.7f, 0.7f);
+
 		attackTimer -= Time.deltaTime;
 		colourTimer -= Time.deltaTime;
+
+		Movement move = this.GetComponent<Movement>();
+		if(move.reached == true && move.pass == 1)
+		{
+			current = States.FlyLeft;
+			attackTimer = 10.0f;
+			move.pass++;
+		}
 
 		if(colourTimer <= 0.0f)
 		{
@@ -81,6 +95,7 @@ public class EnemyLollipop : MonoBehaviour
 			{
 				rigidbody.velocity = (pPos - lPos) * 5.0f;
 				//print ("attack!!!");
+
 			}
 			//print ("l x diff = " + Mathf.Abs(lPos.x - pPos.x));
 			//print ("l y diff = " + Mathf.Abs(lPos.y - pPos.y));
@@ -89,6 +104,7 @@ public class EnemyLollipop : MonoBehaviour
 			if (Mathf.Abs(lPos.x - pPos.x) < 2.0f && Mathf.Abs(lPos.y - pPos.y) < 2.0f
 			         && Mathf.Abs(lPos.z - pPos.z) < 2.0f)
 			{
+				audio.PlayOneShot(attack); // attack sound
 				current = States.Retreat;
 				//print ("implement player minus one in health");
 				// Get and update the health of the player
@@ -97,6 +113,9 @@ public class EnemyLollipop : MonoBehaviour
 				}
 				if(PlayerPrefs.GetInt ("shieldUp") == 0){
 					playerHealth -= 1;
+				}
+				else{
+					audio.PlayOneShot(shieldBlock); // shield block sound
 				}
 				Debug.Log ("Health1 = " + playerHealth);
 				PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
@@ -193,6 +212,7 @@ public class EnemyLollipop : MonoBehaviour
 	public void StartAnim()
 	{
 		lifeLollipop--;
+		audio.PlayOneShot(getDamaged);
 		renderer.material.SetColor("_Color", Color.red);
 		if(lifeLollipop == 0)
 		{

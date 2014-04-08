@@ -6,7 +6,6 @@ public class Shooting : MonoBehaviour {
 	// Gun variables
 	// -------------
 	public GameObject bullethole;
-	public GameObject ShotgunBullethole;
 	private int ammoCount;
 	public GunDisplay gunDisplayScript;
 	[SerializeField]
@@ -16,16 +15,34 @@ public class Shooting : MonoBehaviour {
 	[SerializeField]
 	protected float fireRateShotgun = 0.1F;
 	protected float nextFireShotgun = 0.5F;
-	private bool reloading = false;
 	private bool shotgunShooting = false;
 	// -------------
 
 	// Shield variables
 	// -------------
-	public GameObject shield;
-	private bool shieldIsUp = false;
-	private Vector3 shieldMoveVector = new Vector3(0,0.25F,0); // shield move distance is here
+	public Shield shieldScript;
 	// -------------
+
+	// Score variables
+	// -------------
+	public InGameScoreScript scoreScript;
+	public GUIText plus10;
+	public GUIText plus20;
+	public GUIText plus30;
+	// -------------
+	
+	// Sound variables
+	// -------------
+	public AudioClip pistolShoot;
+	public AudioClip HMGShoot;
+	public AudioClip shotgunShoot;
+	// -------------
+	
+	void Start(){
+		plus10.enabled = false;
+		plus20.enabled = false;
+		plus30.enabled = false;
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -49,58 +66,47 @@ public class Shooting : MonoBehaviour {
 		// ----------
 
 		if(Time.timeScale > 0){ // can only shoot if not paused
-
-			// Shield usage
-			if(Input.GetMouseButton(0))
-			{
-				if(shieldIsUp == false && Physics.Raycast (myRay, out hit)){
-					if(hit.transform.gameObject.tag == "Shield"){
-						shieldIsUp = true;
-						PlayerPrefs.SetInt ( "shieldUp", 1);
-						shield.transform.Translate(shieldMoveVector, Camera.main.transform);
-					}
-				}
-			}
-			else if(Input.GetMouseButtonUp(0)){
-				if(shieldIsUp == true){
-					shieldIsUp = false;
-					PlayerPrefs.SetInt ( "shieldUp", 0);
-					shield.transform.Translate(-shieldMoveVector, Camera.main.transform);
-				}
-			}
-
 			// if gun is pistol
-			if(gunDisplayScript.currentSelection.Equals ("Pistol") && reloading == false)
+			if(gunDisplayScript.currentSelection == "Pistol")
 			{
-				if(Input.GetMouseButtonDown(0) )
+				if(Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0)
 				{
-					gunDisplayScript.ammoCountPistol--; // decrease ammo count
-					if(gunDisplayScript.ammoCountPistol == -1){ // if the pistol is empty and we attempt to shoot
-						reloading = true; // let the script know that we are reloading
-						StartCoroutine(PistolReload()); // call this method
-					}
-					
-					else if(Physics.Raycast(myRay,out hit) && reloading == false) {
-						Instantiate(bullethole, hit.point, Quaternion.identity);		
-						Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
-		
-						if(hit.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
+					if(Physics.Raycast(myRay,out hit) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountPistol > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							Instantiate(bullethole, hit.point, Quaternion.identity);		
+							Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
+							gunDisplayScript.ammoCountPistol--; // decrease ammo count
+							audio.PlayOneShot(pistolShoot);
+			
+							if(hit.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
 						}
-						else if(hit.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
-						}
-
-
 					}
 				}
 			}
@@ -108,190 +114,252 @@ public class Shooting : MonoBehaviour {
 			// if gun is HMG
 			if(gunDisplayScript.currentSelection == "HMG")
 			{
-				if(Input.GetMouseButton(0) && Time.time - nextFireHMG > fireRateHMG )
+				if(Input.GetMouseButton(0) && Time.time - nextFireHMG > fireRateHMG && GUIUtility.hotControl == 0)
 				{
-					if(gunDisplayScript.ammoCountHMG == 0){ // if the pistol is empty and we attempt to shoot
-						reloading = true; // let the script know that we are reloading
-						StartCoroutine(HMGReload()); // call this method
-					}
-					
-					if(Physics.Raycast(myRay,out hit) && reloading == false) {
-						Instantiate(bullethole, hit.point, Quaternion.identity);		
-						Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
-		
-						if(hit.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
-						}
-						else if(hit.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
-						}
 
-						gunDisplayScript.ammoCountHMG--; // decrease ammo count
-						nextFireHMG = Time.time + fireRateHMG; // shooting delay
+					if(Physics.Raycast(myRay,out hit) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountHMG > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							Instantiate(bullethole, hit.point, Quaternion.identity);		
+							Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
+							audio.PlayOneShot(HMGShoot);
+			
+							if(hit.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
+
+							gunDisplayScript.ammoCountHMG--; // decrease ammo count
+							nextFireHMG = Time.time + fireRateHMG; // shooting delay
+						}
 					}
 				}
 			}
 			// If gun is shotgun
 			if(gunDisplayScript.currentSelection == "Shotgun")
 			{
-				if(Input.GetMouseButtonDown(0) && shotgunShooting == false && reloading == false)
+				if(Input.GetMouseButtonDown(0) && shotgunShooting == false && shieldScript.reloading == false && GUIUtility.hotControl == 0)
 				{
-					gunDisplayScript.ammoCountShotgun--; // decrease ammo count
-					if(gunDisplayScript.ammoCountShotgun == -1){ // if the pistol is empty and we attempt to shoot
-						reloading = true; // let the script know that we are reloading
-						StartCoroutine(ShotgunReload()); // call this method
-					}
-					
+									
 					shotgunShooting = true; // let the script know that we are shooting with the shotgun
 					StartCoroutine(ShotgunShooting()); // call this method
 
 					// Bullet/raycast 1
-					if(Physics.Raycast(myRay,out hit) && reloading == false) {
-						// a bigger bullet hole
-						Instantiate(bullethole, hit.point, Quaternion.identity);		
-						Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
-		
-						if(hit.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
-						}
-						else if(hit.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
+					if(Physics.Raycast(myRay,out hit) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							gunDisplayScript.ammoCountShotgun--; // decrease ammo count 
+							Instantiate(bullethole, hit.point, Quaternion.identity);		
+							Debug.DrawRay(myRay.origin, myRay.direction*hit.distance, Color.red);
+							audio.PlayOneShot(shotgunShoot);
+			
+							if(hit.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
 						}
 					}
 
 					// Bullet/raycast 2
-					if(Physics.Raycast(myRay2,out hit2) && reloading == false) {
-						// a bigger bullet hole
-						Instantiate(bullethole, hit2.point, Quaternion.identity);		
-						Debug.DrawRay(myRay2.origin, myRay2.direction*hit2.distance, Color.red);
-						
-						if(hit2.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit2.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
-						}
-						else if(hit2.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit2.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit2.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit2.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
+					if(Physics.Raycast(myRay2,out hit2) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							Instantiate(bullethole, hit2.point, Quaternion.identity);		
+							Debug.DrawRay(myRay2.origin, myRay2.direction*hit2.distance, Color.red);
+							audio.PlayOneShot(shotgunShoot);
+							
+							if(hit2.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit2.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit2.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit2.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit2.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit2.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
 						}
 					}
 
 					// Bullet/raycast 3
-					if(Physics.Raycast(myRay3, out hit3) && reloading == false) {
-						// a bigger bullet hole
-						Instantiate(bullethole, hit3.point, Quaternion.identity);		
-						Debug.DrawRay(myRay3.origin, myRay3.direction*hit3.distance, Color.red);
-						
-						if(hit3.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit3.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
-						}
-						else if(hit3.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit3.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit3.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit3.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
+					if(Physics.Raycast(myRay3, out hit3) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							Instantiate(bullethole, hit3.point, Quaternion.identity);		
+							Debug.DrawRay(myRay3.origin, myRay3.direction*hit3.distance, Color.red);
+							audio.PlayOneShot(shotgunShoot);
+							
+							if(hit3.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit3.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit3.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit3.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit3.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit3.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
 						}
 					}
 
 					// Bullet/raycast 4
-					if(Physics.Raycast(myRay4, out hit4) && reloading == false) {
-						// a bigger bullet hole
-						Instantiate(bullethole, hit4.point, Quaternion.identity);		
-						Debug.DrawRay(myRay4.origin, myRay4.direction*hit4.distance, Color.red);
-						
-						if(hit4.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit4.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
-						}
-						else if(hit4.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit4.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit4.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit4.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
+					if(Physics.Raycast(myRay4, out hit4) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							Instantiate(bullethole, hit4.point, Quaternion.identity);		
+							Debug.DrawRay(myRay4.origin, myRay4.direction*hit4.distance, Color.red);
+							
+							if(hit4.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit4.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit4.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit4.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit4.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit4.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
 						}
 					}
 
 					// Bullet/raycast 5
-					if(Physics.Raycast(myRay5,out hit5) && reloading == false) {
-						// a bigger bullet hole
-						Instantiate(bullethole, hit5.point, Quaternion.identity);		
-						Debug.DrawRay(myRay5.origin, myRay5.direction*hit5.distance, Color.red);
-						
-						if(hit5.transform.gameObject.tag == "Enemy") {
-							GameObject target = hit5.collider.gameObject;
-							Enemy script = target.GetComponent<Enemy>();
-							script.StartAnim();
-						}
-						else if(hit5.transform.gameObject.tag == "EnemyLollipop") {
-							GameObject target = hit5.collider.gameObject;
-							EnemyLollipop script = target.GetComponent<EnemyLollipop>();
-							script.StartAnim();
-						}
-						else if(hit5.transform.gameObject.tag == "EnemyEgg") {
-							GameObject target = hit5.collider.gameObject;
-							//EnemyEgg script = target.GetComponent<EnemyEgg>();
-							//script.StartAnim();
+					if(Physics.Raycast(myRay5,out hit5) && shieldScript.reloading == false) {
+						if(gunDisplayScript.ammoCountShotgun > 0 && hit.transform.gameObject.tag != "Shield" && hit.transform.gameObject.tag != "EnemyBullet"){ // prevent shooting the shield or bullet
+							Instantiate(bullethole, hit5.point, Quaternion.identity);		
+							Debug.DrawRay(myRay5.origin, myRay5.direction*hit5.distance, Color.red);
+							
+							if(hit5.transform.gameObject.tag == "Enemy") {
+								GameObject target = hit5.collider.gameObject;
+								scoreScript.currentScore += 10;
+								StartCoroutine(Plus10());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit.transform.gameObject.tag == "EnemyHead") {
+								GameObject target = hit.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								Enemy script = target.GetComponent<Enemy>();
+								script.StartAnim();
+							}
+							else if(hit5.transform.gameObject.tag == "EnemyLollipop") {
+								GameObject target = hit5.collider.gameObject;
+								scoreScript.currentScore += 20;
+								StartCoroutine(Plus20());
+								EnemyLollipop script = target.GetComponent<EnemyLollipop>();
+								script.StartAnim();
+							}
+							else if(hit5.transform.gameObject.tag == "EnemyEgg") {
+								GameObject target = hit5.collider.gameObject;
+								scoreScript.currentScore += 30;
+								StartCoroutine(Plus30());
+								EnemyEgg script = target.GetComponent<EnemyEgg>();
+								script.StartAnim();
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-	
-	// Reloading takes time
-	IEnumerator PistolReload(){
-		gunDisplayScript.ammoCountPistol++;
-		yield return new WaitForSeconds(0.1F);
-		gunDisplayScript.ammoCountPistol++;
-		yield return new WaitForSeconds(0.1F);
-		gunDisplayScript.ammoCountPistol++;
-		yield return new WaitForSeconds(0.1F);
-		gunDisplayScript.ammoCountPistol++;
-		yield return new WaitForSeconds(0.1F);
-		gunDisplayScript.ammoCountPistol++;
-		yield return new WaitForSeconds(0.1F);
-		gunDisplayScript.ammoCountPistol++;
-		yield return new WaitForSeconds(0.1F);
-		gunDisplayScript.ammoCountPistol++;
-		reloading = false;
-		yield break;
-	}
-	
+
 	// Delay for shooting with a shotgun
 	IEnumerator ShotgunShooting(){
 		yield return new WaitForSeconds(0.5F);
@@ -299,30 +367,24 @@ public class Shooting : MonoBehaviour {
 		yield break;
 	}
 	
-	// Reloading takes time
-	IEnumerator ShotgunReload(){
-		gunDisplayScript.ammoCountShotgun++;
-		yield return new WaitForSeconds(0.5F);
-		gunDisplayScript.ammoCountShotgun++;
-		yield return new WaitForSeconds(0.5F);
-		gunDisplayScript.ammoCountShotgun++;
-		yield return new WaitForSeconds(0.5F);
-		gunDisplayScript.ammoCountShotgun++;
-		yield return new WaitForSeconds(0.5F);
-		gunDisplayScript.ammoCountShotgun++;
-		yield return new WaitForSeconds(0.5F);
-		gunDisplayScript.ammoCountShotgun++;
-		reloading = false;
+	IEnumerator Plus10(){
+		plus10.enabled = true;
+		yield return new WaitForSeconds(0.75F);
+		plus10.enabled = false;
 		yield break;
 	}
 	
-	// Reloading takes time
-	IEnumerator HMGReload(){
-		while(gunDisplayScript.ammoCountHMG != 40){
-			gunDisplayScript.ammoCountHMG++;
-			yield return new WaitForSeconds(0.05F);
-		}
-		reloading = false;
+	IEnumerator Plus20(){
+		plus20.enabled = true;
+		yield return new WaitForSeconds(0.75F);
+		plus20.enabled = false;
+		yield break;
+	}
+	
+	IEnumerator Plus30(){
+		plus30.enabled = true;
+		yield return new WaitForSeconds(0.75F);
+		plus30.enabled = false;
 		yield break;
 	}
 }

@@ -5,6 +5,9 @@ public class EnemyBulletDestroy : MonoBehaviour {
 
 	private int playerHealth = 0;
 	
+	// Audio
+	public AudioClip shieldBlock;
+	
 	// Function is triggered when the object collides with another object
 	void OnTriggerEnter(Collider collider)
 	{
@@ -25,6 +28,9 @@ public class EnemyBulletDestroy : MonoBehaviour {
 			if(PlayerPrefs.GetInt ("shieldUp") == 0){
 				playerHealth -= 1;
 			}
+			else{ // shield is up and the player gets hit by a bullet
+				AudioSource.PlayClipAtPoint(shieldBlock, transform.position);
+			}
 			Debug.Log ("Health1 = " + playerHealth);
 			PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
 
@@ -40,6 +46,9 @@ public class EnemyBulletDestroy : MonoBehaviour {
 				}
 				if(PlayerPrefs.GetInt ("shieldUp") == 0){
 					playerHealth -= 1;
+				}
+				else{ // shield is up and the player gets hit by a bullet
+					AudioSource.PlayClipAtPoint(shieldBlock, transform.position);
 				}
 				Debug.Log ("Health2 = " + playerHealth);
 				PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
