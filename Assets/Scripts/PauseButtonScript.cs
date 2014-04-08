@@ -7,11 +7,17 @@ public class PauseButtonScript : MonoBehaviour {
 	public Texture2D button2; // red (paused)
 	public Texture2D resume;
 	public Texture2D exit;
+	
+	public AudioClip music;
 
 	// Use this for initialization
 	void Start () {
 		// initialize button to white
 		guiTexture.texture = button1; 
+		if(Application.loadedLevelName == "MainHall" || Application.loadedLevelName == "DiningHall"){
+			audio.clip = music;
+			audio.Play ();
+		}
 	}
 	
 	// Update is called once per frame
