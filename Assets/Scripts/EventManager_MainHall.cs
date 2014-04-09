@@ -25,6 +25,7 @@ public class EventManager_MainHall : MonoBehaviour {
 	public InGameScoreScript scoreScript;
 	public GunDisplay gunScript;
 	public LifeCounter lifeScript;
+	public TimerScript timeScript;
 
 	void Start(){
 		theCamera = Camera.main.gameObject;
@@ -184,15 +185,14 @@ public class EventManager_MainHall : MonoBehaviour {
 	}
 	
 	private void saveGame(){
-		//PlayerPrefs.SetInt ("playerHealth", (int)lifeScript.playerHealth);
 		PlayerPrefs.SetInt ("currentScore", (int)scoreScript.currentScore);
 		PlayerPrefs.SetInt ("HMGTotalAmmo", (int)gunScript.ammoCountTotalHMG);
 		PlayerPrefs.SetInt ("ShotgunTotalAmmo", (int)gunScript.ammoCountTotalShotgun);
 		PlayerPrefs.SetInt ("HMGAmmo", (int)gunScript.ammoCountHMG);
 		PlayerPrefs.SetInt ("ShotgunAmmo", (int)gunScript.ammoCountShotgun);
 		PlayerPrefs.SetInt("playedTakeDamage", (int)lifeScript.playedTakeDamage);
-		//yield return new WaitForSeconds(1.0F);
+		PlayerPrefs.SetInt("timeLeft", (int)timeScript.seconds);
+		PlayerPrefs.SetInt("playerLoadedHealth", (int)lifeScript.playerHealth);
 		Debug.Log ("Game saved");
-		//yield break;
 	}
 }

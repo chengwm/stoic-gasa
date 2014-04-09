@@ -6,7 +6,7 @@ public class LifeCounter : MonoBehaviour {
 	public GUITexture life1;
 	public GUITexture life2;
 	public GUITexture life3;
-	private int playerHealth;
+	public int playerHealth;
 	public InGameScoreScript script;
 	private int loadedHealth;
 	
@@ -24,14 +24,15 @@ public class LifeCounter : MonoBehaviour {
 		if(Application.loadedLevelName == "MainHall"){
 			playerHealth = 3;
 			playedTakeDamage = 0;
+			loadedHealth = 3;
 		}
 		// else, load the current health
 		else{
 			playerHealth = PlayerPrefs.GetInt("playerHealth");
-			loadedHealth = PlayerPrefs.GetInt("playerHealth");
+			loadedHealth = PlayerPrefs.GetInt("playerLoadedHealth"); // we need this so that when the player reloads the level, he will not 
 			playedTakeDamage = PlayerPrefs.GetInt("playedTakeDamage");
 		}
-		PlayerPrefs.SetInt ("playerHealth", playerHealth);
+		PlayerPrefs.SetInt ("playerHealth", loadedHealth);
 	}
 
 	void Update () 
