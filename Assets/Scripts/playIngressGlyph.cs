@@ -25,6 +25,7 @@ public class playIngressGlyph : MonoBehaviour {
 	
 	private LinkedList<GameObject> selectedVertices;
 
+	private bool verified;
 
 	// Use this for initialization
 	IEnumerator Start () {										//needed to display qn
@@ -32,6 +33,7 @@ public class playIngressGlyph : MonoBehaviour {
 
 		// used to prevent premature clicking during qn display
 		isMainGameInitialised = false;
+		verified = false;
 
 		//Defines how many Glyphs to show. 
 		//Value: 1 to 4
@@ -97,7 +99,6 @@ public class playIngressGlyph : MonoBehaviour {
 				gameIsEnding = true; 	//lock input
 				
 				StartCoroutine(endingSeq());
-				Debug.Log("Game is Ended");
 			}
 			
 			if(Input.GetButtonUp("Fire1") && isMainGameInitialised){
@@ -106,6 +107,10 @@ public class playIngressGlyph : MonoBehaviour {
 				atGlyphNumber++;
 				lineRenderer.SetVertexCount(0);
 			}
+		}
+		
+		if(verified == true){
+			Debug.Log("Game is Ended");
 		}
 	}
 
@@ -146,6 +151,7 @@ public class playIngressGlyph : MonoBehaviour {
 	}
 
 	public IEnumerator endingSeq(){
+		verified = false;
 		Debug.Log("Ending Game.");
 
 		timer.stopTimer();
@@ -172,7 +178,8 @@ public class playIngressGlyph : MonoBehaviour {
 		}
 		
 		lineRenderer.SetVertexCount(0);
-	
+		verified = true;
+		yield break;
 	}
 
 	private bool[] computeResults(){
