@@ -15,6 +15,10 @@ public class GunDisplay : MonoBehaviour {
 	public int ammoCountTotalHMG;
 	public int ammoCountTotalShotgun;
 	private bool selectionOpen = false;
+	public GUIText RELOADtext;
+	private bool reloadTextPistol;
+	private bool reloadTextShotgun;
+	private bool reloadTextHMG;
 
 	// Use this for initialization
 	void Start () 
@@ -26,6 +30,10 @@ public class GunDisplay : MonoBehaviour {
 		ammoCountShotgun = 5;
 		ammoCountTotalHMG = 80;
 		ammoCountTotalShotgun = 10;
+		RELOADtext.enabled = false;
+		reloadTextPistol = false;
+		reloadTextShotgun = false;
+		reloadTextHMG = false;
 	}
 
 	// OnGUI is called every frame
@@ -95,11 +103,19 @@ public class GunDisplay : MonoBehaviour {
 				// Draws the ammo (marbles) at the bottom of the screen
 				GUI.DrawTexture(new Rect(Screen.width *(float)0.73 - (Screen.width*(float)0.019 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
 			}
+			if(ammoCountPistol == 0 && reloadTextPistol == false){
+				reloadTextPistol = true;
+				StartCoroutine(RELOADpistol());
+			}
 		}
 		else if(currentSelection == "Shotgun"){
 			for(int i = 0; i < ammoCountShotgun; i++){
 				// Draws the ammo (marbles) at the bottom of the screen
 				GUI.DrawTexture(new Rect(Screen.width *(float)0.73 - (Screen.width*(float)0.019 * i), Screen.height *(float)0.88, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
+			}
+			if(ammoCountShotgun == 0 && reloadTextShotgun == false){
+				reloadTextShotgun = true;
+				StartCoroutine(RELOADshotgun());
 			}
 		}
 		else if(currentSelection == "HMG"){
@@ -112,7 +128,45 @@ public class GunDisplay : MonoBehaviour {
 					GUI.DrawTexture(new Rect(Screen.width *(float)0.72 - (Screen.width*(float)0.003 * i), Screen.height *(float)0.83, Screen.width*(float)0.05, Screen.height*(float)0.08), bullet);
 				}
 			}
+			if(ammoCountHMG == 0 && reloadTextHMG == false){
+				reloadTextHMG = true;
+				StartCoroutine(RELOADHMG());
+			}
 		}
+		
+	}
+	
+	IEnumerator RELOADpistol(){
+		while(ammoCountPistol == 0 && currentSelection == "Pistol"){
+			RELOADtext.enabled = true;
+			yield return new WaitForSeconds(0.5F);
+			RELOADtext.enabled = false;
+			yield return new WaitForSeconds(0.5F);
+		}
+		reloadTextPistol = false;
+		yield break;
+	}
+	
+	IEnumerator RELOADshotgun(){
+		while(ammoCountShotgun == 0 && currentSelection == "Shotgun"){
+			RELOADtext.enabled = true;
+			yield return new WaitForSeconds(0.5F);
+			RELOADtext.enabled = false;
+			yield return new WaitForSeconds(0.5F);
+		}
+		reloadTextShotgun = false;
+		yield break;
+	}
+	
+	IEnumerator RELOADHMG(){
+		while(ammoCountHMG == 0 && currentSelection == "HMG"){
+			RELOADtext.enabled = true;
+			yield return new WaitForSeconds(0.5F);
+			RELOADtext.enabled = false;
+			yield return new WaitForSeconds(0.5F);
+		}
+		reloadTextHMG = false;
+		yield break;
 	}
 }
 
