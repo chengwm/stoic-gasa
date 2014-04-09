@@ -17,6 +17,7 @@ public class SystemControls : MonoBehaviour {
 	private bool paused;
 	public GUITexture backAgainMessage;
 	private int backPressCounter = 0;
+	public PauseButtonScript pauseButtonscript;
 	
 	// Use this for initialization
 	void Start () {
@@ -42,6 +43,7 @@ public class SystemControls : MonoBehaviour {
 				{	
 					// Unpause the game
 					Time.timeScale = 1;
+					pauseButtonscript.guiTexture.texture = pauseButtonscript.button1;
 					//Application.LoadLevel("mainMenu");
 				}
 				else if(Application.loadedLevelName == "mainMenu")
