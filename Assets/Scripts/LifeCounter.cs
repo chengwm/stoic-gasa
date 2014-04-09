@@ -6,22 +6,32 @@ public class LifeCounter : MonoBehaviour {
 	public GUITexture life1;
 	public GUITexture life2;
 	public GUITexture life3;
-	public int playerHealth = 0;
+	private int playerHealth;
 	public InGameScoreScript script;
+	private int loadedHealth;
 	
 	// Sound variables
 	public AudioClip heartBeat;
 	private bool playedHeartBeat = false; // to ensure the clip does not play on each frame
 	public AudioClip takeDamage;
-	private int playedTakeDamage = 0; // to ensure the clip does not play on each frame
+	public int playedTakeDamage; // to ensure the clip does not play on each frame
 	public AudioClip die;
 	private bool playedDie = false; // to ensure the clip does not play on each frame
 	
 	// Use this for initialization
 	void Start () {
-		// initialize to 3
-		playerHealth = 3;
-		PlayerPrefs.SetInt ("playerHealth", (int)playerHealth);
+		// initialize to 3 if we are on the first level
+		if(Application.loadedLevelName == "MainHall"){
+			playerHealth = 3;
+			playedTakeDamage = 0;
+		}
+		// else, load the current health
+		else{
+			playerHealth = PlayerPrefs.GetInt("playerHealth");
+			loadedHealth = PlayerPrefs.GetInt("playerHealth");
+			playedTakeDamage = PlayerPrefs.GetInt("playedTakeDamage");
+		}
+		PlayerPrefs.SetInt ("playerHealth", playerHealth);
 	}
 
 	void Update () 
@@ -42,7 +52,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = true;
 			life1.enabled = true;
-			if(playedTakeDamage == 0){
+			if(playedTakeDamage == 0 && loadedHealth != 2){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 1;
 			}
@@ -53,7 +63,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = false;
 			life1.enabled = true;
-			if(playedTakeDamage == 1){
+			if(playedTakeDamage == 1 && loadedHealth != 1){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 2;
 			}

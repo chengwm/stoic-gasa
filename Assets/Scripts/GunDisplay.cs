@@ -25,11 +25,27 @@ public class GunDisplay : MonoBehaviour {
 	{
 		//guiTexture.texture = Pistol; 
 		currentSelection = "Pistol";
-		ammoCountPistol = 6;
-		ammoCountHMG = 40;
-		ammoCountShotgun = 5;
-		ammoCountTotalHMG = 80;
-		ammoCountTotalShotgun = 10;
+		if(Application.loadedLevelName == "MainHall"){
+			ammoCountPistol = 6;
+			ammoCountHMG = 40;
+			ammoCountShotgun = 5;
+			ammoCountTotalHMG = 80;
+			ammoCountTotalShotgun = 10;
+		}
+		else{
+			if (PlayerPrefs.HasKey ("HMGTotalAmmo")) {
+				ammoCountTotalHMG = PlayerPrefs.GetInt ("HMGTotalAmmo");
+			}
+			if (PlayerPrefs.HasKey ("ShotgunTotalAmmo")) {
+				ammoCountTotalShotgun = PlayerPrefs.GetInt ("ShotgunTotalAmmo");
+			}
+			if (PlayerPrefs.HasKey ("HMGAmmo")) {
+				ammoCountHMG = PlayerPrefs.GetInt ("HMGAmmo");
+			}
+			if (PlayerPrefs.HasKey ("ShotgunAmmo")) {
+				ammoCountShotgun = PlayerPrefs.GetInt ("ShotgunAmmo");
+			}
+		}
 		RELOADtext.enabled = false;
 		reloadTextPistol = false;
 		reloadTextShotgun = false;

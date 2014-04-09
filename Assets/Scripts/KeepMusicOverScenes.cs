@@ -7,11 +7,11 @@ public class KeepMusicOverScenes : MonoBehaviour {
 	public static KeepMusicOverScenes Instance{
 		get { return instance; }
 	}
-	public AudioClip menuMusic;
+	public AudioClip gameMusic;
 	
 	void Start(){
-		audio.clip = menuMusic;
-		if(Application.loadedLevelName != "mainHall"){
+		audio.clip = gameMusic;
+		if(Application.loadedLevelName == "mainHall"){
 			audio.Play ();
 		}
 		

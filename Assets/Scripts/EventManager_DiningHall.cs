@@ -21,6 +21,11 @@ public class EventManager_DiningHall : MonoBehaviour {
 	public Shooting shootScript;
 	public Shield shieldScript;
 	
+	// Need to access these scripts to save info
+	public InGameScoreScript scoreScript;
+	public GunDisplay gunScript;
+	public LifeCounter lifeScript;
+	
 	void Start(){
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
@@ -134,8 +139,12 @@ public class EventManager_DiningHall : MonoBehaviour {
 			Vector3 dir = position - theCamera.transform.position;
 			dir = dir.normalized;
 			
-			if(!audio.isPlaying){
+			if(!audio.isPlaying && Time.timeScale == 1){
 				audio.Play ();
+			}
+			// Stop playing the footsteps if paused
+			else if(audio.isPlaying && Time.timeScale == 0){
+				audio.Stop();
 			}
 			
 			//theCharacter.transform.Translate(dir * movementSpeed * Time.deltaTime, Space.World);
@@ -152,5 +161,15 @@ public class EventManager_DiningHall : MonoBehaviour {
 
 		}
 		return num;
+	}
+	
+	private void saveGame(){
+		PlayerPrefs.SetInt ("currentScore", (int)scoreScript.currentScore);
+		PlayerPrefs.SetInt ("HMGTotalAmmo", (int)gunScript.ammoCountTotalHMG);
+		PlayerPrefs.SetInt ("ShotgunTotalAmmo", (int)gunScript.ammoCountTotalShotgun);
+		PlayerPrefs.SetInt ("HMGAmmo", (int)gunScript.ammoCountHMG);
+		PlayerPrefs.SetInt ("ShotgunAmmo", (int)gunScript.ammoCountShotgun);
+		PlayerPrefs.SetInt("playedTakeDamage", (int)lifeScript.playedTakeDamage);
+		Debug.Log ("Game saved");
 	}
 }
