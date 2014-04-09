@@ -25,6 +25,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 	public InGameScoreScript scoreScript;
 	public GunDisplay gunScript;
 	public LifeCounter lifeScript;
+	public TimerScript timeScript;
 	
 	void Start(){
 		theCamera = Camera.main.gameObject;
@@ -170,6 +171,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 		PlayerPrefs.SetInt ("HMGAmmo", (int)gunScript.ammoCountHMG);
 		PlayerPrefs.SetInt ("ShotgunAmmo", (int)gunScript.ammoCountShotgun);
 		PlayerPrefs.SetInt("playedTakeDamage", (int)lifeScript.playedTakeDamage);
+		PlayerPrefs.SetInt("timeLeft", (int)timeScript.seconds);
 		Debug.Log ("Game saved");
 	}
 }

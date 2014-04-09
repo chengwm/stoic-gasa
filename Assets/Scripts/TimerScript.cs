@@ -4,9 +4,20 @@ using System.Collections;
 public class TimerScript: MonoBehaviour {
 
 	// Update these depending on which style is used
-	public float minutes = 5;
-	public float seconds = 0;
-	public float miliseconds = 0;
+	public float minutes;
+	public float seconds;
+	public float miliseconds;
+	
+	void Start(){
+		if(Application.loadedLevelName == "MainHall"){
+			minutes = 0;
+			seconds = 300;
+			miliseconds = 0;
+		}
+		else{
+			seconds = PlayerPrefs.GetInt("timeLeft");
+		}
+	}
 	
 	void Update(){
 		/*// ----------------------
