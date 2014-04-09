@@ -172,6 +172,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 		PlayerPrefs.SetInt ("ShotgunAmmo", (int)gunScript.ammoCountShotgun);
 		PlayerPrefs.SetInt("playedTakeDamage", (int)lifeScript.playedTakeDamage);
 		PlayerPrefs.SetInt("timeLeft", (int)timeScript.seconds);
+		PlayerPrefs.SetInt("playerLoadedHealth", (int)lifeScript.playerHealth);
 		Debug.Log ("Game saved");
 	}
 }
