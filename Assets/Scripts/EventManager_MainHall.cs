@@ -20,6 +20,11 @@ public class EventManager_MainHall : MonoBehaviour {
 	// Disable these scripts while moving
 	public Shooting shootScript;
 	public Shield shieldScript;
+	
+	// Need to access these scripts to save info
+	public InGameScoreScript scoreScript;
+	public GunDisplay gunScript;
+	public LifeCounter lifeScript;
 
 	void Start(){
 		theCamera = Camera.main.gameObject;
@@ -45,6 +50,12 @@ public class EventManager_MainHall : MonoBehaviour {
 				num = TranslateTo( new Vector3(0f, 35.8f, 42f), num);
 			else if (num == 18)
 				num = TranslateTo( new Vector3(0f, 35.8f, 25.7f), num);
+				
+			// Load next level
+			else if(num == 19){
+				saveGame ();
+				Application.LoadLevel("DiningHall");
+			}
 		}
 		
 		else if ((!(GameObject.Find ("Target5")))) {
@@ -147,8 +158,12 @@ public class EventManager_MainHall : MonoBehaviour {
 			Vector3 dir = position - theCamera.transform.position;
 			dir = dir.normalized;
 			
-			if(!audio.isPlaying){
+			if(!audio.isPlaying && Time.timeScale == 1){
 				audio.Play ();
+			}
+			// Stop playing the footsteps if paused
+			else if(audio.isPlaying && Time.timeScale == 0){
+				audio.Stop();
 			}
 			
 			//theCharacter.transform.Translate(dir * movementSpeed * Time.deltaTime, Space.World);
@@ -166,5 +181,18 @@ public class EventManager_MainHall : MonoBehaviour {
 			
 		}
 		return num;
+	}
+	
+	private void saveGame(){
+		//PlayerPrefs.SetInt ("playerHealth", (int)lifeScript.playerHealth);
+		PlayerPrefs.SetInt ("currentScore", (int)scoreScript.currentScore);
+		PlayerPrefs.SetInt ("HMGTotalAmmo", (int)gunScript.ammoCountTotalHMG);
+		PlayerPrefs.SetInt ("ShotgunTotalAmmo", (int)gunScript.ammoCountTotalShotgun);
+		PlayerPrefs.SetInt ("HMGAmmo", (int)gunScript.ammoCountHMG);
+		PlayerPrefs.SetInt ("ShotgunAmmo", (int)gunScript.ammoCountShotgun);
+		PlayerPrefs.SetInt("playedTakeDamage", (int)lifeScript.playedTakeDamage);
+		//yield return new WaitForSeconds(1.0F);
+		Debug.Log ("Game saved");
+		//yield break;
 	}
 }

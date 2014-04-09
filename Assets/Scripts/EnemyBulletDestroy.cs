@@ -7,6 +7,7 @@ public class EnemyBulletDestroy : MonoBehaviour {
 	
 	// Audio
 	public AudioClip shieldBlock;
+	public AudioClip takeDamage;
 	
 	// Function is triggered when the object collides with another object
 	void OnTriggerEnter(Collider collider)
@@ -27,6 +28,7 @@ public class EnemyBulletDestroy : MonoBehaviour {
 			}
 			if(PlayerPrefs.GetInt ("shieldUp") == 0){
 				playerHealth -= 1;
+				StartCoroutine(PlayOuch());
 			}
 			else{ // shield is up and the player gets hit by a bullet
 				AudioSource.PlayClipAtPoint(shieldBlock, transform.position);
@@ -62,6 +64,13 @@ public class EnemyBulletDestroy : MonoBehaviour {
 			// Destroy the bullet object if it hits anything else
 			Destroy (gameObject);
 		}	
+	}
+	
+	IEnumerator PlayOuch(){
+		yield return new WaitForSeconds(0.5F);
+		audio.PlayOneShot(takeDamage);
+		yield return new WaitForSeconds(0.5F);
+		yield break;
 	}
 }
 

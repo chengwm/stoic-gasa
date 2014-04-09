@@ -14,10 +14,12 @@ public class PauseButtonScript : MonoBehaviour {
 	void Start () {
 		// initialize button to white
 		guiTexture.texture = button1; 
+		
 		if(Application.loadedLevelName == "MainHall" || Application.loadedLevelName == "DiningHall" || Application.loadedLevelName == "BossRoom"){
 			audio.clip = music;
 			audio.Play ();
 		}
+		
 	}
 	
 	// Update is called once per frame
