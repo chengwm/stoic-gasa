@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		renderer.material.SetColor("_Color", Color.green);
+		//renderer.material.SetColor("_Color", Color.green);
 		attackTimer = 100000.0f;
 		//UnityEngine.Random.seed = System.DateTime.Now.Second;
 		//coverTimer = UnityEngine.Random.value % 20.0f;
@@ -152,6 +152,7 @@ public class Enemy : MonoBehaviour {
 
 	public void StartAnim()
 	{
+		print ("startAnim in bear");
 		float audioToPlay = Random.Range(0.0F, 1.0F);
 		if(audioToPlay < 0.5){
 			audio.PlayOneShot(getDamaged);
@@ -159,7 +160,7 @@ public class Enemy : MonoBehaviour {
 		else{
 			audio.PlayOneShot(getDamaged2);
 		}
-		renderer.material.SetColor("_Color", Color.red);
+		//renderer.material.SetColor("_Color", Color.red);
 		DestroyObject(gameObject, delay);
 		DestroyObject(transform.parent.gameObject, delay); // if the head is shot, destroy the parent (body) as well
 	}
