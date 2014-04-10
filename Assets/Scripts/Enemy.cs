@@ -160,9 +160,16 @@ public class Enemy : MonoBehaviour {
 		else{
 			audio.PlayOneShot(getDamaged2);
 		}
-		//renderer.material.SetColor("_Color", Color.red);
-		DestroyObject(gameObject, delay);
-		DestroyObject(transform.parent.gameObject, delay); // if the head is shot, destroy the parent (body) as well
+		if(gameObject.tag == "Enemy"){
+			//renderer.material.SetColor("_Color", Color.red);
+			DestroyObject(gameObject, delay);
+		}
+		// You shot the head. Actions have to be performed with respect to its parent
+		else{
+			//transform.parent.renderer.material.SetColor("_Color", Color.red);
+			DestroyObject(transform.parent.gameObject, delay); // if the head is shot, destroy the parent (body) as well
+		}
+		
 	}
 
 }
