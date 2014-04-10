@@ -26,9 +26,9 @@ public class EnemyEgg : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		renderer.material.SetColor("_Color", Color.yellow);
+		//renderer.material.SetColor("_Color", Color.yellow);
 		lifeEgg = 10;
-		current = States.Charge;
+		current = States.NullStateID;
 		attackTimer = -1.0f; //starts with negative number so that Egg will never enter Attack State until it reaches Player
 		colourTimer = 0.5f;
 	}
@@ -40,10 +40,17 @@ public class EnemyEgg : MonoBehaviour
 		//print ("current = " + current);
 		attackTimer -= Time.deltaTime;
 		colourTimer -= Time.deltaTime;
+
+		Movement move = this.GetComponent<Movement>();
+		if(move.reached == true && move.pass == 1)
+		{
+			current = States.Charge;
+			move.pass++;
+		}
 		
 		if(colourTimer <= 0.0f)
 		{
-			renderer.material.SetColor("_Color", Color.yellow);
+			//renderer.material.SetColor("_Color", Color.yellow);
 		}
 
 		//Charge State
@@ -105,7 +112,7 @@ public class EnemyEgg : MonoBehaviour
 	{
 		lifeEgg--;
 		audio.PlayOneShot(takeDamage);
-		renderer.material.SetColor("_Color", Color.red);
+		//renderer.material.SetColor("_Color", Color.red);
 		if(lifeEgg == 0)
 		{
 			DestroyObject(gameObject, delay);
