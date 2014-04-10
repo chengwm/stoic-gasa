@@ -24,10 +24,12 @@ public class Spawner : MonoBehaviour
 	void Start ()
 	{
 		spawnpoint1 = GameObject.Find("spawnpoint1");
-//		spawnpoint2 = GameObject.Find("spawnpoint1");
+		spawnpoint2 = GameObject.Find("spawnpoint2");
+
+		//placeholders. final game need to set how many to spawn etc
 		bearSpawnTimer1 = 1.0f;
-		lollipopSpawnTimer1 = 3.5f;
-		eggSpawnTimer1 = 10.0f;
+		lollipopSpawnTimer1 = 3.5f;	
+		eggSpawnTimer1 = 5.0f;
 
 		i = j = 0;
 	}
@@ -42,23 +44,35 @@ public class Spawner : MonoBehaviour
 		if(bearSpawnTimer1 <= 0.0f)
 		{
 			//first bear at spawnpoint1
-			GameObject bear = Instantiate(m_PrefabBear, spawnpoint1.transform.position, spawnpoint1.transform.rotation) as GameObject;
+			GameObject bear1 = Instantiate(m_PrefabBear, spawnpoint1.transform.position, spawnpoint1.transform.rotation) as GameObject;
+			GameObject bear2 = Instantiate(m_PrefabBear, spawnpoint2.transform.position, spawnpoint2.transform.rotation) as GameObject;
 			//bear.transform.localScale += Vector3();
-			bear.name = string.Concat(bearString, i.ToString(), j.ToString());
-			print ("bear.name = " +bear.name);
-			//set the attributes in Movement
-			Movement move = bear.GetComponent<Movement>();
-			move.arraySize = 5;
-			/*
-			move.waypoints[0] = GameObject.Find("waypoint11");
-			move.waypoints[1] = GameObject.Find("waypoint12");
-			move.waypoints[2] = GameObject.Find("waypoint13");
-			move.waypoints[3] = GameObject.Find("waypoint14");
-			move.waypoints[4] = GameObject.Find("waypoint15");
-			*/
+			//bear1.name = string.Concat(bearString, i.ToString(), j.ToString());
+			//print ("bear1.name = " +bear1.name);
+
+			//set the whichRoute and arraySize in route in Movement
+			Movement move1 = bear1.GetComponent<Movement>();
+			Movement move2 = bear2.GetComponent<Movement>();
+			if(j % 2 == 0)
+			{
+				move1.whichRoute = 0;
+				move1.arraySize = 5;
+			}
+			else 
+			{
+				move1.whichRoute = 1;
+				move1.arraySize = 6;
+			}
+
+			move2.whichRoute = 2;
+			move2.arraySize = 6;
+
 			//set bear covertype
-			Enemy e = bear.GetComponent<Enemy>();
-			e.coverType = 0;
+			Enemy e1 = bear1.GetComponent<Enemy>();
+			e1.coverType = 4;
+
+			Enemy e2 = bear2.GetComponent<Enemy>();
+			e2.coverType = 4;
 
 			bearSpawnTimer1 = 10.0f;
 			j++;
@@ -71,10 +85,8 @@ public class Spawner : MonoBehaviour
 			print ("lollipop.name = " +lollipop.name);
 			//set the attributes in Movement
 			Movement move = lollipop.GetComponent<Movement>();
+			move.whichRoute = 0;
 			move.arraySize = 5;
-
-			//set bear covertype
-			//EnemyLollipop e = lollipop.GetComponent<EnemyLollipop>();
 			
 			lollipopSpawnTimer1 = 10.0f;
 			j++;
@@ -87,11 +99,9 @@ public class Spawner : MonoBehaviour
 			print ("egg.name = " +egg.name);
 			//set the attributes in Movement
 			Movement move = egg.GetComponent<Movement>();
+			move.whichRoute = 0;
 			move.arraySize = 5;
-			
-			//set bear covertype
-			//EnemyLollipop e = lollipop.GetComponent<EnemyLollipop>();
-			
+
 			eggSpawnTimer1 = 10.0f;
 			j++;
 		}
