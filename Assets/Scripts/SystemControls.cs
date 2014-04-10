@@ -33,7 +33,7 @@ public class SystemControls : MonoBehaviour {
 			if (Input.GetKeyDown("escape")/*Input.GetKey(KeyCode.Escape)*/) // when the back button is pressed on the device
 			{
 				// Currently in game
-				if(Application.loadedLevelName == "MainHall" && Time.timeScale == 1)
+				if((Application.loadedLevelName == "MainHall"  || Application.loadedLevelName == "DiningHall" || Application.loadedLevelName == "BossRoom") && Time.timeScale == 1)
 				{
 					// pause game
 					Time.timeScale = 0;
