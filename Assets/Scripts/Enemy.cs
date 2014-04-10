@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour {
 
 	public void StartAnim()
 	{
-		print ("startAnim in bear");
+		Debug.Log ("startAnim in bear");
 		float audioToPlay = Random.Range(0.0F, 1.0F);
 		if(audioToPlay < 0.5){
 			audio.PlayOneShot(getDamaged);
