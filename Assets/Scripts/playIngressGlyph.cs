@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 
 public class playIngressGlyph : MonoBehaviour {
@@ -35,9 +36,15 @@ public class playIngressGlyph : MonoBehaviour {
 		isMainGameInitialised = false;
 		verified = false;
 
+
 		//Defines how many Glyphs to show. 
 		//Value: 1 to 4
+
+//		System.Random rnd = new System.Random();
+//		difficultyLevel = rnd.Next(1,5);
+
 		difficultyLevel = 2;
+
 
 		//tracker for Line Renderer
 		noOfVerticesTouched = 0;
@@ -99,6 +106,9 @@ public class playIngressGlyph : MonoBehaviour {
 				gameIsEnding = true; 	//lock input
 				
 				StartCoroutine(endingSeq());
+
+				//End minigame
+				Application.LoadLevel("BossRoom");
 			}
 			
 			if(Input.GetButtonUp("Fire1") && isMainGameInitialised){
@@ -160,6 +170,7 @@ public class playIngressGlyph : MonoBehaviour {
 		correctness = computeResults();
 		//show results
 		for(int i=0; i<difficultyLevel; i++){
+			Debug.Log("Showing "+ i);
 			if(correctness[i]){
 				lineRenderer.SetColors(Color.green, Color.green);
 				Debug.Log("Correct");
@@ -173,10 +184,12 @@ public class playIngressGlyph : MonoBehaviour {
 				lineRenderer.SetPosition(j, v.transform.position);
 			}
 			
-		yield return new WaitForSeconds(2);
-		//	waitAwhile(2);
+			yield return new WaitForSeconds(5.0f);
+//			StartCoroutine(waitAwhile(5));
 		}
-		
+
+		yield return new WaitForSeconds(2.0f);
+
 		lineRenderer.SetVertexCount(0);
 		verified = true;
 		yield break;
@@ -242,7 +255,7 @@ public class playIngressGlyph : MonoBehaviour {
 		return results;
 	}
 
-	IEnumerable waitAwhile(int seconds){
+	IEnumerator waitAwhile(int seconds){
 		yield return new WaitForSeconds(seconds);
 	}
 
