@@ -30,16 +30,28 @@ public class IngressGlyphSets : MonoBehaviour {
 		case 1:
 			switch(randNo){
 			case 1: 	return new Glyphs[]{Glyphs.SHAPER};
-			default: 	return new Glyphs[]{Glyphs.BODY};
+			default: 	return new Glyphs[]{Glyphs.PORTAL};
 			}
 		
 		case 2:
 			switch(randNo){
 			case 1: 	return new Glyphs[]{Glyphs.DESTROY,Glyphs.PORTAL};
-			default: 	return new Glyphs[]{Glyphs.OPEN,Glyphs.AGAIN};
+			default: 	return new Glyphs[]{Glyphs.ADVANCE,Glyphs.BODY};
+			}
+		
+		case 3: 
+			switch(randNo){
+			case 1: 	return new Glyphs[]{Glyphs.ATTACK,Glyphs.DESTROY,Glyphs.ADVANCE};
+			default: 	return new Glyphs[]{Glyphs.SHAPER,Glyphs.SEEK,Glyphs.TRUTH};
 			}
 
-		default:		return new Glyphs[]{Glyphs.OPEN};
+		case 4: 
+			switch(randNo){
+			case 1: 	return new Glyphs[]{Glyphs.OPEN,Glyphs.PORTAL,Glyphs.SEEK, Glyphs.TRUTH};
+			default: 	return new Glyphs[]{Glyphs.JOURNEY,Glyphs.AGAIN,Glyphs.BREATHE,Glyphs.AGAIN};
+			}
+
+		default:		return new Glyphs[]{Glyphs.SIMPLE};
 
 		}
 
@@ -51,14 +63,17 @@ public class IngressGlyphSets : MonoBehaviour {
 		
 		case Glyphs.ADVANCE:	return new int[]{10,4,6};
 		case Glyphs.AGAIN:		return new int[]{7,1,3,0,2,4};
-		case Glyphs.ATTACK:		return new int[]{};
+		case Glyphs.ATTACK:		return new int[]{7,1,9,2,8};
 		case Glyphs.DESTROY: 	return new int[]{5,1,0,4,8};
 		case Glyphs.BODY:		return new int[]{0,1,2,0};
 		case Glyphs.BREATHE: 	return new int[]{5,1,0,2,6};
 		case Glyphs.JOURNEY: 	return new int[]{10,7,5,1,0,2,6};
 		case Glyphs.OPEN:		return new int[]{3,4,10,3};
 		case Glyphs.PORTAL:		return new int[]{5,1,2,6,8,4,3,7,5};
+		case Glyphs.SEEK:		return new int[]{0,2,1,3,4};
 		case Glyphs.SHAPER:		return new int[]{7,3,1,9,2,4,8};
+		case Glyphs.SIMPLE:		return new int[]{3,4};
+		case Glyphs.TRUTH:		return new int[]{1,0,4,2,0,3,1};
 		
 		
 		default:
@@ -94,6 +109,7 @@ public class IngressGlyphSets : MonoBehaviour {
 		SEEK,
 		SELF,
 		SHAPER,
+		SIMPLE,
 		SOUL,
 		TRUTH,
 		PAST
