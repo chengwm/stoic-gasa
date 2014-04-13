@@ -226,7 +226,7 @@ public class playIngressGlyph : MonoBehaviour {
 
 		//End minigame
 		if(canExitGame){
-			Application.LoadLevel("BossRoom");
+			Application.LoadLevel("Win");
 		}
 	}
 	
