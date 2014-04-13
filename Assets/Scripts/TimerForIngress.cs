@@ -29,7 +29,9 @@ public class TimerForIngress: MonoBehaviour {
 			
 			miliseconds -= Time.deltaTime * 100;
 			
-			guiText.text = string.Format("{0} : {1}", seconds, (int)miliseconds);
+//			guiText.text = string.Format("{0} : {1}", seconds, (int)miliseconds);
+			guiText.text = ToString();
+
 		}
 
 		/* ----------------------
@@ -97,5 +99,27 @@ public class TimerForIngress: MonoBehaviour {
 
 	public void startTimer(){
 		runTimer=true;
+	}
+
+	override public string ToString(){
+		string s;
+
+		if(seconds > 9){
+			s = seconds.ToString();
+		} else {
+			s = "0"+seconds.ToString();
+		}
+
+		int ms = Mathf.FloorToInt(miliseconds);
+
+		if(miliseconds <= 0){
+			s = s+":00";
+		}else if(ms > 9){
+			s = s+":"+ms.ToString();
+		}else{
+			s = s+":0"+ms.ToString();
+		}
+
+		return s;
 	}
 }
