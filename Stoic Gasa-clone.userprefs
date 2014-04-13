@@ -1,12 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\playIngressGlyph.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyEgg.cs">
     <Files>
-      <File FileName="Assets\Scripts\playIngressGlyph.cs" Line="129" Column="29" />
+      <File FileName="Assets\Scripts\EnemyLollipop.cs" Line="222" Column="34" />
       <File FileName="Assets\Scripts\EventManager_BossRoom.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EventManager_DiningHall.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EventManager_MainHall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="188" Column="50" />
+      <File FileName="Assets\Scripts\MenuHighScore.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyEgg.cs" Line="114" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
