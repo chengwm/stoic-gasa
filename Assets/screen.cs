@@ -17,7 +17,7 @@ public class screen : MonoBehaviour {
 
 	void OnMouseDown(){
 //		Debug.Log("Mouse Down.");
-		if(gameManagerScript.isMainGameInitialised && !gameManagerScript.getGameIsEnding())
+		if(gameManagerScript.getIsMainGameInitialised() && !gameManagerScript.getGameIsEnding())
 			gameManagerScript.beginAttempt();
 	}
 
