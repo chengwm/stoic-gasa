@@ -56,6 +56,7 @@ public class EnemyEgg : MonoBehaviour
 		//Charge State
 		if(current == States.Charge)
 		{
+			animation.Play ("Run");
 			ePos = transform.position;
 			pPos = player.transform.position;
 			//transition from Attack state to Retreat state
