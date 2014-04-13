@@ -56,6 +56,7 @@ public class EnemyEgg : MonoBehaviour
 		//Charge State
 		if(current == States.Charge)
 		{
+			animation.Play ("Run");
 			ePos = transform.position;
 			pPos = player.transform.position;
 			//transition from Attack state to Retreat state
@@ -83,6 +84,7 @@ public class EnemyEgg : MonoBehaviour
 			current = States.Wait;
 			attackTimer = 5.0f;
 			
+			animation.Stop (); // stop the running animation
 			audio.PlayOneShot(attack); // attack sound
 			// Get and update the health of the player
 			if (PlayerPrefs.HasKey ("playerHealth")) {

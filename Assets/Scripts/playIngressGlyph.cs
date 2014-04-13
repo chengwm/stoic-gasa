@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 
 public class playIngressGlyph : MonoBehaviour {
 
-	public bool isMainGameInitialised;
+	private bool isMainGameInitialised;
 
 	LinkedList<edge>[] qnInEdges;
 	
@@ -16,16 +17,19 @@ public class playIngressGlyph : MonoBehaviour {
 	public TimerForIngress timer;
 	public IngressGlyphSets glyphGenerator;
 	public LineRenderer lineRenderer;
+	public IngressInstructionScript instructionText;
 	private int noOfVerticesTouched;
 	int[][] qn;
 	bool gameIsEnding;
 
+
 	LinkedList<int> [] ans;
 	bool[] correctness;
+
 	
 	private LinkedList<GameObject> selectedVertices;
-
-	private bool verified;
+	
+	private bool canExitGame;
 
 	// Use this for initialization
 	IEnumerator Start () {										//needed to display qn
@@ -33,11 +37,16 @@ public class playIngressGlyph : MonoBehaviour {
 
 		// used to prevent premature clicking during qn display
 		isMainGameInitialised = false;
-		verified = false;
+		canExitGame = false;
 
 		//Defines how many Glyphs to show. 
 		//Value: 1 to 4
+
+//		System.Random rnd = new System.Random();
+//		difficultyLevel = rnd.Next(1,5);
+
 		difficultyLevel = 2;
+
 
 		//tracker for Line Renderer
 		noOfVerticesTouched = 0;
@@ -54,8 +63,14 @@ public class playIngressGlyph : MonoBehaviour {
 			qnInEdges[i] = new LinkedList<edge>();
 			for(int j=0; j<qn[i].Length-1; j++){
 				qnInEdges[i].AddLast(new edge(qn[i][j], qn[i][j+1]));
-			}
+				}
 		}
+
+		instructionText.setColor(-1);
+		instructionText.setInstruction(1);
+		yield return new WaitForSeconds(0.5f);
+		instructionText.setColor(0);
+		yield return new WaitForSeconds(2);
 
 		//display qn
 		lineRenderer.SetColors(Color.white,Color.white);
@@ -65,8 +80,21 @@ public class playIngressGlyph : MonoBehaviour {
 				GameObject v = GameObject.Find(qn[i][j].ToString());
 				lineRenderer.SetPosition(j, v.transform.position);
 			}
-			
-			yield return new WaitForSeconds(2);
+			if(i != difficultyLevel - 1){
+				yield return new WaitForSeconds(2);
+			}else{
+				yield return new WaitForSeconds(2);
+				instructionText.setColor(1);
+				instructionText.setInstruction(2);
+				yield return new WaitForSeconds(1.5f);
+				instructionText.setColor(2);
+				instructionText.setInstruction(3);
+				yield return new WaitForSeconds(1);
+				instructionText.setColor(3);
+				instructionText.setInstruction(4);
+				yield return new WaitForSeconds(1);
+	
+			}
 		}
 
 		lineRenderer.SetVertexCount(0);
@@ -97,8 +125,9 @@ public class playIngressGlyph : MonoBehaviour {
 				//show result
 				
 				gameIsEnding = true; 	//lock input
-				
+
 				StartCoroutine(endingSeq());
+
 			}
 			
 			if(Input.GetButtonUp("Fire1") && isMainGameInitialised){
@@ -108,10 +137,11 @@ public class playIngressGlyph : MonoBehaviour {
 				lineRenderer.SetVertexCount(0);
 			}
 		}
-		
-		if(verified == true){
+/*		
+		if(canExitGame == true){
 			Debug.Log("Game is Ended");
 		}
+*/		
 	}
 
 	public bool getGameIsEnding(){
@@ -150,21 +180,30 @@ public class playIngressGlyph : MonoBehaviour {
 		return ans[atGlyphNumber].Last.Value;
 	}
 
+	public bool getIsMainGameInitialised(){
+		return isMainGameInitialised;
+	}
+
 	public IEnumerator endingSeq(){
-		verified = false;
+		
 		Debug.Log("Ending Game.");
 
 		timer.stopTimer();
+
+		yield return new WaitForSeconds(2);
 
 		//compare results
 		correctness = computeResults();
 		//show results
 		for(int i=0; i<difficultyLevel; i++){
+			Debug.Log("Showing "+ i);
 			if(correctness[i]){
-				lineRenderer.SetColors(Color.green, Color.green);
+				instructionText.setInstruction(5);
+				instructionText.setColor(3);
 				Debug.Log("Correct");
 			}else{
-				lineRenderer.SetColors(Color.red, Color.red);
+				instructionText.setInstruction(6);
+				instructionText.setColor(4);
 				Debug.Log("Wrong");
 			}
 			lineRenderer.SetVertexCount(qn[i].Length);
@@ -173,15 +212,24 @@ public class playIngressGlyph : MonoBehaviour {
 				lineRenderer.SetPosition(j, v.transform.position);
 			}
 			
-		yield return new WaitForSeconds(2);
-		//	waitAwhile(2);
-		}
-		
-		lineRenderer.SetVertexCount(0);
-		verified = true;
-		yield break;
-	}
+			yield return new WaitForSeconds(2);
 
+//			yield return StartCoroutine(waitAwhile(2));
+//			StartCoroutine(waitAwhile(2));
+		}
+
+		yield return new WaitForSeconds(2);
+
+
+		lineRenderer.SetVertexCount(0);
+		canExitGame = true;
+
+		//End minigame
+		if(canExitGame){
+			Application.LoadLevel("BossRoom");
+		}
+	}
+	
 	private bool[] computeResults(){
 		bool[] results = new bool[difficultyLevel];
 		for(int i=0; i<difficultyLevel; i++){
@@ -242,7 +290,7 @@ public class playIngressGlyph : MonoBehaviour {
 		return results;
 	}
 
-	IEnumerable waitAwhile(int seconds){
+	IEnumerator waitAwhile(int seconds){
 		yield return new WaitForSeconds(seconds);
 	}
 
