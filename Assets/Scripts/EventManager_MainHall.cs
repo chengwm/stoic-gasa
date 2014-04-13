@@ -38,14 +38,14 @@ public class EventManager_MainHall : MonoBehaviour {
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
 		audio.clip = footsteps;
-		//num = 0;
-		num = 4;
+		num = 0;
+		//num = 4;
 		theCharacter.transform.rotation = theCamera.transform.rotation;
 
 		spawner = GameObject.Find("Spawner");
 		spawnerScript = spawner.GetComponent<Spawner>();
-		//wave = 0;	
-		wave = 6;
+		wave = 0;	
+		//wave = 6;
 	}
 
 	// Update is called once per frame
