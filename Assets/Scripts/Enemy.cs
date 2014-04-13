@@ -177,15 +177,15 @@ public class Enemy : MonoBehaviour {
 			audio.PlayOneShot(getDamaged2);
 		}
 		if(gameObject.tag == "Enemy"){
-			animation.Play ("Die_Bear");
+			//animation.Play ("Die_Bear");
 			//renderer.material.SetColor("_Color", Color.red);
-			DestroyObject(gameObject, 0.625F); // 0.625 seconds needed for die animation to complete
+			DestroyObject(gameObject, 0.7F); // 0.625 seconds needed for die animation to complete
 		}
 		// You shot the head. Actions have to be performed with respect to its parent
 		else{
-			transform.parent.animation.Play ("Die_Bear");
+			//transform.parent.animation.Play ("Die_Bear");
 			//transform.parent.renderer.material.SetColor("_Color", Color.red);
-			DestroyObject(transform.parent.gameObject, 0.625F); // if the head is shot, destroy the parent (body) as well 
+			DestroyObject(transform.parent.gameObject, 0.7F); // if the head is shot, destroy the parent (body) as well 
 			// 0.625 seconds needed for die animation to complete
 			
 		}

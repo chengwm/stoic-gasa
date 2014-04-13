@@ -54,6 +54,7 @@
      <Compile Include="Assets\Party Pack\Scripts\TriggerParticlesTouch.cs" />
      <Compile Include="Assets\Party Pack\Scripts\TriggerSoundTouch.cs" />
      <Compile Include="Assets\Scripts\BulletDestroy.cs" />
+     <Compile Include="Assets\Scripts\CameraFade.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyBulletDestroy.cs" />
      <Compile Include="Assets\Scripts\EnemyEgg.cs" />
