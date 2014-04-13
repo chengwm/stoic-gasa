@@ -23,7 +23,7 @@ public class VerticeBehavior : MonoBehaviour {
 
 	void OnMouseDown(){
 //		Debug.Log("Mouse Down.");
-		if(gameManagerScript.isMainGameInitialised)
+		if(gameManagerScript.getIsMainGameInitialised())
 			gameManagerScript.beginAttempt();
 	}
 
@@ -32,7 +32,7 @@ public class VerticeBehavior : MonoBehaviour {
 
 		if(gameManagerScript.getIsMouseDown() && 
 		   gameManagerScript.getLastVertice() != objName && 
-		   gameManagerScript.isMainGameInitialised && 
+		   gameManagerScript.getIsMainGameInitialised() && 
 		   !gameManagerScript.getGameIsEnding()){
 //			Debug.Log("Mouse Activated.");
 			gameManagerScript.touchedVertice(objName);
@@ -42,7 +42,7 @@ public class VerticeBehavior : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
-		if(gameManagerScript.getIsMouseDown() && gameManagerScript.isMainGameInitialised){
+		if(gameManagerScript.getIsMouseDown() && gameManagerScript.getIsMainGameInitialised()){
 			gameManagerScript.finishedAttempt();
 		}
 		renderer.material.SetColor("_Color", Color.gray);
