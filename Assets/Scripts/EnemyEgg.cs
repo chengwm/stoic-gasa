@@ -84,6 +84,7 @@ public class EnemyEgg : MonoBehaviour
 			current = States.Wait;
 			attackTimer = 5.0f;
 			
+			animation.Stop (); // stop the running animation
 			audio.PlayOneShot(attack); // attack sound
 			// Get and update the health of the player
 			if (PlayerPrefs.HasKey ("playerHealth")) {

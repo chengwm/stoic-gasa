@@ -39,7 +39,13 @@ public class Enemy : MonoBehaviour {
 		attackTimer -= Time.deltaTime;
 		coverTimer -= Time.deltaTime;
 
+		
+		
 		Movement move = this.GetComponent<Movement>();
+		// Run animation if moving to waypoint
+		if(move.reached != true){
+			animation.Play ("Run");
+		}
 		if(move.reached == true && move.pass == 1)
 		{
 			current = States.Attack;
@@ -70,6 +76,8 @@ public class Enemy : MonoBehaviour {
 			Vector3 temp = transform.position;
 			if(coverType == 0) // move down to take cover
 			{
+				animation.Stop ("Run"); // stop running animation
+				animation.Play ("Cover_Down_in"); // take cover down
 				if(temp.y >= positionOriginal - 1.0f)
 					temp.y -= 0.1f;
 				else 
@@ -77,6 +85,8 @@ public class Enemy : MonoBehaviour {
 			}
 			else if(coverType == 1) //move right to take cover
 			{
+				animation.Stop ("Run"); // stop running animation
+				animation.Play ("Cover_SideL_in"); // take cover
 				if(temp.x <= positionOriginal + 1.0f)
 					temp.x += 0.1f;
 				else
@@ -84,6 +94,8 @@ public class Enemy : MonoBehaviour {
 			}
 			else if(coverType == 2) //move left to take cover
 			{
+				animation.Stop ("Run"); // stop running animation
+				animation.Play ("Cover_SideR_in"); // take cover
 				if(temp.x >= positionOriginal - 1.0f)
 					temp.x -= 0.1f;
 				else
@@ -110,6 +122,7 @@ public class Enemy : MonoBehaviour {
 			Vector3 temp = transform.position;
 			if(coverType == 0)
 			{
+				animation.Play ("Cover_Down_out");
 				if(temp.y <= positionOriginal)
 					temp.y += 0.2f;
 				else 
@@ -117,6 +130,7 @@ public class Enemy : MonoBehaviour {
 			}			
 			else if(coverType == 1)
 			{
+				animation.Play ("Cover_SideL_out");
 				if(temp.x >= positionOriginal)
 					temp.x -= 0.2f;
 				else 
@@ -124,6 +138,7 @@ public class Enemy : MonoBehaviour {
 			}
 			else if(coverType == 2)
 			{
+				animation.Play ("Cover_SideR_out");
 				if(temp.x <= positionOriginal)
 					temp.x += 0.2f;
 				else
@@ -153,6 +168,7 @@ public class Enemy : MonoBehaviour {
 	public void StartAnim()
 	{
 		Debug.Log ("startAnim in bear");
+		
 		float audioToPlay = Random.Range(0.0F, 1.0F);
 		if(audioToPlay < 0.5){
 			audio.PlayOneShot(getDamaged);
@@ -161,13 +177,17 @@ public class Enemy : MonoBehaviour {
 			audio.PlayOneShot(getDamaged2);
 		}
 		if(gameObject.tag == "Enemy"){
+			animation.Play ("Die_Bear");
 			//renderer.material.SetColor("_Color", Color.red);
-			DestroyObject(gameObject, delay);
+			DestroyObject(gameObject, 0.625F); // 0.625 seconds needed for die animation to complete
 		}
 		// You shot the head. Actions have to be performed with respect to its parent
 		else{
+			transform.parent.animation.Play ("Die_Bear");
 			//transform.parent.renderer.material.SetColor("_Color", Color.red);
-			DestroyObject(transform.parent.gameObject, delay); // if the head is shot, destroy the parent (body) as well
+			DestroyObject(transform.parent.gameObject, 0.625F); // if the head is shot, destroy the parent (body) as well 
+			// 0.625 seconds needed for die animation to complete
+			
 		}
 		
 	}
