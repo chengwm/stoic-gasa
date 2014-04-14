@@ -39,27 +39,30 @@ public class Enemy : MonoBehaviour {
 		attackTimer -= Time.deltaTime;
 		coverTimer -= Time.deltaTime;
 
+		print (this.name + " current = " +current);
+
 		
-		
-		Movement move = this.GetComponent<Movement>();
-		// Run animation if moving to waypoint
-		if(move.reached != true){
-			animation.Play ("Run");
-		}
-		if(move.reached == true && move.pass == 1)
+		if(this.tag == "Enemy")
 		{
-			current = States.Attack;
-			move.pass++;
+			Movement move = this.GetComponent<Movement>();
+			// Run animation if moving to waypoint
+			if(move.reached != true){
+				animation.Play ("Run");
+			}
+			if(move.reached == true && move.pass == 1)
+			{
+				current = States.Attack;
+				move.pass++;
 
-			UnityEngine.Random.seed = System.DateTime.Now.Second;
-			coverTimer = UnityEngine.Random.value % 20.0f;
+				UnityEngine.Random.seed = System.DateTime.Now.Second;
+				coverTimer = UnityEngine.Random.value % 20.0f;
 
-			if(coverType == 0)
-				positionOriginal = transform.position.y;
-			else
-				positionOriginal = transform.position.x;
+				if(coverType == 0)
+					positionOriginal = transform.position.y;
+				else
+					positionOriginal = transform.position.x;
+			}
 		}
-
 		//transition from AttackState to TakeCoverState
 		if(coverTimer <= 0)
 		{

@@ -48,6 +48,8 @@ public class EnemyLollipop : MonoBehaviour
 	}
 
 	void Update() {
+		player = GameObject.Find("Main Camera");
+
 		transform.rotation = new Quaternion(0.0f, 0.0f, 0.7f, 0.7f);
 
 		attackTimer -= Time.deltaTime;

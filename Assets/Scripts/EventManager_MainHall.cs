@@ -38,14 +38,14 @@ public class EventManager_MainHall : MonoBehaviour {
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
 		audio.clip = footsteps;
-		//num = 0;
-		num = 4;
+		num = 0;
+		//num = 12;
 		theCharacter.transform.rotation = theCamera.transform.rotation;
 
 		spawner = GameObject.Find("Spawner");
 		spawnerScript = spawner.GetComponent<Spawner>();
-		//wave = 0;	
-		wave = 6;
+		wave = 0;	
+		//wave = 13;
 	}
 
 	// Update is called once per frame
@@ -276,7 +276,7 @@ public class EventManager_MainHall : MonoBehaviour {
 						spawnerScript.MakeALollipop(spawnerScript.spawnpoint[1], 6, 27, 4);
 						spawnerScript.MakeABear(spawnerScript.spawnpoint[10], 52, 32, 2, 0);
 						spawnerScript.MakeABear(spawnerScript.spawnpoint[3], 53, 33, 2, 0);
-						spawnerScript.MakeABear(spawnerScript.spawnpoint[12], 54, 34, 2, 0);
+						//spawnerScript.MakeABear(spawnerScript.spawnpoint[12], 54, 34, 2, 0);
 						wave = 14;
 					}
 				}
@@ -295,7 +295,7 @@ public class EventManager_MainHall : MonoBehaviour {
 				spawnerScript.MakeABear(spawnerScript.spawnpoint[3], 56, 33, 2, 1);
 				spawnerScript.MakeABear(spawnerScript.spawnpoint[10], 57, 32, 2, 0);
 				spawnerScript.MakeABear(spawnerScript.spawnpoint[6], 58, 6, 3, 0);
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[12], 59, 34, 2, 0);
+				//spawnerScript.MakeABear(spawnerScript.spawnpoint[12], 59, 34, 2, 0);
 				//spawnerScript.MakeABear(spawnerScript.spawnpoint[7], 60, 31, 3, 0);
 				wave = 15;
 			}

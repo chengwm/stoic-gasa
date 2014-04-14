@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 48b4e9263ce21d847843f89d0ffa25d7
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
     100002: DrawCall_0726
@@ -82,4 +82,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  additionalBone: 0
   userData: 
