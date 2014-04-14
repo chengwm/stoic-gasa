@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EventManager_MainHall : MonoBehaviour {
+public class EventManager_DiningHall_KT : MonoBehaviour {
 	// Note: Copy the Main Camera from the Menu GUI prefabs. The camera nested in the character does not work properly with this code.
 	
-	public float RotationSpeed = 5;
-	public float movementSpeed = 20;
+	public float RotationSpeed = 15;
+	public float movementSpeed = 25;
 
 	//values for internal use
 	private Quaternion _lookRotation;
@@ -27,12 +27,22 @@ public class EventManager_MainHall : MonoBehaviour {
 	public LifeCounter lifeScript;
 	public TimerScript timeScript;
 
+	// Need to spawn minions using spawnerScript
+	public GameObject spawner;
+	public Spawner spawnerScript;
+
+	private int wave;
+	
 	void Start(){
 		theCamera = Camera.main.gameObject;
 		theCharacter = GameObject.FindWithTag("MainCharacter");
 		audio.clip = footsteps;
 		num = 0;
 		theCharacter.transform.rotation = theCamera.transform.rotation;
+
+		spawner = GameObject.Find("Spawner");
+		spawnerScript = spawner.GetComponent<Spawner>();
+		wave = 0;
 	}
 
 	// Update is called once per frame
@@ -41,85 +51,140 @@ public class EventManager_MainHall : MonoBehaviour {
 		theCharacter.transform.position = theCamera.transform.position;
 
 		if ((!(GameObject.Find ("Target6")))) {
-			Debug.Log("no 6 " + num);
-			if (num == 15){
-				Debug.Log ("here");
-				num = TranslateTo( new Vector3(0f, 35.8f, 60f), num);	
-			}else if (num == 16)
-				num = LookAt( new Vector3(0f, 35.8f, 42f), num);
-			else if (num == 17)
-				num = TranslateTo( new Vector3(0f, 35.8f, 42f), num);
-			else if (num == 18)
-				num = TranslateTo( new Vector3(0f, 35.8f, 25.7f), num);
-				
-			// Load next level
-			else if(num == 19){
+
+			if (num == 13)
+				num = TranslateTo( new Vector3(4f, 3.5f, 36.4f), num);	
+			else if (num == 14)
+				num = TranslateTo( new Vector3(-7f, 3.5f, 58f), num);
+			else if (num == 15)
+				num = TranslateTo( new Vector3(-10.5f, 3.5f, 86f), num);
+			else if (num == 16){
 				saveGame ();
-				Application.LoadLevel("DiningHall");
+				Application.LoadLevel ("BossRoom");
 			}
 		}
 		
 		else if ((!(GameObject.Find ("Target5")))) {
 			
-			if (num == 12)
-				num = TranslateTo( new Vector3(65.1f, 33.8f, 136.6f), num);	
-			else if (num == 13)
-				num = TranslateTo( new Vector3(65.1f, 33.8f, 55.9f), num);
-			else if (num == 14)
-				num = TranslateTo( new Vector3(49f, 35.8f, 64.9f), num);
-			else if (num == 15)
-				num = LookAt( new Vector3 (31.5f, 33f, 81f), num);
+			if (num == 9)
+				num = TranslateTo( new Vector3(38f, 3.5f, 32.4f), num);	
+			else if (num == 10)
+				num = TranslateTo( new Vector3(33f, 3.5f, 35.3f), num);
+			else if (num == 11)
+				num = TranslateTo( new Vector3(26f, 3.5f, 36.4f), num);
+			else if (num == 12)
+				num = LookAt( new Vector3 (22f, 3.5f, 26.4f), num);
 			
 		}
 		else if ((!(GameObject.Find ("Target4")))) {
 			
-			if (num == 8)
-				num = TranslateTo( new Vector3(38.2f, 8f, 94.8f), num);	
-			else if (num == 9)
-				num = TranslateTo( new Vector3(38.2f, 31f, 134.7f), num);
-			else if (num == 10)
-				num = TranslateTo( new Vector3(33.1f, 33.8f, 160.6f), num);
-			else if (num == 11)
-				num = LookAt( new Vector3 (30f, 32f, 170f), num);
+			if (num == 7)
+				num = TranslateTo( new Vector3(34.4f, 3.5f, 23f), num);	
+			else if (num == 8)
+				num = LookAt( new Vector3 (33f, 3.5f, 25f), num);
 		}
 		
 		else if ((!(GameObject.Find ("Target3")))) {
 			
-			if (num == 6)
-				num = TranslateTo( new Vector3(0f, 8f, 68f), num);
-			else if (num == 7)
-				num = LookAt( new Vector3 (33.8f, 25f, 140.5f), num);
+			if (num == 5)
+				num = TranslateTo( new Vector3(34.4f, 3.5f, 1.6f), num);
+			else if (num == 6)
+				num = LookAt( new Vector3 (31f, 3.5f, 7f), num);
 			
 		}
 		
 		else if ((!(GameObject.Find ("Target2")))) {
-			
-			if (num == 4)
-				num = TranslateTo( new Vector3(-17.9f, 8f, 176.2f), num);
-			else if (num == 5)
-				num = LookAt( new Vector3 (-10f, 11f, 161f), num);
-			//theCamera.transform.LookAt( new Vector3 (-10f, 152.6f, 0f));
+
+			if (num == 2)
+				num = TranslateTo( new Vector3(51.2f, 3.5f, -19f), num);
+			else if (num == 3)
+				num = TranslateTo( new Vector3(42.7f, 3.5f, -9f), num);
+			else if (num == 4)
+				num = LookAt( new Vector3 (34f, 3.5f, -6.5f), num);
+
+
 		}
 		
 		else if ((!(GameObject.Find ("Target1")))) {
 			
-			if (num == 0)
-				num = TranslateTo( new Vector3(-65.4f, 8f, 266.1f), num);	
-			else if (num == 1)
-				num = TranslateTo( new Vector3(-64f, 8f, 227.7f), num);
-			else if (num == 2)
-				num = TranslateTo( new Vector3(-51.6f, 8f, 224f), num);
-			else if (num == 3)
-				num = LookAt( new Vector3 (-46f, 12f, 202.5f), num);
-			
+
+							
+		}
+
+		if(wave == 0)
+		{
+			spawnerScript.MakeABear(spawnerScript.spawnpoint[0], 1, 2, 4, 2);
+			//no bear 2
+			spawnerScript.MakeABear(spawnerScript.spawnpoint[1], 3, 0, 3, 2);
+			//no bear 4
+			//no bear 5
+			spawnerScript.MakeABear(spawnerScript.spawnpoint[6], 6, 7, 2, 1);
+			spawnerScript.MakeABear(spawnerScript.spawnpoint[8], 7, 14, 2, 2);
+			//no bear 8
+			spawnerScript.MakeALollipop(spawnerScript.spawnpoint[12], 1, 37, 2);
+			wave = 1;
+		}
+		else if(wave == 1)
+		{
+			if(!(GameObject.Find("bear1") || GameObject.Find("bear3") || GameObject.Find("bear6") || GameObject.Find("bear7") || GameObject.Find("lollipop1")))
+			{
+				spawnerScript.MakeABear(spawnerScript.spawnpoint[7], 9, 3, 3, 1);
+				spawnerScript.MakeABear(spawnerScript.spawnpoint[6], 10, 7, 2, 1);
+				spawnerScript.MakeABear(spawnerScript.spawnpoint[0], 11, 2, 4, 2);
+				//no bear 12
+				spawnerScript.MakeABear(spawnerScript.spawnpoint[8], 13, 14, 2, 2);
+				//no bear 14
+				spawnerScript.MakeALollipop(spawnerScript.spawnpoint[12], 2, 37, 2);
+				spawnerScript.MakeABear(spawnerScript.spawnpoint[1], 15, 0, 3, 2);
+				//no bear 16
+				//no bear 17
+				spawnerScript.MakeABear(spawnerScript.spawnpoint[3], 18, 4, 3, 0);
+				wave = 2;
+			}
+		}
+		else if(wave == 2)
+		{
+			if(!(GameObject.Find("bear9") || GameObject.Find("bear10") || GameObject.Find("bear11") || GameObject.Find("lollipop2") 
+			     || GameObject.Find("bear13") || GameObject.Find("bear15") || GameObject.Find("bear18") ))
+			{
+				if (num == 0)
+					num = TranslateTo( new Vector3(51.2f, 3.5f, -43.3f), num);	
+				else if (num == 1)
+				{
+					num = LookAt( new Vector3(51.2f, 3.5f, -30f), num);
+					if(num == 2)
+					{
+						//no bear 19
+						spawnerScript.MakeABear(spawnerScript.spawnpoint[3], 20, 4, 3, 0);
+						spawnerScript.MakeABear(spawnerScript.spawnpoint[4], 21, 16, 2, 1);
+						spawnerScript.MakeABear(spawnerScript.spawnpoint[5], 22, 15, 2, 1);
+						wave = 3;
+					}
+				}
+			}
+		}
+		else if(wave == 3)
+		{
+			if(!(GameObject.Find("bear20") || GameObject.Find("bear21") || GameObject.Find("bear22")))
+			{
+				spawnerScript.MakeAnEgg(spawnerScript.spawnpoint[9], 1, 10, 3);
+				wave = 4;
+			}
+		}
+		else if(wave == 4)
+		{
+			if(!(GameObject.Find("egg1")))
+			{
+				wave = 5;
+			}
 		}
 	}
 	
 	
 	private int LookAt( Vector3 position , int num) {
-		
+
 		//find the vector pointing from our position to the target
-		_direction = (position - transform.position).normalized;
+		_direction = (position - transform.position);//.normalized;
 		
 		//create the rotation we need to be in to look at the target
 		_lookRotation = Quaternion.LookRotation(_direction);
@@ -127,20 +192,21 @@ public class EventManager_MainHall : MonoBehaviour {
 		//rotate us over time according to speed until we are in the required rotation
 		transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * RotationSpeed);
 		theCharacter.transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * RotationSpeed);
-		
-		if (transform.rotation == _lookRotation)
+
+		if (Mathf.Abs(Mathf.Abs (transform.rotation.y) - Mathf.Abs (_lookRotation.y)) < 0.000001f) {
 			num += 1;
-		
+		}
+
 		return num;
 	}
-	
+
 	private int TranslateTo( Vector3 position , int num) {
 		
 		// Calculate the distance between the follower and the leader.
 		float range1 = Vector3.Distance(theCamera.transform.position, position );
 		//Debug.Log ("Range = " + range1);
 		
-		if (range1 > 1.0) {
+		if (range1 > 0.5) {
 			// prevent shooting and using the shield while moving
 			shootScript.enabled = false;
 			shieldScript.enabled = false;
@@ -171,15 +237,14 @@ public class EventManager_MainHall : MonoBehaviour {
 			theCamera.transform.Translate (dir * movementSpeed * Time.deltaTime, Space.World);
 			theCharacter.transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * RotationSpeed);
 			
-		} else if (range1 <= 1.0) {
+		} else if (range1 <= 0.5) {
 			// Reached position, enable shielding and shooting
 			shootScript.enabled = true;
 			shieldScript.enabled = true;
-		
+			
 			audio.Stop ();
 			num += 1;
-			Debug.Log (num);
-			
+
 		}
 		return num;
 	}

@@ -26,12 +26,11 @@ public class EventManager_DiningHall : MonoBehaviour {
 	public GunDisplay gunScript;
 	public LifeCounter lifeScript;
 	public TimerScript timeScript;
-
-	// Need to spawn minions using spawnerScript
-	public GameObject spawner;
-	public Spawner spawnerScript;
-
-	private int wave;
+	
+	// Spawning
+	public GameObject bearPrefab;
+	private int count;
+	public GameObject lollipopPrefab;
 	
 	void Start(){
 		theCamera = Camera.main.gameObject;
@@ -39,10 +38,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 		audio.clip = footsteps;
 		num = 0;
 		theCharacter.transform.rotation = theCamera.transform.rotation;
-
-		spawner = GameObject.Find("Spawner");
-		spawnerScript = spawner.GetComponent<Spawner>();
-		wave = 0;
+		count = 1;
 	}
 
 	// Update is called once per frame
@@ -50,7 +46,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 		// character hitbox follows the camera around
 		theCharacter.transform.position = theCamera.transform.position;
 
-		if ((!(GameObject.Find ("Target6")))) {
+		/*if ((!(GameObject.Find ("TargetABC")))) {
 
 			if (num == 13)
 				num = TranslateTo( new Vector3(4f, 3.5f, 36.4f), num);	
@@ -64,7 +60,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 			}
 		}
 		
-		else if ((!(GameObject.Find ("Target5")))) {
+		else if ((!(GameObject.Find ("TargetABC")))) {
 			
 			if (num == 9)
 				num = TranslateTo( new Vector3(38f, 3.5f, 32.4f), num);	
@@ -76,7 +72,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 				num = LookAt( new Vector3 (22f, 3.5f, 26.4f), num);
 			
 		}
-		else if ((!(GameObject.Find ("Target4")))) {
+		else if ((!(GameObject.Find ("TargetABC")))) {
 			
 			if (num == 7)
 				num = TranslateTo( new Vector3(34.4f, 3.5f, 23f), num);	
@@ -93,7 +89,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 			
 		}
 		
-		else if ((!(GameObject.Find ("Target2")))) {
+		else if ((!(GameObject.Find ("TargetABC")))) {
 
 			if (num == 2)
 				num = TranslateTo( new Vector3(51.2f, 3.5f, -19f), num);
@@ -105,78 +101,52 @@ public class EventManager_DiningHall : MonoBehaviour {
 
 		}
 		
-		else if ((!(GameObject.Find ("Target1")))) {
+		else if ((!(GameObject.Find ("TargetABC")))) {
+			// Put into coroutine so that you do this and walk at the same time.
+			// Loop for as many bears as you need to spawn
 			
-
+			if (num == 0){
+				num = TranslateTo( new Vector3(51.2f, 3.5f, -43.3f), num);
+				
+			}
+			else if (num == 1)
+				num = LookAt( new Vector3(51.2f, 3.5f, -30f), num);
 							
+		}*/
+		if(count <= 9){
+			Debug.Log("Wave 1");
+			spawnBear (new Vector3( -8f, 0f, -18f ), new Vector3(16.8f, 3.5f, -43.3F)); // target1
+			spawnBear (new Vector3( 26f, 0f, -5f  ), new Vector3(16.8f, 3.5f, -43.3F)); // target2
+			spawnBear (new Vector3( -7f, 0f, 17.5f  ), new Vector3(16.8f, 3.5f, -43.3F)); // target3
+			spawnBear (new Vector3( 10f, 0f, 34.5f ), new Vector3(16.8f, 3.5f, -43.3F)); // target4
+			spawnBear (new Vector3( 22f, 0f, 34.5f ), new Vector3(16.8f, 3.5f, -43.3F)); // target5
+			spawnBear (new Vector3( -20f, 0f, -30f ), new Vector3(16.8f, 3.5f, -43.3F)); // target6
+			spawnBear (new Vector3(  -6.5f, 0f, 53f ), new Vector3(16.8f, 3.5f, -43.3F)); // target7
+			spawnBear (new Vector3( 5f, 0f, -5f  ), new Vector3(16.8f, 3.5f, -43.3F)); // target8
+			spawnLollipop (new Vector3 ( 10f, 10f, 65f ), new Vector3(16.8f, 3.5f, -43.3F)); // target9
+			//count++;
 		}
-
-		if(wave == 0)
-		{
-			spawnerScript.MakeABear(spawnerScript.spawnpoint[0], 1, 2, 4, 2);
-			//no bear 2
-			spawnerScript.MakeABear(spawnerScript.spawnpoint[1], 3, 0, 3, 2);
-			//no bear 4
-			//no bear 5
-			spawnerScript.MakeABear(spawnerScript.spawnpoint[6], 6, 7, 2, 1);
-			spawnerScript.MakeABear(spawnerScript.spawnpoint[8], 7, 14, 2, 2);
-			//no bear 8
-			spawnerScript.MakeALollipop(spawnerScript.spawnpoint[12], 1, 37, 2);
-			wave = 1;
+		else if(count > 9 && count <= 15 && !(GameObject.Find ("Target1") || GameObject.Find ("Target2") || GameObject.Find ("Target3") || GameObject.Find ("Target4") || GameObject.Find ("Target5") || GameObject.Find ("Target6") || GameObject.Find ("Target7") || GameObject.Find ("Target8") || GameObject.Find ("Target9"))){
+			Debug.Log("Wave 2");
+			spawnBear (new Vector3(  -20f, 0f, 5f), new Vector3(16.8f, 3.5f, -43.3F)); // target10
+			spawnBear (new Vector3( -20f, 0f, -30f  ), new Vector3(16.8f, 3.5f, -43.3F)); // target11
+			spawnBear (new Vector3( -8f, 0f, -18f ), new Vector3(16.8f, 3.5f, -43.3F)); // target12
+			spawnBear (new Vector3( 26f, 0f, -5f), new Vector3(16.8f, 3.5f, -43.3F)); // target13
+			spawnBear (new Vector3( -6.5f, 0f, 53f ), new Vector3(16.8f, 3.5f, -43.3F)); // target14
+			spawnBear (new Vector3(  22f, 0f, 34.5f  ), new Vector3(16.8f, 3.5f, -43.3F)); // target15
+			//spawnLollipop (new Vector3 ( 40f, 10f, 65f  ), new Vector3(16.8f, 3.5f, -43.3F)); // target16
+			count++;
 		}
-		else if(wave == 1)
-		{
-			if(!(GameObject.Find("bear1") || GameObject.Find("bear3") || GameObject.Find("bear6") || GameObject.Find("bear7") || GameObject.Find("lollipop1")))
-			{
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[7], 9, 3, 3, 1);
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[6], 10, 7, 2, 1);
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[0], 11, 2, 4, 2);
-				//no bear 12
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[8], 13, 14, 2, 2);
-				//no bear 14
-				spawnerScript.MakeALollipop(spawnerScript.spawnpoint[12], 2, 37, 2);
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[1], 15, 0, 3, 2);
-				//no bear 16
-				//no bear 17
-				spawnerScript.MakeABear(spawnerScript.spawnpoint[3], 18, 4, 3, 0);
-				wave = 2;
+		
+		else if(count > 16 && !(GameObject.Find ("Target10") || GameObject.Find ("Target11") || GameObject.Find ("Target12") || GameObject.Find ("Target13") || GameObject.Find ("Target14") || GameObject.Find ("Target15") || GameObject.Find ("Target16"))){
+			if (num == 0){
+				num = TranslateTo( new Vector3(51.2f, 3.5f, -43.3f), num);
 			}
-		}
-		else if(wave == 2)
-		{
-			if(!(GameObject.Find("bear9") || GameObject.Find("bear10") || GameObject.Find("bear11") || GameObject.Find("lollipop2") 
-			     || GameObject.Find("bear13") || GameObject.Find("bear15") || GameObject.Find("bear18") ))
-			{
-				if (num == 0)
-					num = TranslateTo( new Vector3(51.2f, 3.5f, -43.3f), num);	
-				else if (num == 1)
-				{
-					num = LookAt( new Vector3(51.2f, 3.5f, -30f), num);
-					if(num == 2)
-					{
-						//no bear 19
-						spawnerScript.MakeABear(spawnerScript.spawnpoint[3], 20, 4, 3, 0);
-						spawnerScript.MakeABear(spawnerScript.spawnpoint[4], 21, 16, 2, 1);
-						spawnerScript.MakeABear(spawnerScript.spawnpoint[5], 22, 15, 2, 1);
-						wave = 3;
-					}
-				}
+			else if (num == 1){
+				num = LookAt( new Vector3(51.2f, 3.5f, -30f), num);
 			}
-		}
-		else if(wave == 3)
-		{
-			if(!(GameObject.Find("bear20") || GameObject.Find("bear21") || GameObject.Find("bear22")))
-			{
-				spawnerScript.MakeAnEgg(spawnerScript.spawnpoint[9], 1, 10, 3);
-				wave = 4;
-			}
-		}
-		else if(wave == 4)
-		{
-			if(!(GameObject.Find("egg1")))
-			{
-				wave = 5;
-			}
+			
+			Debug.Log ("Wave 3");
 		}
 	}
 	
@@ -247,6 +217,22 @@ public class EventManager_DiningHall : MonoBehaviour {
 
 		}
 		return num;
+	}
+	
+	private void spawnBear(Vector3 position, Vector3 nextPosition){
+		GameObject bear = Instantiate(bearPrefab, new Vector3(position.x, position.y, position.z), transform.rotation) as GameObject; // add public GameObject bearPrefab at the top
+		bear.name = string.Concat("Target", count.ToString()); // give them unique numbered names (remember to initialize count)
+		Vector3 direction = new Vector3(nextPosition.x, nextPosition.y, nextPosition.z) - bear.transform.position; // make the instantiated bear face the camera
+		bear.transform.rotation = Quaternion.LookRotation(direction);
+		count++;
+	}
+	
+	private void spawnLollipop(Vector3 position, Vector3 nextPosition){
+		GameObject lollipop = Instantiate(lollipopPrefab, new Vector3(position.x, position.y, position.z), transform.rotation) as GameObject; // add public GameObject bearPrefab at the top
+		lollipop.name = string.Concat("Target", count.ToString()); // give them unique numbered names (remember to initialize count)
+		Vector3 direction = new Vector3(nextPosition.x, nextPosition.y, nextPosition.z) - lollipop.transform.position; // make the instantiated bear face the camera
+		lollipop.transform.rotation = Quaternion.LookRotation(direction);
+		count++;
 	}
 	
 	private void saveGame(){
