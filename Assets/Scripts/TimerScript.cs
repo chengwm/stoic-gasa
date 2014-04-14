@@ -11,7 +11,7 @@ public class TimerScript: MonoBehaviour {
 	void Start(){
 		if(Application.loadedLevelName == "MainHall"){
 			minutes = 0;
-			seconds = 300;
+			seconds = 500;
 			miliseconds = 0;
 		}
 		else{

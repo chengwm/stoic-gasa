@@ -59,7 +59,7 @@ public class EnemyShoot : MonoBehaviour
 				}
 				
 				Vector3 randomOffset;
-				if(hitOrNot < 0.15F){ // hit
+				if(hitOrNot < 0.08F){ // hit
 					Debug.Log ("Hit");
 					randomOffset = new Vector3(-2.5F,-7F,-6F);
 				}
