@@ -38,7 +38,7 @@ public class EnemyLollipop : MonoBehaviour
 	public AudioClip shieldBlock;
 
 	void Start() {
-		renderer.material.SetColor("_Color", Color.blue);
+		//renderer.material.SetColor("_Color", Color.blue);
 		lifeLollipop = 2;
 		current = States.NullStateID;
 		attackTimer = 10.0f; //for testing. switch back to 10.0f later
@@ -60,11 +60,13 @@ public class EnemyLollipop : MonoBehaviour
 			attackTimer = 10.0f;
 			move.pass++;
 		}
-
+		
+		/*
 		if(colourTimer <= 0.0f)
 		{
 			renderer.material.SetColor("_Color", Color.blue);
 		}
+		*/
 
 		//transition to Attack State from another state
 		if(attackTimer <= 0.0f)
@@ -213,10 +215,11 @@ public class EnemyLollipop : MonoBehaviour
 	{
 		lifeLollipop--;
 		audio.PlayOneShot(getDamaged);
-		renderer.material.SetColor("_Color", Color.red);
+		//renderer.material.SetColor("_Color", Color.red);
 		if(lifeLollipop == 0)
 		{
-			DestroyObject(gameObject, delay);
+			animation.Play ("Die_Lolli");
+			DestroyObject(gameObject, 0.7F);
 			colourTimer = 0.5f;
 		}
 		else 

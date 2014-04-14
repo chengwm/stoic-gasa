@@ -19,6 +19,7 @@ public class EnemyShoot : MonoBehaviour
 	
 	// Audio
 	public AudioClip bearShoot;
+
 	/*
 	void Start(){
 		Debug.Log ("Player position = " + player.transform.position.x + " " + player.transform.position.y + " "+ player.transform.position.z);
@@ -37,7 +38,7 @@ public class EnemyShoot : MonoBehaviour
 			if(Time.time - nextFire > fireRate){
 				nextFire = Time.time + fireRate;
 				// Create a clone of the 'Bullet' prefab
-				GameObject clone = Instantiate(m_PrefabBullet, transform.position, transform.rotation) as GameObject;
+				GameObject clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(2.5F,7F,6F), transform.rotation) as GameObject;
 				audio.PlayOneShot(bearShoot);
 				//Debug.Log ("Bullet position = " + clone.transform.position.x + " " + clone.transform.position.y + " "+ clone.transform.position.z);
 				//Debug.Log ("Target position = " + (player.transform.position - transform.position).x + " " + (player.transform.position - transform.position).y + " "+ (player.transform.position - transform.position).z);
@@ -57,10 +58,10 @@ public class EnemyShoot : MonoBehaviour
 				Vector3 randomOffset;
 				if(hitOrNot < 0.15F){ // hit
 					Debug.Log ("Hit");
-					randomOffset = new Vector3(0,0,0);
+					randomOffset = new Vector3(-2.5F,-7F,-6F);
 				}
 				else{ // no hit
-					randomOffset = new Vector3(offsetValueX, offsetValueY, offsetValueY);
+					randomOffset = new Vector3(offsetValueX-2.5F, offsetValueY-7F, offsetValueY-6F);
 				}
 
 				// Adds a force to the bullet so it can move

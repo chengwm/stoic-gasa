@@ -5,7 +5,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 	// Note: Copy the Main Camera from the Menu GUI prefabs. The camera nested in the character does not work properly with this code.
 	
 	public float RotationSpeed = 15;
-	public float movementSpeed = 40;
+	public float movementSpeed = 25;
 
 	//values for internal use
 	private Quaternion _lookRotation;
@@ -41,7 +41,17 @@ public class EventManager_DiningHall : MonoBehaviour {
 		theCharacter.transform.position = theCamera.transform.position;
 
 		if ((!(GameObject.Find ("Target6")))) {
-			
+
+			if (num == 13)
+				num = TranslateTo( new Vector3(4f, 3.5f, 36.4f), num);	
+			else if (num == 14)
+				num = TranslateTo( new Vector3(-7f, 3.5f, 58f), num);
+			else if (num == 15)
+				num = TranslateTo( new Vector3(-10.5f, 3.5f, 86f), num);
+			else if (num == 16){
+				saveGame ();
+				Application.LoadLevel ("BossRoom");
+			}
 		}
 		
 		else if ((!(GameObject.Find ("Target5")))) {

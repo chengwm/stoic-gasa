@@ -117,7 +117,8 @@ public class EnemyEgg : MonoBehaviour
 		//renderer.material.SetColor("_Color", Color.red);
 		if(lifeEgg == 0)
 		{
-			DestroyObject(gameObject, delay);
+			animation.Play ("Die_Egg");
+			DestroyObject(gameObject, 0.7F);
 			colourTimer = 0.5f;
 		}
 		else 
