@@ -32,6 +32,15 @@ public class LifeCounter : MonoBehaviour {
 			playerHealth = PlayerPrefs.GetInt("playerHealth");
 			loadedHealth = PlayerPrefs.GetInt("playerLoadedHealth"); // we need this so that when the player reloads the level, he will not 
 			playedTakeDamage = PlayerPrefs.GetInt("playedTakeDamage");
+			if(loadedHealth == 3){
+				playedTakeDamage = 2;
+			}
+			else if(loadedHealth == 2){
+				playedTakeDamage = 3;
+			}
+			else if(loadedHealth == 1){
+				playedTakeDamage = 4;
+			}
 		}
 		PlayerPrefs.SetInt ("playerHealth", loadedHealth);
 	}
@@ -56,7 +65,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = true;
 			life2.enabled = true;
 			life1.enabled = true;
-			if(playedTakeDamage == 0){
+			if(playedTakeDamage == 0 && loadedHealth != 3){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 2;
 			}
@@ -68,7 +77,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = true;
 			life1.enabled = true;
-			if(playedTakeDamage == 2){
+			if(playedTakeDamage == 2 && loadedHealth != 2){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 3;
 			}
@@ -80,7 +89,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = false;
 			life1.enabled = true;
-			if(playedTakeDamage == 3){
+			if(playedTakeDamage == 3 && loadedHealth != 1){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 4;
 			}
