@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\EventManager OLD.cs" />
      <Compile Include="Assets\Scripts\EventManager_BossRoom.cs" />
      <Compile Include="Assets\Scripts\EventManager_DiningHall.cs" />
+     <Compile Include="Assets\Scripts\EventManager_DiningHallOLD.cs" />
      <Compile Include="Assets\Scripts\EventManager_DiningHall_KT.cs" />
      <Compile Include="Assets\Scripts\EventManager_MainHall.cs" />
      <Compile Include="Assets\Scripts\EventManager_MainHall_KT.cs" />

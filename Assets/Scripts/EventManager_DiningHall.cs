@@ -120,8 +120,8 @@ public class EventManager_DiningHall : MonoBehaviour {
 			Debug.Log("Wave 1");
 			spawnBear (new Vector3( -8f, 0f, -18f ), 1); // target1
 			spawnBear (new Vector3( 26f, 0f, -5f  ), 0); // target2
-			spawnBear (new Vector3( -7f, 0f, 17.5f  ),  1); // target3
-			spawnBear (new Vector3( 10f, 0f, 34.5f ),  0); // target4
+			count++;
+			count++;
 			spawnBear (new Vector3( 22f, 0f, 34.5f ),  0); // target5
 			spawnBear (new Vector3( -20f, 0f, -30f ), 2); // target6
 			spawnBear (new Vector3(  -6.5f, 0f, 53f ),  1); // target7
@@ -134,8 +134,8 @@ public class EventManager_DiningHall : MonoBehaviour {
 			Debug.Log("Wave 2");
 			spawnBear (new Vector3(  -20f, 0f, 5f),  2); // target10
 			spawnBear (new Vector3( -20f, 0f, -30f  ), 2); // target11
-			spawnBear (new Vector3( -8f, 0f, -18f ),  1); // target12
-			spawnBear (new Vector3( 26f, 0f, -5f),  0); // target13
+			count++;
+			count++;
 			spawnBear (new Vector3( -6.5f, 0f, 53f ),  1); // target14
 			spawnBear (new Vector3(  22f, 0f, 34.5f  ),  0); // target15
 			spawnLollipop (new Vector3 ( 40f, 10f, 65f  )); // target16
@@ -163,7 +163,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 				spawnBear (new Vector3(53.6f, 0f, 32f ),  2); // target22
 				spawnBear (new Vector3( 53.6f, 0f, -27f),  2); // target23
 				spawnBear (new Vector3( 46.5f, 0f, 53f), 1); // target24
-				spawnEgg(new Vector3 ( 40f, 0f, 65f )); // target25
+				spawnEgg(new Vector3 ( 50f, 0f, 62f )); // target25
 			}
 			
 			else if(count > 25 && count <= 29 && !(GameObject.Find ("Target21") || GameObject.Find ("Target22") || GameObject.Find ("Target23") || GameObject.Find ("Target24"))){
@@ -197,7 +197,7 @@ public class EventManager_DiningHall : MonoBehaviour {
 				Debug.Log ("Wave 7");
 				spawnBear (new Vector3( -20f, 0f, 41f),  2); // target36
 				spawnLollipop (new Vector3 ( -26f, 10f, -25f  )); // target37
-				spawnBear (new Vector3( -5.5f, 0f, -34f),  2); // target38
+				spawnBear (new Vector3( -8f, 0f, -34f),  2); // target38
 				spawnBear (new Vector3( -20f, 0f, 5f),  2); // target38
 				spawnLollipop (new Vector3 ( 10f, 10f, 65f )); // target39
 				spawnBear (new Vector3( -19f, 0f, -21f),  1); // target40
