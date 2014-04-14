@@ -40,11 +40,13 @@ public class EnemyLollipop : MonoBehaviour
 	void Start() {
 		//renderer.material.SetColor("_Color", Color.blue);
 		lifeLollipop = 2;
-		current = States.NullStateID;
+		current = States.FlyLeft;
 		attackTimer = 10.0f; //for testing. switch back to 10.0f later
 		colourTimer = 0.5f;
 		speed = 1.0f; 
 		pass = 1;
+
+		Physics.IgnoreLayerCollision(8,8, true);
 	}
 
 	void Update() {
@@ -54,7 +56,7 @@ public class EnemyLollipop : MonoBehaviour
 
 		attackTimer -= Time.deltaTime;
 		colourTimer -= Time.deltaTime;
-
+		/*
 		Movement move = this.GetComponent<Movement>();
 		if(move.reached == true && move.pass == 1)
 		{
@@ -62,7 +64,7 @@ public class EnemyLollipop : MonoBehaviour
 			attackTimer = 10.0f;
 			move.pass++;
 		}
-		
+		*/
 		/*
 		if(colourTimer <= 0.0f)
 		{
