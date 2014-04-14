@@ -46,7 +46,8 @@ public class EnemyLollipop : MonoBehaviour
 		speed = 1.0f; 
 		pass = 1;
 
-		Physics.IgnoreLayerCollision(8,8, true);
+		Physics.IgnoreLayerCollision(8, 8, true);
+		Physics.IgnoreLayerCollision(8, 0, true);
 	}
 
 	void Update() {
