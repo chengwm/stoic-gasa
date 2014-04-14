@@ -31,10 +31,13 @@ public class EnemyShoot : MonoBehaviour
 	{
 		GameObject enemy = GameObject.FindWithTag("Enemy");
 		player = GameObject.FindWithTag ("MainCharacter");
+
 		Enemy e = enemy.GetComponent<Enemy>();
-		//only attacks when enemy is in attack state and when enemy has fully risen up
-		if(e.current == Enemy.States.Attack && e.positionOriginal >= e.transform.position.y)
+		//only attacks when enemy is in attack state 
+		//if(e.current == Enemy.States.Attack && e.positionOriginal >= e.transform.position.y)
+		if(e.current == Enemy.States.Attack && !(e.animation.isPlaying))
 		{
+
 			if(Time.time - nextFire > fireRate){
 				nextFire = Time.time + fireRate;
 				// Create a clone of the 'Bullet' prefab
