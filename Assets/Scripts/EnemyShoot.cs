@@ -75,7 +75,7 @@ public class EnemyShoot : MonoBehaviour
 						randomOffset = new Vector3(0.8F,-3.5F,1F);
 					}
 					else if(Application.loadedLevelName == "MainHall"){
-						randomOffset = new Vector3(-2.5F,-7F,-6F);
+						randomOffset = new Vector3(-7F,-11F,-6F);
 					}
 					else{
 						randomOffset = new Vector3(-5F,-7F,4F);
@@ -87,7 +87,7 @@ public class EnemyShoot : MonoBehaviour
 						randomOffset = new Vector3(offsetValueX+0.8F, offsetValueY-3.5F, offsetValueY+1F);
 					}
 					else if(Application.loadedLevelName == "MainHall"){
-						randomOffset = new Vector3(offsetValueX-2.5F, offsetValueY-7F, offsetValueY-6F);
+						randomOffset = new Vector3(offsetValueX-7F, offsetValueY-11F, offsetValueY-6F);
 					}
 					else{
 						randomOffset = new Vector3(offsetValueX-5F, offsetValueY-7F, offsetValueY+4F);
