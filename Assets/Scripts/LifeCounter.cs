@@ -6,6 +6,7 @@ public class LifeCounter : MonoBehaviour {
 	public GUITexture life1;
 	public GUITexture life2;
 	public GUITexture life3;
+	public GUITexture life4;
 	public int playerHealth;
 	public InGameScoreScript script;
 	private int loadedHealth;
@@ -22,9 +23,9 @@ public class LifeCounter : MonoBehaviour {
 	void Start () {
 		// initialize to 3 if we are on the first level
 		if(Application.loadedLevelName == "MainHall"){
-			playerHealth = 3;
+			playerHealth = 4;
 			playedTakeDamage = 0;
-			loadedHealth = 3;
+			loadedHealth = 4;
 		}
 		// else, load the current health
 		else{
@@ -40,34 +41,48 @@ public class LifeCounter : MonoBehaviour {
 		if (PlayerPrefs.HasKey ("playerHealth")) {
 			playerHealth = PlayerPrefs.GetInt ("playerHealth");
 		}
-		playerHealth = 3;
-		// If player has 3 lives
-		if(playerHealth >= 3)
+		// If player has 4 lives
+		if(playerHealth >= 4)
 		{
+			life4.enabled = true;
 			life3.enabled = true;
 			life2.enabled = true;
 			life1.enabled = true;
 		}
+		// If player has 3 lives
+		else if(playerHealth == 3)
+		{
+			life4.enabled = false;
+			life3.enabled = true;
+			life2.enabled = true;
+			life1.enabled = true;
+			if(playedTakeDamage == 0 && loadedHealth != 3){
+				StartCoroutine(PlayOuch());
+				playedTakeDamage = 2;
+			}
+		}
 		// If player has 2 lives
 		else if(playerHealth == 2)
 		{
+			life4.enabled = false;
 			life3.enabled = false;
 			life2.enabled = true;
 			life1.enabled = true;
-			if(playedTakeDamage == 0 && loadedHealth != 2){
+			if(playedTakeDamage == 2 && loadedHealth != 2){
 				StartCoroutine(PlayOuch());
-				playedTakeDamage = 1;
+				playedTakeDamage = 3;
 			}
 		}
 		// Else if player has 1 lives
 		else if(playerHealth == 1)
 		{
+			life4.enabled = false;
 			life3.enabled = false;
 			life2.enabled = false;
 			life1.enabled = true;
-			if(playedTakeDamage == 1 && loadedHealth != 1){
+			if(playedTakeDamage == 3 && loadedHealth != 1){
 				StartCoroutine(PlayOuch());
-				playedTakeDamage = 2;
+				playedTakeDamage = 4;
 			}
 			if(playedHeartBeat == false){
 				audio.PlayOneShot(heartBeat);

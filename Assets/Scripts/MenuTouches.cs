@@ -48,9 +48,6 @@ public class MenuTouches : MonoBehaviour {
 			else if(Application.loadedLevelName == "HelpScreen3"){
 				StartCoroutine(LoadHelp2 ());
 			}
-			else if(Application.loadedLevelName == "HelpScreen4"){
-				StartCoroutine(LoadHelp3 ());
-			}
 		}
 		else if (this.name == "Right_Button"){ // forward (help screen)
 			if(Application.loadedLevelName == "HelpScreen1"){
@@ -58,9 +55,6 @@ public class MenuTouches : MonoBehaviour {
 			}
 			else if(Application.loadedLevelName == "HelpScreen2"){
 				StartCoroutine(LoadHelp3 ());
-			}
-			else if(Application.loadedLevelName == "HelpScreen3"){
-				StartCoroutine(LoadHelp4 ());
 			}
 		}
 	}
@@ -137,13 +131,6 @@ public class MenuTouches : MonoBehaviour {
 		guiTexture.texture = button1;
 		yield return new WaitForSeconds(0.2F);
 		Application.LoadLevel ("HelpScreen3");
-		yield break;
-	}
-	IEnumerator LoadHelp4(){
-		audio.PlayOneShot(menuButton);
-		guiTexture.texture = button1;
-		yield return new WaitForSeconds(0.2F);
-		Application.LoadLevel ("HelpScreen4");
 		yield break;
 	}
 }
