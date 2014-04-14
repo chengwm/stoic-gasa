@@ -40,6 +40,7 @@ public class LifeCounter : MonoBehaviour {
 		if (PlayerPrefs.HasKey ("playerHealth")) {
 			playerHealth = PlayerPrefs.GetInt ("playerHealth");
 		}
+		playerHealth = 3;
 		// If player has 3 lives
 		if(playerHealth >= 3)
 		{
