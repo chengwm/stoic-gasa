@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 	private int positionInArray;
 	private Vector3 wPos, ePos;
 	public bool reached;
-	public int pass;	//used in Enemy.cs
+	public int pass;	//used in Enemy scripts
 
 	private bool doInitialise;
 	private bool waypointReached;
@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
 		positionInArray = 0;
 		counter = 0;
 
-
+		pass = 1;
 
 	}
 
@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
 			list_waypoints[waypointListSize-1] = GameObject.Find("Main Camera");
 			
 			//organise waypoints into routes
-			routeNo = 37;
+			routeNo = 38;
 			route_waypoints = new GameObject[routeNo][];
 			
 			//route 0
@@ -317,6 +317,12 @@ public class Movement : MonoBehaviour
 			route_waypoints[36][2] = list_coverpoints[6];
 			route_waypoints[36][3] = list_waypoints[waypointListSize-1];
 			counter++;
+
+			//route 37
+			routeWaypoint = 2;
+			route_waypoints[37] = new GameObject[routeWaypoint];
+			route_waypoints[37][0] = list_waypoints[1];
+			route_waypoints[37][1] = list_waypoints[waypointListSize-1];
 		}
 
 		if(doInitialise == true && arraySize != 0)
@@ -349,7 +355,7 @@ public class Movement : MonoBehaviour
 				//transform.up = Vector3.up;
 				//rigidbody.freezeRotation = true;
 
-				Vector3 direction = (transform.position - minion_waypoints[positionInArray].transform.position).normalized;
+				Vector3 direction = (minion_waypoints[positionInArray].transform.position - transform.position).normalized;
 				Quaternion lookRotation = Quaternion.LookRotation(direction);
 				if(lookRotation != transform.rotation)
 					transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
