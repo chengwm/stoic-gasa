@@ -40,8 +40,18 @@ public class EnemyShoot : MonoBehaviour
 
 			if(Time.time - nextFire > fireRate){
 				nextFire = Time.time + fireRate;
+				GameObject clone;
 				// Create a clone of the 'Bullet' prefab
-				GameObject clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(2.5F,7F,6F), transform.rotation) as GameObject;
+				if(Application.loadedLevelName == "DiningHall"){
+					clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(-0.8F,3.5F,-1F), transform.rotation) as GameObject;
+				}
+				else if(Application.loadedLevelName == "MainHall"){
+					clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(7F,11F,6F), transform.rotation) as GameObject;
+				}
+				else{
+					clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(5F,7F,-4F), transform.rotation) as GameObject;
+				}
+				// GameObject clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(2.5F,7F,6F), transform.rotation) as GameObject;
 				audio.PlayOneShot(bearShoot);
 				//Debug.Log ("Bullet position = " + clone.transform.position.x + " " + clone.transform.position.y + " "+ clone.transform.position.z);
 				//Debug.Log ("Target position = " + (player.transform.position - transform.position).x + " " + (player.transform.position - transform.position).y + " "+ (player.transform.position - transform.position).z);
@@ -61,10 +71,28 @@ public class EnemyShoot : MonoBehaviour
 				Vector3 randomOffset;
 				if(hitOrNot < 0.08F){ // hit
 					Debug.Log ("Hit");
-					randomOffset = new Vector3(-2.5F,-7F,-6F);
+					if(Application.loadedLevelName == "DiningHall"){
+						randomOffset = new Vector3(0.8F,-3.5F,1F);
+					}
+					else if(Application.loadedLevelName == "MainHall"){
+						randomOffset = new Vector3(-2.5F,-7F,-6F);
+					}
+					else{
+						randomOffset = new Vector3(-5F,-7F,4F);
+					}
+					// randomOffset = new Vector3(-2.5F,-7F,-6F);
 				}
 				else{ // no hit
-					randomOffset = new Vector3(offsetValueX-2.5F, offsetValueY-7F, offsetValueY-6F);
+					if(Application.loadedLevelName == "DiningHall"){
+						randomOffset = new Vector3(offsetValueX+0.8F, offsetValueY-3.5F, offsetValueY+1F);
+					}
+					else if(Application.loadedLevelName == "MainHall"){
+						randomOffset = new Vector3(offsetValueX-2.5F, offsetValueY-7F, offsetValueY-6F);
+					}
+					else{
+						randomOffset = new Vector3(offsetValueX-5F, offsetValueY-7F, offsetValueY+4F);
+					}
+					// randomOffset = new Vector3(offsetValueX-2.5F, offsetValueY-7F, offsetValueY-6F);
 				}
 
 				// Adds a force to the bullet so it can move

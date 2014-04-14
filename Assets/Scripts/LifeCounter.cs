@@ -56,7 +56,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = true;
 			life2.enabled = true;
 			life1.enabled = true;
-			if(playedTakeDamage == 0 && loadedHealth != 3){
+			if(playedTakeDamage == 0){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 2;
 			}
@@ -68,7 +68,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = true;
 			life1.enabled = true;
-			if(playedTakeDamage == 2 && loadedHealth != 2){
+			if(playedTakeDamage == 2){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 3;
 			}
@@ -80,7 +80,7 @@ public class LifeCounter : MonoBehaviour {
 			life3.enabled = false;
 			life2.enabled = false;
 			life1.enabled = true;
-			if(playedTakeDamage == 3 && loadedHealth != 1){
+			if(playedTakeDamage == 3){
 				StartCoroutine(PlayOuch());
 				playedTakeDamage = 4;
 			}
