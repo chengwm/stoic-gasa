@@ -18,6 +18,7 @@ public class playIngressGlyph : MonoBehaviour {
 	public IngressGlyphSets glyphGenerator;
 	public LineRenderer lineRenderer;
 	public IngressInstructionScript instructionText;
+	public AudioSource sound;
 	private int noOfVerticesTouched;
 	int[][] qn;
 	bool gameIsEnding;
@@ -42,10 +43,10 @@ public class playIngressGlyph : MonoBehaviour {
 		//Defines how many Glyphs to show. 
 		//Value: 1 to 4
 
-//		System.Random rnd = new System.Random();
-//		difficultyLevel = rnd.Next(1,5);
+		System.Random rnd = new System.Random();
+		difficultyLevel = rnd.Next(1,5);
 
-		difficultyLevel = 2;
+//		difficultyLevel = 2;
 
 
 		//tracker for Line Renderer
@@ -92,6 +93,7 @@ public class playIngressGlyph : MonoBehaviour {
 				yield return new WaitForSeconds(1);
 				instructionText.setColor(3);
 				instructionText.setInstruction(4);
+				sound.Play();
 				yield return new WaitForSeconds(1);
 	
 			}
