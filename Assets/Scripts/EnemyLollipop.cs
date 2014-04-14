@@ -53,7 +53,7 @@ public class EnemyLollipop : MonoBehaviour
 	void Update() {
 		player = GameObject.Find("Main Camera");
 
-		transform.rotation = new Quaternion(0.0f, 0.0f, 0.7f, 0.7f);
+		//transform.rotation = new Quaternion(0.0f, 0.0f, 0.7f, 0.7f);
 
 		attackTimer -= Time.deltaTime;
 		colourTimer -= Time.deltaTime;
@@ -158,7 +158,7 @@ public class EnemyLollipop : MonoBehaviour
 			//top left edge of viewport, where z = 10
 			if(pass == 1)
 			{
-				height = Random.Range(0.5f, 1.0f);
+				height = Random.Range(0.1f, 0.6f);
 				pass++;
 			}
 			Vector3 p = Camera.main.ViewportToWorldPoint(new Vector3(0.0f, height, 10.0f));
@@ -185,7 +185,7 @@ public class EnemyLollipop : MonoBehaviour
 			//top right edge of viewport, where z = 10
 			if(pass == 1)
 			{
-				height = Random.Range(0.5f, 1.0f);
+				height = Random.Range(0.1f, 0.6f);
 				pass++;
 			}
 			Vector3 p = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, height, 10.0f));
