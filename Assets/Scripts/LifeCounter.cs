@@ -30,7 +30,7 @@ public class LifeCounter : MonoBehaviour {
 		// else, load the current health
 		else{
 			playerHealth = PlayerPrefs.GetInt("playerHealth");
-			loadedHealth = PlayerPrefs.GetInt("playerLoadedHealth"); // we need this so that when the player reloads the level, he will not 
+			loadedHealth = PlayerPrefs.GetInt("playerLoadedHealth"); // we need this so that when the player reloads the level, he will not "OUCH"
 			playedTakeDamage = PlayerPrefs.GetInt("playedTakeDamage");
 			if(loadedHealth == 3){
 				playedTakeDamage = 2;
