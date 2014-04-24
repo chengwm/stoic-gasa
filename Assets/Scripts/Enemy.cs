@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//renderer.material.SetColor("_Color", Color.green);
 		attackTimer = 100000.0f;
 		coverTimer = 3.0f;
 		current = States.Attack;
@@ -45,30 +44,6 @@ public class Enemy : MonoBehaviour {
 		attackTimer -= Time.deltaTime;
 		coverTimer -= Time.deltaTime;
 
-		/*
-		if(this.tag == "Enemy")
-		{
-
-			Movement move = this.GetComponent<Movement>();
-			// Run animation if moving to waypoint
-			if(move.reached != true){
-				animation.Play ("Run");
-			}
-			if(move.reached == true && move.pass == 1)
-			{
-				current = States.Attack;
-				move.pass++;
-
-				UnityEngine.Random.seed = System.DateTime.Now.Second;
-				coverTimer = UnityEngine.Random.value % 20.0f;
-
-				if(coverType == 0)
-					positionOriginal = transform.position.y;
-				else
-					positionOriginal = transform.position.x;
-			}
-		}
-		*/
 		//transition from AttackState to TakeCoverState
 		if(coverTimer <= 0)
 		{

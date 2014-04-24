@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// This ensures that when we change scene, the music continues playing from the previous scene and does not restart.
+
 public class KeepMusicOverScenes : MonoBehaviour {
 
 	private static KeepMusicOverScenes instance = null;
@@ -25,4 +27,3 @@ public class KeepMusicOverScenes : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 }
-

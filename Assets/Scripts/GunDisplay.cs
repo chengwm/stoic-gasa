@@ -185,37 +185,3 @@ public class GunDisplay : MonoBehaviour {
 		yield break;
 	}
 }
-
-// Update is called once per frame
-/*void Update () 
-	{
-		// press and hold
-		if (guiTexture.HitTest(Input.GetTouch(0).position) && Input.GetTouch(0).phase != TouchPhase.Ended)
-		{
-
-		}
-		// when you let go
-		else if ((guiTexture.HitTest(Input.GetTouch(0).position) && Input.GetTouch(0).phase == TouchPhase.Ended))
-		{
-			//guiTexture.texture = button1;
-			if(selectionOpen == false)
-			{
-				selectionOpen = true;
-			}
-			else if(selectionOpen == true)
-			{
-				selectionOpen = false;
-			}
-		}
-	}*/
-/*
-	void OnMouseDown(){
-		// if you press the Gun Display, the selection is closed, and the game is unpaused
-		if ((guiTexture.name == "GunDisplay" || guiTexture.name == "HMG" || guiTexture.name == "Shotgun") && selectionOpen == false && Time.timeScale > 0)
-		{ 
-			selectionOpen = true;
-		}
-		else if(selectionOpen == true && Time.timeScale > 0)
-			selectionOpen = false;
-	}
-*/
