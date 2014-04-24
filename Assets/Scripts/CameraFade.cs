@@ -1,6 +1,6 @@
 ﻿// simple fading script
 // A texture is stretched over the entire screen. The color of the pixel is set each frame until it reaches its target color.
-
+// wiki.unity3d.com/index.php/FadeInOut
 
 using UnityEngine;
 

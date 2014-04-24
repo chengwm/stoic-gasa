@@ -41,7 +41,7 @@ public class EnemyShoot : MonoBehaviour
 			if(Time.time - nextFire > fireRate){
 				nextFire = Time.time + fireRate;
 				GameObject clone;
-				// Create a clone of the 'Bullet' prefab
+				// Create a clone of the 'Bullet' prefab. We have multiple offsets because the bears are of different sizes in different scenes.
 				if(Application.loadedLevelName == "DiningHall"){
 					clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(-0.8F,3.5F,-1F), transform.rotation) as GameObject;
 				}
@@ -51,7 +51,6 @@ public class EnemyShoot : MonoBehaviour
 				else{
 					clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(5F,7F,-4F), transform.rotation) as GameObject;
 				}
-				// GameObject clone = Instantiate(m_PrefabBullet, transform.position+new Vector3(2.5F,7F,6F), transform.rotation) as GameObject;
 				audio.PlayOneShot(bearShoot);
 				//Debug.Log ("Bullet position = " + clone.transform.position.x + " " + clone.transform.position.y + " "+ clone.transform.position.z);
 				//Debug.Log ("Target position = " + (player.transform.position - transform.position).x + " " + (player.transform.position - transform.position).y + " "+ (player.transform.position - transform.position).z);
@@ -80,7 +79,6 @@ public class EnemyShoot : MonoBehaviour
 					else{
 						randomOffset = new Vector3(-5F,-7F,4F);
 					}
-					// randomOffset = new Vector3(-2.5F,-7F,-6F);
 				}
 				else{ // no hit
 					if(Application.loadedLevelName == "DiningHall"){

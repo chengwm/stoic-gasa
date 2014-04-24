@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FPSIndicator : MonoBehaviour 
 {
-	
+	// http://wiki.unity3d.com/index.php?title=FramesPerSecond
 	// Attach this to a GUIText to make a frames/second indicator.
 	//
 	// It calculates frames/second over each updateInterval,

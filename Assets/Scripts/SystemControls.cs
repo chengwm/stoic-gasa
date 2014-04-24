@@ -30,7 +30,7 @@ public class SystemControls : MonoBehaviour {
 	void Update () {
 		if (Application.platform == RuntimePlatform.Android)
 		{
-			if (Input.GetKeyDown("escape")/*Input.GetKey(KeyCode.Escape)*/) // when the back button is pressed on the device
+			if (Input.GetKeyDown("escape")) // when the back button is pressed on the device
 			{
 				// Currently in game
 				if((Application.loadedLevelName == "MainHall"  || Application.loadedLevelName == "DiningHall" || Application.loadedLevelName == "BossRoom") && Time.timeScale == 1)
@@ -74,7 +74,7 @@ public class SystemControls : MonoBehaviour {
 			
 			 /*if(Input.GetKey (KeyCode.Menu)) // for the device menu button (leftmost button on the Note)
 			 {
-				Time.timeScale = 0;
+				// currently not in use
 			 }*/
 		}
 	}

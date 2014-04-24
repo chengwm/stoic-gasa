@@ -38,7 +38,6 @@ public class EnemyLollipop : MonoBehaviour
 	public AudioClip shieldBlock;
 
 	void Start() {
-		//renderer.material.SetColor("_Color", Color.blue);
 		lifeLollipop = 2;
 		current = States.FlyLeft;
 		attackTimer = 10.0f; //for testing. switch back to 10.0f later
@@ -57,21 +56,6 @@ public class EnemyLollipop : MonoBehaviour
 
 		attackTimer -= Time.deltaTime;
 		colourTimer -= Time.deltaTime;
-		/*
-		Movement move = this.GetComponent<Movement>();
-		if(move.reached == true && move.pass == 1)
-		{
-			current = States.FlyLeft;
-			attackTimer = 10.0f;
-			move.pass++;
-		}
-		*/
-		/*
-		if(colourTimer <= 0.0f)
-		{
-			renderer.material.SetColor("_Color", Color.blue);
-		}
-		*/
 
 		//transition to Attack State from another state
 		if(attackTimer <= 0.0f)
@@ -102,18 +86,15 @@ public class EnemyLollipop : MonoBehaviour
 			{
 				rigidbody.velocity = (pPos - lPos) * 5.0f;
 				//print ("attack!!!");
-
 			}
-			//print ("l x diff = " + Mathf.Abs(lPos.x - pPos.x));
-			//print ("l y diff = " + Mathf.Abs(lPos.y - pPos.y));
-			//print ("l z diff = " + Mathf.Abs(lPos.z - pPos.z));
+
 			//transition from Attack state to Retreat state
 			if (Mathf.Abs(lPos.x - pPos.x) < 2.0f && Mathf.Abs(lPos.y - pPos.y) < 2.0f
 			         && Mathf.Abs(lPos.z - pPos.z) < 2.0f)
 			{
 				audio.PlayOneShot(attack); // attack sound
 				current = States.Retreat;
-				//print ("implement player minus one in health");
+
 				// Get and update the health of the player
 				if (PlayerPrefs.HasKey ("playerHealth")) {
 					playerHealth = PlayerPrefs.GetInt ("playerHealth");
@@ -220,7 +201,6 @@ public class EnemyLollipop : MonoBehaviour
 	{
 		lifeLollipop--;
 		audio.PlayOneShot(getDamaged);
-		//renderer.material.SetColor("_Color", Color.red);
 		if(lifeLollipop == 0)
 		{
 			animation.Play ("Die_Lolli");
